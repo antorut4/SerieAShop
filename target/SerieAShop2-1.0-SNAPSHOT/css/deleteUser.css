@@ -1,0 +1,33 @@
+body {
+    background-color: #edf2f4;
+    font-family: sans-serif;
+}
+
+.container {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.titolo {
+    text-align: center;
+}
+
+.titolo h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #a9d1e9;
+}
+
+.form-control {
+    border-radius: 15px;
+    box-shadow: 0 0 5px #e7e7e7;
+}
+
+.form-control:focus {
+    border-color: #a9d1e9;
+    box-shadow: 0 0 5px #a9d1e9;
+}
+
+.form-control::placeholder {
+    color: #777;
+}
