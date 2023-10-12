@@ -9,12 +9,17 @@ body {
 }
 
 .stemma{
-    width: 100%;
+    width: 50%;
     text-align: center;
     margin : 2% 0;
     box-sizing: border-box;
 }
 
-.stemma img{
-    height: 80px;
+.banner{
+    display: flex;
+    align-items: center;
+}
+
+.banner img{
+    width: 100%;
 }

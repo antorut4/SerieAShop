@@ -6,242 +6,223 @@
     --main-black: #000;
 }
 
+/*top nav css */
+.topnav {
+    background-color: white;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.topnav a {
+    margin-left: 20px;
+    font-family: Arial, sans-serif;
+    color: black;
+    text-decoration: underline;
+    font-size: 13px;
+}
+
+.topnav img {
+    margin-left: auto;
+    width: 25px;
+    height:auto;
+}
+
+/*Center Nav*/
+.centernav{
+    background-color: #005BFF;
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+.containerForm{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 80%;
+    width: 100%;
+}
+
+#logo{
+    justify-content: flex-start;
+}
+
+.searchform {
+    display: inline-block;
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#search-input {
+    border: none;
+    font-size: 24px;
+    padding: 11px;
+}
+
+#search-button {
+    background-color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#search-image {
+    width: 24px;
+    height: 24px;
+}
+
+/*Down navbar*/
+.downbar {
+    background-color: #171D8D;
+    overflow: hidden;
+    width: 100%;
+}
+
+.downbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+}
+
+.downbar a:hover {
+    background-color: #4b6499;
+    color: white;
+}
+
+/* Stile per il contenitore dei dropdown */
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+/* Stile per il pulsante del dropdown */
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #4b6499;
+    color: white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #4b6499;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*Login-Register Form*/
 .Hidden{
     display: none;
 }
 
-/* Sovrascrivi le classi CSS di Bootstrap per personalizzare la navbar */
-.navbar {
-    background-color: var(--main-blue); /* Cambia il colore di sfondo della navbar */
-}
-
-/* Stile per la barra di ricerca */
-
-.container {
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.input-group {
-    max-width: 80%; /* Imposta la larghezza massima della barra di ricerca al 80% */
-    width: 100%; /* Imposta la larghezza al 100% */
-}
-
-.form-control {
-    border-radius: 30px; /* Aggiungi una leggera curva ai bordi dell'input di ricerca */
-    width: 100%; /* Imposta la larghezza del campo di input al 100% */
-}
-
-/* Sovrascrivi le classi Bootstrap esistenti per il pulsante di ricerca e l'icona */
-.btn-search {
-    background-color:  var(--main-white); /* Cambia il colore di sfondo del pulsante di ricerca */
-    border-color:  var(--main-white); /* Cambia il colore del bordo del pulsante di ricerca */
-    border-radius: 30px;
-}
-.btn-search:hover {
-    background-color: var(--main-white); /* Cambia il colore di sfondo del pulsante al passaggio del mouse */
-    border-color:  var(--main-white); /* Cambia il colore del bordo del pulsante al passaggio del mouse */
-}
-
-.btn-search i {
-    margin-right: 5px; /* Aggiunge uno spazio tra l'icona e il testo */
-}
-
-.navbarsotto {
-    background-color: var(--main-dark-blue);
-}
-
-.navbar-brand {
-    color: var(--main-cyan);
-    font-weight: bold;
-    font-size: 13px;
-    font-family: 'Open Sans', sans-serif;
-}
-
-.navbar-nav .nav-item .nav-link {
-    color:  var(--main-white);
-    font-size: 17px;
-    padding: 4px 48.7px;
-    font-family: 'Open Sans', sans-serif;
-}
-
-.navbar-nav .nav-item .nav-link:hover {
-    background-color:  var(--main-cyan);
-    color:  var(--main-white);
-}
-
-/* Rimuovi la freccetta del dropdown */
-.dropdown-toggle::after {
-    content: none;
-}
-
-/* Nascondi i dropdown */
-.navbar-nav .nav-item .dropdown-menu {
-    display: none;
+.container{
     position: absolute;
-    background-color:  var(--main-white);
-    z-index: 1;
-    width: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    max-width: 430px;
+    width: 100%;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
 }
-
-/* Stile per i dropdown items */
-.navbar-nav .nav-item .dropdown-menu .dropdown-item {
-    color:  var(--main-black);
-    padding: 8px 20px;
+.container .registration{
+    display: none;
 }
-
-/* Mostra il dropdown al passaggio del mouse */
-.navbar-nav .nav-item:hover .dropdown-menu {
+#check:checked ~ .registration{
     display: block;
 }
-
-.dropdown-item{
-    width: 150px;
-    height: 25px;
-}
-
-.stemma {
-    width: 25px;
-    height: auto;
-}
-
-/* Stile per la barra superiore */
-.top-bar {
-    background-color:  var(--main-white); /* Colore di sfondo della barra superiore */
-    height: 40px;
-    display: flex;
-    justify-content: flex-end; /* Allinea gli elementi a destra */
-    align-items: center; /* Centra verticalmente gli elementi */
-    padding: 0 20px; /* Spaziatura interna a destra e sinistra */
-}
-
-/* Stile per la lista di elementi nella barra superiore */
-.top-bar-nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display:flex;
-}
-
-/* Stile per ciascun elemento nella barra superiore */
-.top-bar-item {
-    margin-left: 20px; /* Spaziatura tra gli elementi */
-    font-family: Arial, sans-serif;
-}
-
-/* Stile per i link nella barra superiore */
-.top-bar-link {
-    color:  var(--main-black); /* Colore dei link */
-    text-decoration: none;
-    font-size: 13px;
-}
-
-/* Stile al passaggio del mouse sui link nella barra superiore */
-.top-bar-link:hover {
-    text-decoration: underline;
-}
-
-/* Stile specifico per il link del carrello */
-.cart-link {
-    color:  var(--main-black); /* Cambia il colore del testo del carrello */
-    font-size: 20px;
-    display: flex;
-    align-items: center; /* Centra verticalmente l'icona e il testo */
-}
-
-/* Stile per l'icona */
-.cart-link .iconify {
-    margin-right: 5px; /* Aggiunge spaziatura tra l'icona e il testo */
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f2f2f2;
-}
-
-#logreg_form {
+#check:checked ~ .login{
     display: none;
 }
-
-.CoverScreen {
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
+#check{
+    display: none;
+}
+.container .form{
+    padding: 2rem;
+}
+.form header{
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.form input{
+    height: 60px;
     width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0 15px;
+    font-size: 17px;
+    margin-bottom: 1.3rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
 }
-
-.LogReg {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: 400px;
+.form input:focus{
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
 }
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-label {
-    font-weight: bold;
-}
-
-.MainInput {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.form a{
     font-size: 16px;
+    color: var(--main-blue);
+    text-decoration: none;
 }
-
-.ActionButton {
-    background-color: #007bff;
+.form a:hover{
+    text-decoration: underline;
+}
+.form input.button{
     color: #fff;
+    background: var(--main-blue);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 1.7rem;
+    cursor: pointer;
+    transition: 0.4s;
 }
-
-.SwitchButton {
-    background-color: #ccc;
-    color: #333;
+.form input.button:hover{
+    background: var(--main-blue);
 }
-
-.Flex {
-    display: flex;
+.signup{
+    font-size: 17px;
+    text-align: center;
 }
-
-.ColumnContainer {
-    flex-direction: column;
-}
-
-.AlignCenter {
-    align-items: center;
-}
-
-.JustifyContentCenter {
-    justify-content: center;
-}
-
-.FloatLeft {
-    float: left;
-}
-
-.FloatRight {
-    float: right;
-}
-
-.CloseButton {
+.signup label{
+    color: var(--main-blue);
     cursor: pointer;
 }
-
-#login_error, #registration_error {
-    color: red;
-    margin-top: 10px;
+.signup label:hover{
+    text-decoration: underline;
 }

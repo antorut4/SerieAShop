@@ -1,3 +1,6 @@
+function LogRegForm(){
+    $("#LogRegForm").toggle();
+}
 function nomeClienteValidation(obj)
 {
     var nomeCliente= obj.value;
