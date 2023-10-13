@@ -9,5 +9,8 @@
         <module name="SerieAShop2" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SerieAShop" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

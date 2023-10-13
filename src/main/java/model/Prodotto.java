@@ -105,7 +105,8 @@ public class Prodotto {
     }
 
     public Prodotto cloneProd() {
-        Prodotto prodotto = new Prodotto(this.id, this.nome, this.prezzo, this.descrizione, this.quantita, this.image, this.idSquadra, this.categoria;
+        Prodotto prodotto;
+        prodotto = new Prodotto(this.id, this.nome, this.prezzo, this.descrizione, this.quantita, this.img, this.idSquadra, this.categoria);
         return prodotto;
     }
 

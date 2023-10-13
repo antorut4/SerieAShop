@@ -2,75 +2,75 @@
 
 <script src="${pageContext.request.contextPath}./script/FormValidationCliente.js"></script>
 
-  <div class="topnav">
-    <a href="">Traccia Ordine</a>
-    <a href="">Aiuto</a>
-    <button id="accesso" onclick=LogRegForm()>Il mio account</button>
-    <a href="">
-      <img src="${pageContext.request.contextPath}/image/cart.png">
-    </a>
-  </div>
+<div class="topnav">
+  <a href="">Traccia Ordine</a>
+  <a href="">Aiuto</a>
+  <button id="accesso" onclick=LogRegForm()>Il mio account</button>
+  <a href="">
+    <img src="${pageContext.request.contextPath}/image/cart.png">
+  </a>
+</div>
 
-  <div class="centernav">
-    <a href="">
-      <img src="${pageContext.request.contextPath}/image/logo.png" id="Logo" width="100" height="120" class="d-inline-block align-text-top">
-    </a>
-    <div class="containerForm">
-      <div class="searchform">
-        <input type="text" id="search-input" placeholder="Cerca.." title="Inserisci quello che vuoi cercare">
-        <button id="search-button" type="submit"><img src="${pageContext.request.contextPath}/image/search.png" id="search-image"></button>
-      </div>
+<div class="centernav">
+  <a href="">
+    <img src="${pageContext.request.contextPath}/image/logo.png" id="Logo" width="100" height="120" class="d-inline-block align-text-top">
+  </a>
+  <div class="containerForm">
+    <div class="searchform">
+      <input type="text" id="search-input" placeholder="Cerca.." title="Inserisci quello che vuoi cercare">
+      <button id="search-button" type="submit"><img src="${pageContext.request.contextPath}/image/search.png" id="search-image"></button>
     </div>
   </div>
+</div>
 
-  <div class="downbar">
-    <!-- Dropdown 1 -->
-    <div class="dropdown">
-      <button class="dropbtn">SHOP BY TEAM</button>
-      <div class="dropdown-content">
-        <a href="#item1">Item 1</a>
-        <a href="#item2">Item 2</a>
-        <a href="#item3">Item 3</a>
-        <a href="#item4">Item 4</a>
-      </div>
+<div class="downbar">
+  <!-- Dropdown 1 -->
+  <div class="dropdown">
+    <button class="dropbtn">SHOP BY TEAM</button>
+    <div class="dropdown-content">
+      <a href="#item1">Item 1</a>
+      <a href="#item2">Item 2</a>
+      <a href="#item3">Item 3</a>
+      <a href="#item4">Item 4</a>
     </div>
-
-    <!-- Dropdown 2 -->
-    <div class="dropdown">
-      <button class="dropbtn">UOMO</button>
-      <div class="dropdown-content">
-        <a href="#item1">Item 1</a>
-        <a href="#item2">Item 2</a>
-        <a href="#item3">Item 3</a>
-        <a href="#item4">Item 4</a>
-      </div>
-    </div>
-
-    <!-- Dropdown 3 -->
-    <div class="dropdown">
-      <button class="dropbtn">DONNA</button>
-      <div class="dropdown-content">
-        <a href="#item1">Item 1</a>
-        <a href="#item2">Item 2</a>
-        <a href="#item3">Item 3</a>
-        <a href="#item4">Item 4</a>
-      </div>
-    </div>
-
-    <!-- Dropdown 4 -->
-    <div class="dropdown">
-      <button class="dropbtn">BAMBINI</button>
-      <div class="dropdown-content">
-        <a href="#item1">Item 1</a>
-        <a href="#item2">Item 2</a>
-        <a href="#item3">Item 3</a>
-        <a href="#item4">Item 4</a>
-      </div>
-    </div>
-    <a href="#home">T-SHIRT</a>
-    <a href="#about">RETRO</a>
-    <a href="#services">SALDI</a>
   </div>
+
+  <!-- Dropdown 2 -->
+  <div class="dropdown">
+    <button class="dropbtn">UOMO</button>
+    <div class="dropdown-content">
+      <a href="#item1">Item 1</a>
+      <a href="#item2">Item 2</a>
+      <a href="#item3">Item 3</a>
+      <a href="#item4">Item 4</a>
+    </div>
+  </div>
+
+  <!-- Dropdown 3 -->
+  <div class="dropdown">
+    <button class="dropbtn">DONNA</button>
+    <div class="dropdown-content">
+      <a href="#item1">Item 1</a>
+      <a href="#item2">Item 2</a>
+      <a href="#item3">Item 3</a>
+      <a href="#item4">Item 4</a>
+    </div>
+  </div>
+
+  <!-- Dropdown 4 -->
+  <div class="dropdown">
+    <button class="dropbtn">BAMBINI</button>
+    <div class="dropdown-content">
+      <a href="#item1">Item 1</a>
+      <a href="#item2">Item 2</a>
+      <a href="#item3">Item 3</a>
+      <a href="#item4">Item 4</a>
+    </div>
+  </div>
+  <a href="#home">T-SHIRT</a>
+  <a href="#about">RETRO</a>
+  <a href="#services">SALDI</a>
+</div>
 
 <!--Login Form-->
 <div id="logreg_form" class="container Hidden">

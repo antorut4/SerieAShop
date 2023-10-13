@@ -95,4 +95,3 @@ function telefonoValidation(obj)
         obj.style.border="2px solid lime";
 
 }
-

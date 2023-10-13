@@ -52,6 +52,26 @@ public class Carrello {
     public void setTotale(double totale) {
         this.totale = totale;
     }
+
+    public boolean isEmpty(){
+        return listaCarrello.isEmpty();
+    }
+
+    public void empty() {
+        listaCarrello.clear();
+    }
+
+    public boolean contains(Prodotto prodotto){
+        return listaCarrello.contains(prodotto);
+    }
+
+    public List<Prodotto> getCarrello() {
+        return listaCarrello;
+    }
+
+    public void setCarrello(List<Prodotto> carrello) {
+        this.listaCarrello = carrello;
+    }
     public void addProdotto(Prodotto prodotto) {
         listaCarrello.add(prodotto);
     }
