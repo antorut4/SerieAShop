@@ -1,5 +1,5 @@
 function LogRegForm(){
-    $("#LogRegForm").toggle();
+    $("#logreg_form").toggle();
 }
 function nomeClienteValidation(obj)
 {

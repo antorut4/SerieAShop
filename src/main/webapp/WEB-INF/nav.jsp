@@ -73,7 +73,7 @@
   </div>
 
 <!--Login Form-->
-<div id="LogRegForm" class="container Hidden">
+<div id="logreg_form" class="container Hidden">
   <input type="checkbox" id="check">
   <div class="login form">
     <header>Login</header>
