@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Prodotto {
     private int id;
     private String nome;
@@ -9,6 +11,7 @@ public class Prodotto {
     private String img;
     private String idSquadra;
     private String categoria;
+
 
     public Prodotto() {
     }
@@ -86,6 +89,24 @@ public class Prodotto {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Prodotto prodotto = (Prodotto) o;
+        return id == prodotto.id && Double.compare(prodotto.prezzo, prezzo) == 0 && quantita == prodotto.quantita && Objects.equals(nome, prodotto.nome) && Objects.equals(descrizione, prodotto.descrizione) && Objects.equals(img, prodotto.img);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, prezzo, descrizione, quantita, img);
+    }
+
+    public Prodotto cloneProd() {
+        Prodotto prodotto = new Prodotto(this.id, this.nome, this.prezzo, this.descrizione, this.quantita, this.image, this.idSquadra, this.categoria;
+        return prodotto;
     }
 
 }
