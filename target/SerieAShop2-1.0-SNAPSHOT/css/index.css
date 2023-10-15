@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.containerIndex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stemma{
+    width: 50%;
+    text-align: center;
+    margin : 2% 0;
+    box-sizing: border-box;
+}
+
+.banner{
+    display: flex;
+    align-items: center;
+}
+
+.banner img{
+    width: 100%;
+}
