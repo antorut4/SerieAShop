@@ -29,12 +29,12 @@ public class OrdineDAO {
         }
     }
 
-    public List<Ordine> doRetrieveByIdCliente(int id) {
+    public List<Ordine> doRetrieveByIdCliente(String username) {
         List<Ordine> ordini = new ArrayList<>();
 
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT idOrdine, totale, dataOrdine, metodoDiPagamamento, indirizzoSpedizione, idCarrello FROM Ordine WHERE username=?");
-            ps.setInt(1, id);
+            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

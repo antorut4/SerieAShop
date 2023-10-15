@@ -15,11 +15,11 @@ import java.util.List;
 public class ViewOrdini extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id_Client = Integer.parseInt(request.getParameter("idCliente"));
+        String username = request.getParameter("idCliente");
 
         OrdineDAO ordineDAO = new OrdineDAO();
 
-        List<Ordine> ordini = ordineDAO.doRetrieveByIdCliente(id_Client);
+        List<Ordine> ordini = ordineDAO.doRetrieveByIdCliente(username);
 
         request.setAttribute("listaOrdini", ordini);
 
