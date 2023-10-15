@@ -23,7 +23,7 @@ public class showAllOrder extends HttpServlet {
 
         request.setAttribute("ordini", ordini);
 
-        String address = "/WEB-INF/gestione/showAllOrdini.jsp";
+        String address = "/WEB-INF/showAllOrdini.jsp";
 
         RequestDispatcher rd = request.getRequestDispatcher(address);
         rd.forward(request, response);

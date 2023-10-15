@@ -55,13 +55,13 @@ public class NewUser extends HttpServlet {
             if(indirizzo.length()<4 || indirizzo.length()>100)
                 errore += "Indirizzo digitato troppo breve o troppo lungo";
 
-            if(telefono.length()<10 || telefono.length()>10)
+            if(telefono.length() != 10)
                 errore += "Numero di telefono digitato errato";
 
         if(!errore.equals(""))
         {
             RequestDispatcher dispatcher =
-                    getServletContext().getRequestDispatcher("/WEB-INF/pagine/Errorpage.jsp?errore="+errore);
+                    getServletContext().getRequestDispatcher("/WEB-INF/Errorpage.jsp?errore="+errore);
             dispatcher.forward(request, response);
 
 

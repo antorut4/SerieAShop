@@ -1,5 +1,4 @@
-package controller;
-
+package control;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,7 +23,7 @@ public class ViewOrdini extends HttpServlet {
 
         request.setAttribute("listaOrdini", ordini);
 
-        String address = "/WEB-INF/pagine/visualizzaOrdini.jsp";
+        String address = "/WEB-INF/visualizzaOrdini.jsp";
 
         RequestDispatcher rd = request.getRequestDispatcher(address);
         rd.forward(request, response);

@@ -16,7 +16,7 @@ import java.util.List;
 public class CarrelloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String address = "./WEB-INF/pagine/carrello.jsp";
+        String address = "./WEB-INF/carrello.jsp";
 
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
         User user = (User) request.getSession().getAttribute("cliente");
