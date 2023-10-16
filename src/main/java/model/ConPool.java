@@ -15,7 +15,7 @@ public class ConPool {
             p.setUrl("jdbc:mysql://localhost:3306/serieashop");
             p.setDriverClassName("com.mysql.cj.jdbc.Driver");
             p.setUsername("root");
-            p.setPassword("root");
+            p.setPassword("!Domenico02");
             p.setMaxActive(100);
             p.setInitialSize(10);
             p.setMinIdle(10);
