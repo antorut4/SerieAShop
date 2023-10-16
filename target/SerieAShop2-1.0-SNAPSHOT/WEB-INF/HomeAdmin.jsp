@@ -5,7 +5,7 @@
     <%@page import="java.io.PrintWriter"%>
     <%@ page import="control.TabellaProdotti" %>
     <link rel="stylesheet" type="text/css" href="css/HomeAdmin.css">
-    <script src="../script/FormValidationProdotto.js"></script>
+    <script src="${pageContext.request.contextPath}/script/FormValidationProdotto.js"></script>
 </head>
 <body>
 
@@ -88,7 +88,7 @@
         <input type="number" name="prezzo" id="prezzo" step="0.01" onkeyup="prezzoValidation(this.form.prezzo)">
 
         <label for="descrizione">Nuova Descrizione:</label>
-        <textarea name="descrizione" id="descrizione" onkeyup="this.form.descrizione"></textarea>
+        <textarea name="descrizione" id="descrizione" onkeyup="descrizioneValidation(this.form.descrizione)"></textarea>
 
             <label for="quantita">Quantita:</label>
             <input type="number" name="quantita" id="quantita" onkeyup="quantitaValidation(this.form.quantita)">
@@ -119,32 +119,51 @@
         <label for="id">ID Prodotto:</label>
         <input type="text" name="id" required>
         <label for="prezzo">Prezzo:</label>
-        <input type="number" name="prezzo" id="prezzo" onkeyup="prezzoValidation(this.form.prezzo)">
+        <input type="number" name="prezzo" id="prezz" onkeyup="prezzoValidation(this.form.prezz)">
         <input type="submit" value="Modifica Prezzo">
     </form>
 </div>
 
 <div class="admin-panel">
-    <button class="toggle-btn">Visualizza Prodotti</button>
-<%
-    PrintWriter outt=response.getWriter();
-    String table= TabellaProdotti.stampa(request, response);
-    outt.println(table);
-%>
+    <h2>Visualizza Prodotti</h2>
+    <button class="toggle-btn" id="showProductsBtn">Visualizza Prodotti</button>
+    <div id="productsTable" class="visible" >
+        <% PrintWriter outt = response.getWriter();
+            String table = TabellaProdotti.stampa(request, response);
+            outt.println(table); %>
+    </div>
 </div>
 
 <script>
-    const toggleBtns = document.querySelectorAll('.toggle-btn');
-    const forms = document.querySelectorAll('form');
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtns = document.querySelectorAll('.toggle-btn');
+        const forms = document.querySelectorAll('form');
+        const showProductsBtn = document.getElementById('showProductsBtn');
+        const productsTable = document.getElementById('productsTable');
 
-    toggleBtns.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-            if (forms[index].style.display === 'none') {
-                forms[index].style.display = 'block';
-            } else {
-                forms[index].style.display = 'none';
-            }
+        toggleBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (forms[index] && forms[index].classList) {
+                    if (forms[index].classList.contains('visible')) {
+                        forms[index].classList.remove('visible');
+                    } else {
+                        forms[index].classList.add('visible');
+                    }
+                }
+            });
         });
+
+        if (showProductsBtn && productsTable) {
+            showProductsBtn.addEventListener('click', () => {
+                if (productsTable.classList) {
+                    if (productsTable.classList.contains('visible')) {
+                        productsTable.classList.remove('visible');
+                    } else {
+                        productsTable.classList.add('visible');
+                    }
+                }
+            });
+        }
     });
 </script>
 

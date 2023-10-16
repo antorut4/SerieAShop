@@ -3,13 +3,13 @@
 <html>
 <head>
     <title>MyAccount</title>
-    <link rel="stylesheet" type="text/css" href="../css/account.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/account.css">
     <jsp:include page="nav.jsp"></jsp:include>
 </head>
 <body>
 
 <div class="logo">
-    <img src="../image/logo.png" alt="Logo" title="Logo">
+    <img src="${pageContext.request.contextPath}/image/logo.png" alt="Logo" title="Logo">
 </div>
 
 <h1 class="titolo">Account di ${user.nome}</h1>

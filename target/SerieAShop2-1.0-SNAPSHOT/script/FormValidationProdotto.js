@@ -56,7 +56,7 @@ function quantitaValidation(obj)
     else
         obj.style.border="2px solid lime";
 }
-/*
+
 function imageValidation(obj)
 {
     var img= obj.value;
@@ -69,4 +69,4 @@ function imageValidation(obj)
     else
         obj.style.border="2px solid lime";
 
-}*/
+}

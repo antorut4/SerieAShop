@@ -27,14 +27,14 @@ public class LogIn extends HttpServlet {
             System.out.println(email);
             System.out.println(password);
             UserDAO rd= new UserDAO();
-            User user= null;
+            User user = null;
             try {
                 user = rd.doRetrieveByMail(email);
                 System.out.println("user trovato");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            if(user==null) {
+            if(user == null) {
                 String error = "Credenziali errate o Account Inesistente. Riprova o registrati";
                 System.out.println("non c'e");
                 request.setAttribute("errorMessageLogin", error);
