@@ -16,10 +16,13 @@ import java.sql.SQLException;
 @WebServlet("/log-in")
 public class LogIn extends HttpServlet {
         public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            String address="./accedi.jsp";
+            String address="./nav.jsp";
             System.out.println("entro");
-            String email=request.getParameter("email");
-            String password=request.getParameter("password");
+
+            HttpSession session = request.getSession();
+
+            String email=request.getParameter("logemail");
+            String password=request.getParameter("logpassword");
             UserDAO rd= new UserDAO();
             User user= null;
             try {
