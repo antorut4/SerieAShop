@@ -29,8 +29,10 @@ import java.sql.Statement;
         public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             String address = "/WEB-INF/HomeAdmin.jsp";
             int prodottoId = Integer.parseInt(request.getParameter("idProdotto"));
+            if(request.getParameter("prezzo")!=null) {
+                double prezzoprodotto = Double.parseDouble(request.getParameter("prezzo"));
+            }else System.out.println("la stringa è vuota");
             double prezzoprodotto = Double.parseDouble(request.getParameter("prezzo"));
-
             Prodotto prodotto = null;
             try {
                 prodotto = prodottoDAO.doUpdatePrezzo(prezzoprodotto, prodottoId);

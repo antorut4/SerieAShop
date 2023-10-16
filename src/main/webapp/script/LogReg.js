@@ -5,43 +5,47 @@ function LogRegForm(){
 
 //cambia da login form a register form senza dover ricaricare la pagina
 function SwitchToLogin(){
-    $("#login_form").toggle();
-    $("#registration_form").toggle();
+    $("#login_form").hide();
+    $("#registration_form").show();
 }
 
 function SwitchToRegister(){
-    $("#login_form").toggle();
-    $("#registration_form").toggle();
+    $("#login_form").hide();
+    $("#registration_form").show();
 }
 //endregion
 
 //region AJAX FUNCTIONS
-function checkLogin(){
+function checkLogin() {
     let email = $("#login_email").val();
     let pass = $("#login_password").val();
     let errorBox = $("#login_error");
 
-    // if(!email || !pass){
-    //     errorBox.text("Riempi correttamente i campi!");
-    //     return;
-    // }
+    // Controlla se i campi sono vuoti
+    if (!email || !pass) {
+        errorBox.text("Riempi correttamente i campi!");
+        return;
+    }
 
     $.post(
         "log-in",
         {
-            login_email: email,
-            login_password: pass,
-            form_type: 0
+            logemail: email, // Utilizza gli stessi nomi dei parametri come specificato nella servlet
+            logpassword: pass,
         },
-        function(xml){
-            if(xml) {
-                let errorMessage = $(xml).find("error_message").text();
-                errorBox.text(errorMessage);
-            } else
-                location.reload();
-        }
+        function (data) {
+            if (data.error) {
+                // Gestisci eventuali errori nella risposta JSON
+                errorBox.text(data.error);
+            } else if (data.redirect) {
+                // Effettua il reindirizzamento
+                window.location.href = data.redirect;
+            }
+        },
+        "json"
     );
 }
+
 
 function checkRegister(){
     let email = $("#registration_email").val();

@@ -1,11 +1,29 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="${pageContext.request.contextPath}/css/navbar.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/script/FormValidationCliente.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script src="${pageContext.request.contextPath}./script/FormValidationCliente.js"></script>
+<%@ page import="model.Squadra"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="control.LogIn"%>
+<%@ page import="control.NewUser"%>
 
 <div class="topnav">
   <a href="">Traccia Ordine</a>
   <a href="">Aiuto</a>
-  <button id="accesso" onclick=LogRegForm()>Il mio account</button>
+  <c:choose>
+    <c:when test="${sessionScope.user != null}">
+      <div>
+        <a href="account.jsp">Il mio account</a>
+      </div>
+    </c:when>
+    <c:otherwise>
+      <div onclick="LogRegForm()">
+        <a> Login </a>
+      </div>
+    </c:otherwise>
+  </c:choose>
   <a href="">
     <img src="${pageContext.request.contextPath}/image/cart.png">
   </a>
@@ -28,10 +46,19 @@
   <div class="dropdown">
     <button class="dropbtn">SHOP BY TEAM</button>
     <div class="dropdown-content">
-      <a href="#item1">Item 1</a>
-      <a href="#item2">Item 2</a>
-      <a href="#item3">Item 3</a>
-      <a href="#item4">Item 4</a>
+      <%
+        response.setContentType("text/html");
+        List<Squadra> squadre = (List<Squadra>)request.getSession().getAttribute("squadre");
+        PrintWriter outf = response.getWriter();
+        for (Squadra s : squadre) {
+      %>
+      <a href="#">
+        <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
+        <%= s.getNomeSquadra() %>
+      </a>
+      <%
+        }
+      %>
     </div>
   </div>
 
@@ -39,10 +66,16 @@
   <div class="dropdown">
     <button class="dropbtn">UOMO</button>
     <div class="dropdown-content">
-      <a href="#item1">Item 1</a>
-      <a href="#item2">Item 2</a>
-      <a href="#item3">Item 3</a>
-      <a href="#item4">Item 4</a>
+      <%
+        for (Squadra s : squadre) {
+      %>
+      <a href="#">
+        <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
+        <%= s.getNomeSquadra() %>
+      </a>
+      <%
+        }
+      %>
     </div>
   </div>
 
@@ -50,10 +83,16 @@
   <div class="dropdown">
     <button class="dropbtn">DONNA</button>
     <div class="dropdown-content">
-      <a href="#item1">Item 1</a>
-      <a href="#item2">Item 2</a>
-      <a href="#item3">Item 3</a>
-      <a href="#item4">Item 4</a>
+      <%
+        for (Squadra s : squadre) {
+      %>
+      <a href="#">
+        <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
+        <%= s.getNomeSquadra() %>
+      </a>
+      <%
+        }
+      %>
     </div>
   </div>
 
@@ -61,10 +100,16 @@
   <div class="dropdown">
     <button class="dropbtn">BAMBINI</button>
     <div class="dropdown-content">
-      <a href="#item1">Item 1</a>
-      <a href="#item2">Item 2</a>
-      <a href="#item3">Item 3</a>
-      <a href="#item4">Item 4</a>
+      <%
+        for (Squadra s : squadre) {
+      %>
+      <a href="#">
+        <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
+        <%= s.getNomeSquadra() %>
+      </a>
+      <%
+        }
+      %>
     </div>
   </div>
   <a href="#home">T-SHIRT</a>
@@ -73,15 +118,15 @@
 </div>
 
 <!--Login Form-->
-<div id="logreg_form" class="container Hidden">
+<div id="LogRegForm" class="container Hidden">
   <input type="checkbox" id="check">
   <div class="login form">
     <header>Login</header>
-    <form action="#">
-      <input type="text" placeholder="Enter your email">
-      <input type="password" placeholder="Enter your password">
+    <form action="log-in" method="post">
+      <input name="logemail" id="logemail" type="text" placeholder="Enter your email">
+      <input name="logpassword" id="logpassword" type="password" placeholder="Enter your password">
       <a href="#">Forgot password?</a>
-      <input type="button" class="button" value="Login">
+      <input type="submit" class="button" value="Login">
     </form>
     <div class="signup">
         <span class="signup">Don't have an account?
@@ -106,3 +151,10 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('keyup', function (event){
+    if(event.key === "Escape")
+      LogRegForm();
+  });
+</script>

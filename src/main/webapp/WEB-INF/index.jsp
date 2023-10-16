@@ -16,7 +16,7 @@
             for (Squadra s : squadre) {
         %>
         <a>
-        <img height="80px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
+            <img height="80px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
         </a>
         <%
             }

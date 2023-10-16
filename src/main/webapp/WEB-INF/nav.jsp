@@ -53,7 +53,7 @@
         for (Squadra s : squadre) {
       %>
       <a href="#">
-      <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
+        <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
         <%= s.getNomeSquadra() %>
       </a>
       <%
@@ -122,9 +122,9 @@
   <input type="checkbox" id="check">
   <div class="login form">
     <header>Login</header>
-    <form action="#">
-      <input id="logemail" type="text" placeholder="Enter your email">
-      <input id="logpassword" type="password" placeholder="Enter your password">
+    <form action="log-in" method="post">
+      <input name="logemail" id="logemail" type="text" placeholder="Enter your email">
+      <input name="logpassword" id="logpassword" type="password" placeholder="Enter your password">
       <a href="#">Forgot password?</a>
       <input type="submit" class="button" value="Login">
     </form>

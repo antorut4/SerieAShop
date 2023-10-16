@@ -110,7 +110,7 @@ public class ProdottoDAO {
 
                 con.setAutoCommit(false);
 
-                String sqlCarrello = "DELETE FROM Composto WHERE idProdotto = ?";
+                String sqlCarrello = "DELETE FROM ProdottiCarrello WHERE idProdotto = ?";
                 PreparedStatement ps = con.prepareStatement(sqlCarrello);
                 ps.setInt(1, id);
                 int rowsDeletedCarr = ps.executeUpdate();

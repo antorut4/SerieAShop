@@ -69,6 +69,19 @@ public class UserDAO {
             }
 
             // Elimina l'utente
+            //Elimina prima il carrello
+
+            sql="DELETE FROM carrello WHERE username =?";
+            statement=connection.prepareStatement(sql);
+            statement.setString(1, username);
+            statement.executeUpdate();
+
+            sql="DELETE FROM genera WHERE username =?";
+            statement=connection.prepareStatement(sql);
+            statement.setString(1, username);
+            statement.executeUpdate();
+
+
             sql = "DELETE FROM utente WHERE Username = ?";
             statement = connection.prepareStatement(sql);
             statement.setString(1, username);
