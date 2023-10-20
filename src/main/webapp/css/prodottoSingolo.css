@@ -1,0 +1,151 @@
+/* Stile per il div principale */
+#container {
+    width: 100%; /* Occupa l'intera larghezza disponibile */
+
+    padding: 20px; /* Spazio interno per separare il contenuto dalla cornice */
+    display: flex; /* Utilizza un layout flessibile */
+}
+
+
+.colonna {
+    flex: 1;
+    padding: 10px;
+    background-color: #fff;
+
+    margin-right: 10px;
+}
+
+/* Stile per le colonne verticali */
+#colonna1 {
+    display: flex; /* Larghezza della prima colonna (due volte la larghezza della seconda colonna) */
+    flex-direction: column;
+    align-items: center;
+    padding: 10px; /* Spazio interno per separare il contenuto dalla cornice */
+
+     /* Cornice leggera */
+    margin-right: 10px; /* Spazio tra le colonne */
+}
+
+#immaginePrincipale {
+    width: 600px; /* Larghezza fissa per l'immagine principale */
+    height: auto; /* Altezza fissa per l'immagine principale */
+    margin-bottom: 10px; /* Spazio inferiore tra l'immagine principale e le immagini piccole */
+}
+
+
+.piccola {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+}
+
+#colonna2 {
+    flex: 1; /* Larghezza della seconda colonna */
+    padding: 10px; /* Spazio interno per separare il contenuto dalla cornice */
+
+     /* Cornice leggera */
+}
+
+.contenitore-riga {
+    display: flex;
+    align-items: center;
+}
+
+.stemma {
+    margin-right: 10px;
+}
+
+.fraseDiv {
+    font-size: 18px;
+}
+
+.stemma img {
+    width: 50px; /* Larghezza desiderata */
+    height: auto; /* L'altezza si adatta proporzionalmente alla larghezza */
+}
+
+h2 {
+    font-weight: normal; /* Rimuove il grassetto */
+}
+
+.taglie {
+    width: 90%; /* Imposta la larghezza del div (puoi regolarla come desideri) */
+    padding:0; /* Aggiunge spazio interno al div */
+    background-color: #e3e3e3; /* Colore di sfondo del div */
+    font-size: 20px; /* Dimensione del testo all'interno del div */
+}
+
+
+.bottone {
+    padding: 10px 20px; /* Aggiunge spazio interno ai bottoni (altezza x larghezza) */
+    font-size: 18px; /* Dimensione del testo nei bottoni */
+    background-color: #ffffff; /* Colore di sfondo dei bottoni */
+    color: #000; /* Colore del testo */
+    border-color: black; /* Rimuove il bordo del bottone */
+    margin: 5px; /* Aggiunge spazio tra i bottoni */
+    cursor: pointer; /* Cambia il cursore quando si passa sopra il bottone */
+    border-radius: 5px; /* Bordo arrotondato */
+}
+
+.bottone:hover {
+    background-color: lightgray; /* Cambia il colore di sfondo quando si passa sopra il bottone */
+}
+
+.quantita{
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.dropdown-select {
+    padding: 10px; /* Aggiunge spazio interno all'elemento */
+    font-size: 16px; /* Imposta la dimensione del testo */
+    border: 1px solid #ccc; /* Aggiunge un bordo sottile con colore grigio (#ccc) */
+    border-radius: 5px; /* Arrotonda gli angoli del bordo */
+    width: 50px; /* Imposta una larghezza predefinita di 200px */
+
+}
+
+.aggiungi-carrello{
+    padding: 10px 85px; /* Aggiunge spazio interno ai bottoni (altezza x larghezza) */
+    font-size: 17px; /* Dimensione del testo nei bottoni */
+    background-color: mediumblue; /* Colore di sfondo dei bottoni */
+    color: #ffffff; /* Colore del testo */
+    border: none; /* Rimuove il bordo del bottone */
+    margin: 5px; /* Aggiunge spazio tra i bottoni */
+    cursor: pointer; /* Cambia il cursore quando si passa sopra il bottone */
+    border-radius: 5px; /* Bordo arrotondato */
+}
+
+.select-and-button {
+    display: flex; /* Imposta i figli (select e bottone) in una riga */
+    align-items: center; /* Allinea verticalmente al centro */
+}
+
+/* Spazio tra select e bottone */
+.select-and-button select {
+    margin-right: 200px;
+}
+
+/* Stile della box titolo */
+.box-titolo {
+
+    padding: 5px;
+
+
+    margin: 20px;
+    cursor: pointer; /* Cambia il cursore al passaggio del mouse per indicare l'interattività */
+}
+
+/* Stile del titolo */
+.box-titolo h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.descrizione-spedizione{
+    display: none;
+}
+
+.descrizione{
+    display: none;
+}
