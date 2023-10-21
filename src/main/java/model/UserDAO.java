@@ -5,7 +5,10 @@ public class UserDAO {
     public User doRetrieveById(int id) throws SQLException {
         try(Connection con=ConPool.getConnection()){
             PreparedStatement ps=con.prepareStatement("SELECT Username, nome, Cognome, Email, Telefono, Indirizzo, Password,admin WHERE Username=?");
-            ps.setInt(1,id);
+            ps.setInt(
+
+
+                    1,id);
             ResultSet rs= ps.executeQuery();
             if(rs.next()){
                 User p=new User();

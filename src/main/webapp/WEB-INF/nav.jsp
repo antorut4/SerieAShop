@@ -14,8 +14,8 @@
   <a href="">Aiuto</a>
   <c:choose>
     <c:when test="${sessionScope.user != null}">
-      <div>
-        <a href="account.jsp">Il mio account</a>
+      <div >
+        <a href="direct-servlet">Il mio account</a>
       </div>
     </c:when>
     <c:otherwise>
