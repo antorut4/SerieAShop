@@ -30,7 +30,7 @@
 </div>
 
 <div class="centernav">
-  <a href="">
+  <a href="home">
     <img src="${pageContext.request.contextPath}/image/logo.png" id="Logo" width="100" height="120" class="d-inline-block align-text-top">
   </a>
   <div class="containerForm">
@@ -64,7 +64,8 @@
 
   <!-- Dropdown 2 -->
   <div class="dropdown">
-    <button class="dropbtn">UOMO</button>
+    <button name="uomo" id="uomo" value="uomo" class="dropbtn">UOMO</button>
+
     <div class="dropdown-content">
       <%
         for (Squadra s : squadre) {
@@ -81,7 +82,7 @@
 
   <!-- Dropdown 3 -->
   <div class="dropdown">
-    <button class="dropbtn">DONNA</button>
+    <button name="donna" id="donna" value="donna" class="dropbtn">DONNA</button>
     <div class="dropdown-content">
       <%
         for (Squadra s : squadre) {
@@ -98,7 +99,7 @@
 
   <!-- Dropdown 4 -->
   <div class="dropdown">
-    <button class="dropbtn">BAMBINI</button>
+    <button id="bambino" name="bambino" value="bambin0" class="dropbtn">BAMBINI</button>
     <div class="dropdown-content">
       <%
         for (Squadra s : squadre) {
@@ -112,9 +113,53 @@
       %>
     </div>
   </div>
-  <a href="#home">T-SHIRT</a>
-  <a href="#about">RETRO</a>
-  <a href="#services">SALDI</a>
+
+  <div class="dropdown">
+  <button name="tshirt" id="tshirt" value="tshirt" class="dropbtn">T-SHIRT</button>
+  <div class="dropdown-content">
+    <%
+      for (Squadra s : squadre) {
+    %>
+    <a href="#">
+      <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
+      <%= s.getNomeSquadra() %>
+    </a>
+    <%
+      }
+    %>
+  </div>
+  </div>
+
+  <div class="dropdown">
+  <button name="retro" id="retro" value="retro" class="dropbtn">RETRO</button><div class="dropdown-content">
+  <%
+    for (Squadra s : squadre) {
+  %>
+  <a href="#">
+    <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
+    <%= s.getNomeSquadra() %>
+  </a>
+  <%
+    }
+  %>
+</div>
+  </div>
+
+  <div class="dropdown">
+  <button name="saldi" id="saldi" value="saldi" class="dropbtn">SALDI</button>
+  <div class="dropdown-content">
+    <%
+      for (Squadra s : squadre) {
+    %>
+    <a href="#">
+      <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
+      <%= s.getNomeSquadra() %>
+    </a>
+    <%
+      }
+    %>
+  </div>
+  </div>
 </div>
 
 <!--Login Form-->
@@ -137,8 +182,8 @@
   <div class="registration form">
     <header>Signup</header>
     <form action="#">
-      <input type="text" placeholder="Enter your Name" id="nome" onkeyup="nomeClienteValidation(this.form.id);">
-      <input type="text" placeholder="Enter your Surname" id="cognome" onkeyup="cognomeValidation(this.label.id);">
+      <input type="text" placeholder="Enter your Name" id="name" onkeyup="nomeClienteValidation(this.form.id);">
+      <input type="text" placeholder="Enter your Surname" id="surname" onkeyup="cognomeValidation(this.label.id);">
       <input type="text" placeholder="Enter your email" id="email" onkeyup="emailValidation(this.form.id);">
       <input type="password" placeholder="Create a password" id="password" onkeyup="passwordValidation(this.form.id);">
       <input type="password" placeholder="Confirm your password">
@@ -156,5 +201,47 @@
   document.addEventListener('keyup', function (event){
     if(event.key === "Escape")
       LogRegForm();
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Seleziona il pulsante "UOMO" per il reindirizzamento
+    var uomoButton = document.getElementById('uomo');
+    var bambinoButton= document.getElementById("bambino");
+    var donnaButton= document.getElementById("donna");
+    var tshirtButton=document.getElementById("tshirt");
+    var retroButton=document.getElementById("retro");
+    var saldiButton=document.getElementById("saldi");
+
+    // Aggiungi un gestore di eventi al clic del pulsante "UOMO"
+    uomoButton.addEventListener('click', function() {
+      // Reindirizza l'utente alla servlet "direct-servlet"
+      window.location.href = 'elenco-servlet?buttonName=uomo';
+    });
+    donnaButton.addEventListener('click', function() {
+      // Reindirizza l'utente alla servlet "direct-servlet"
+      window.location.href = 'elenco-servlet?buttonName=donna';
+    });
+
+    bambinoButton.addEventListener('click', function() {
+      // Reindirizza l'utente alla servlet "direct-servlet"
+      window.location.href = 'elenco-servlet?buttonName=bambino';
+    });
+
+    tshirtButton.addEventListener('click', function() {
+      // Reindirizza l'utente alla servlet "direct-servlet"
+      window.location.href = 'elenco-servlet?buttonName=tshirt';
+    });
+
+    retroButton.addEventListener('click', function() {
+      // Reindirizza l'utente alla servlet "direct-servlet"
+      window.location.href = 'elenco-servlet?buttonName=retro';
+    });
+
+    saldiButton.addEventListener('click', function() {
+      // Reindirizza l'utente alla servlet "direct-servlet"
+      window.location.href = 'direct-servlet?buttonName=saldi';
+    });
+
   });
 </script>
