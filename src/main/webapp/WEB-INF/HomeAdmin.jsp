@@ -9,8 +9,11 @@
 </head>
 <body>
 
-<h1>Benvenuto ${admin.username}</h1>
-<div class="admin-panel">
+<a href="${pageContext.request.contextPath}/home">
+    <img src="image/home.png" width="25px">
+    <h1>Benvenuto ${admin.username}</h1>
+</a>
+    <div class="admin-panel">
     <h2>Aggiungi Prodotto</h2>
     <button class="toggle-btn">Mostra Form Aggiungi Prodotto</button>
     <form class="add-product-form" action="new-prodotto" method="post">
