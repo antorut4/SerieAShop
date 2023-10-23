@@ -137,8 +137,8 @@
   <div class="registration form">
     <header>Signup</header>
     <form action="#">
-      <input type="text" placeholder="Enter your Name" id="name" onkeyup="nomeClienteValidation(this.form.id);">
-      <input type="text" placeholder="Enter your Surname" id="surname" onkeyup="cognomeValidation(this.label.id);">
+      <input type="text" placeholder="Enter your Name" id="nome" onkeyup="nomeClienteValidation(this.form.id);">
+      <input type="text" placeholder="Enter your Surname" id="cognome" onkeyup="cognomeValidation(this.label.id);">
       <input type="text" placeholder="Enter your email" id="email" onkeyup="emailValidation(this.form.id);">
       <input type="password" placeholder="Create a password" id="password" onkeyup="passwordValidation(this.form.id);">
       <input type="password" placeholder="Confirm your password">

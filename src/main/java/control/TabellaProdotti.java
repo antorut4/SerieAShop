@@ -1,6 +1,7 @@
 package control;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,53 +9,55 @@ import model.Prodotto;
 import model.ProdottoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
-
+@WebServlet(name = "TabellaProdotti", urlPatterns = {"/TabellaProdotti"})
 public class TabellaProdotti extends HttpServlet {
 
-    public static String stampa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        ProdottoDAO pDAO = new ProdottoDAO();
+        List<Prodotto> prodotti = pDAO.doRetriveAll();
 
-        ProdottoDAO pDAO=new ProdottoDAO();
-        List<Prodotto> prodotti=new ArrayList<>();
+        // Set the content type of the response to HTML
+        response.setContentType("text/html");
 
-        prodotti=pDAO.doRetriveAll();
-
-        // Crea una tabella HTML per visualizzare i dati dei prodotti
+        // Get the PrintWriter to write the response
         PrintWriter out = response.getWriter();
-        String tableHTML = "<table class='table'>";
-        tableHTML += "<thead>";
-        tableHTML += "<tr>";
-        tableHTML += "<th>ID</th>";
-        tableHTML += "<th>Nome</th>";
-        tableHTML += "<th>Descrizione</th>";
-        tableHTML += "<th>Prezzo</th>";
-        tableHTML += "<th>Quantita</th>";
-        tableHTML += "<th>Immagine</th>";
-        tableHTML += "<th>Categoria</th>";
-        tableHTML += "</tr>";
-        tableHTML += "</thead>";
-        tableHTML += "<tbody>";
 
+        // Create a string containing the HTML table to display product data
+        StringBuilder tableHTML = new StringBuilder();
+        tableHTML.append("<table class='table'>");
+        tableHTML.append("<thead>");
+        tableHTML.append("<tr>");
+        tableHTML.append("<th>ID</th>");
+        tableHTML.append("<th>Nome</th>");
+        tableHTML.append("<th>Descrizione</th>");
+        tableHTML.append("<th>Prezzo</th>");
+        tableHTML.append("<th>Quantita</th>");
+        tableHTML.append("<th>Immagine</th>");
+        tableHTML.append("<th>Categoria</th>");
+        tableHTML.append("</tr>");
+        tableHTML.append("</thead>");
+        tableHTML.append("<tbody>");
 
-        // Popola la tabella con i dati dei prodotti
-        for(Prodotto p: prodotti){
-            tableHTML += "<tr>";
-            tableHTML += "<td>" + p.getId() + "</td>";
-            tableHTML += "<td>" + p.getNome() + "</td>";
-            tableHTML += "<td>" + p.getDescrizione() + "</td>";
-            tableHTML += "<td>" + p.getPrezzo() + "</td>";
-            tableHTML += "<td>" + p.getQuantita() + "</td>";
-            tableHTML += "<td>" + p.getImg() + "</td>";
-            tableHTML += "<td>" + p.getCategoria() + "</td>";
-            tableHTML += "</tr>";
+        // Populate the table with product data
+        for (Prodotto p : prodotti) {
+            tableHTML.append("<tr>");
+            tableHTML.append("<td>").append(p.getId()).append("</td>");
+            tableHTML.append("<td>").append(p.getNome()).append("</td>");
+            tableHTML.append("<td>").append(p.getDescrizione()).append("</td>");
+            tableHTML.append("<td>").append(p.getPrezzo()).append("</td>");
+            tableHTML.append("<td>").append(p.getQuantita()).append("</td>");
+            tableHTML.append("<td>").append(p.getImg()).append("</td>");
+            tableHTML.append("<td>").append(p.getCategoria()).append("</td>");
+            tableHTML.append("</tr>");
         }
 
-        tableHTML+=("</tbody>");
-        tableHTML+=("</table>");
-        response.setContentType("text/html");
-        return tableHTML;
+        tableHTML.append("</tbody>");
+        tableHTML.append("</table>");
+
+        // Write the HTML table to the response
+        out.println(tableHTML.toString());
     }
 }

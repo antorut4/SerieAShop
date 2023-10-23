@@ -29,7 +29,7 @@
 
 
         <label for="quantita">Quantita:</label>
-            <input type="number" id="quantita" name="quantita" step="0.01" onkeyup="quantitaValidation(this.form.quantita)" required>
+            <input type="number" id="quantita" name="quantita" step="1" onkeyup="quantitaValidation(this.form.quantita)" required>
 
             <label for="prezzo">idSquadra:</label>
             <select id="squadra" name="idSquadra" class="select" >
@@ -127,45 +127,60 @@
 <div class="admin-panel">
     <h2>Visualizza Prodotti</h2>
     <button class="toggle-btn" id="showProductsBtn">Visualizza Prodotti</button>
-    <div id="productsTable" class="visible" >
-        <% PrintWriter outt = response.getWriter();
-            String table = TabellaProdotti.stampa(request, response);
-            outt.println(table); %>
+    <div id="productsTableContainer" style="display: none;">
+        <iframe id="productsTableFrame" src="TabellaProdotti"></iframe>
+    </div>
+</div>
+
+<div class="admin-panel">
+    <h2>Visualizza Ordini</h2>
+    <button class="toggle-btn" id="showOrderBtn">Visualizza Ordini</button>
+    <div id="orderTableContainer" style="display: none;">
+        <iframe id="orderTableFrame" src="TabellaOrdini"></iframe>
     </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const toggleBtns = document.querySelectorAll('.toggle-btn');
-        const forms = document.querySelectorAll('form');
         const showProductsBtn = document.getElementById('showProductsBtn');
-        const productsTable = document.getElementById('productsTable');
+        const productsTableContainer = document.getElementById('productsTableContainer');
+        const showOrderBtn = document.getElementById('showOrderBtn');
+        const orderTableContainer = document.getElementById('orderTableContainer');
 
-        toggleBtns.forEach((btn, index) => {
-            btn.addEventListener('click', () => {
-                if (forms[index] && forms[index].classList) {
-                    if (forms[index].classList.contains('visible')) {
-                        forms[index].classList.remove('visible');
-                    } else {
-                        forms[index].classList.add('visible');
-                    }
+        if (showProductsBtn) {
+            showProductsBtn.addEventListener('click', () => {
+                if (productsTableContainer.style.display === "none" || productsTableContainer.style.display === "") {
+                    fetch("TabellaProdotti")
+                        .then(response => response.text())
+                        .then(data => {
+                            productsTableContainer.innerHTML = data;
+                        });
+                    productsTableContainer.style.display = "block";
+                } else {
+                    productsTableContainer.innerHTML = '';
+                    productsTableContainer.style.display = "none";
                 }
             });
-        });
+        }
 
-        if (showProductsBtn && productsTable) {
-            showProductsBtn.addEventListener('click', () => {
-                if (productsTable.classList) {
-                    if (productsTable.classList.contains('visible')) {
-                        productsTable.classList.remove('visible');
-                    } else {
-                        productsTable.classList.add('visible');
-                    }
+        if (showOrderBtn) {
+            showOrderBtn.addEventListener('click', () => {
+                if (orderTableContainer.style.display === "none" || orderTableContainer.style.display === "") {
+                    fetch("TabellaOrdini")
+                        .then(response => response.text())
+                        .then(data => {
+                            orderTableContainer.innerHTML = data;
+                        });
+                    orderTableContainer.style.display = "block";
+                } else {
+                    orderTableContainer.innerHTML = '';
+                    orderTableContainer.style.display = "none";
                 }
             });
         }
     });
 </script>
+
 
 </body>
 </html>

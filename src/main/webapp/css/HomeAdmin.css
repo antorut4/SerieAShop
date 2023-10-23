@@ -147,14 +147,8 @@ tr:hover {
 
 #productsTable {
     display: none;
-    /* Altri stili per productsTable */
-    position: relative; /* Usa il posizionamento assoluto per posizionare la tabella all'interno di admin-panel */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-#productsTable.visible {
-    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
