@@ -35,7 +35,7 @@ public class TabellaProdotti extends HttpServlet {
         tableHTML.append("<th>Descrizione</th>");
         tableHTML.append("<th>Prezzo</th>");
         tableHTML.append("<th>Quantita</th>");
-        tableHTML.append("<th>Immagine</th>");
+        tableHTML.append("<th>Squadra</th>");
         tableHTML.append("<th>Categoria</th>");
         tableHTML.append("</tr>");
         tableHTML.append("</thead>");
@@ -49,7 +49,7 @@ public class TabellaProdotti extends HttpServlet {
             tableHTML.append("<td>").append(p.getDescrizione()).append("</td>");
             tableHTML.append("<td>").append(p.getPrezzo()).append("</td>");
             tableHTML.append("<td>").append(p.getQuantita()).append("</td>");
-            tableHTML.append("<td>").append(p.getImg()).append("</td>");
+            tableHTML.append("<td>").append(p.getIdSquadra()).append("</td>");
             tableHTML.append("<td>").append(p.getCategoria()).append("</td>");
             tableHTML.append("</tr>");
         }

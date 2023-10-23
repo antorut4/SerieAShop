@@ -23,7 +23,6 @@ public class AddProdotto extends HttpServlet {
             String prezzoString = (request.getParameter("prezzo"));
             String desc = request.getParameter("descrizione");
             int quantita = Integer.parseInt(request.getParameter("quantita"));
-            String img = request.getParameter("image");
             String categoria= request.getParameter("categoria");
             String idSquadra= request.getParameter("idSquadra");
 
@@ -48,15 +47,9 @@ public class AddProdotto extends HttpServlet {
             }
 
 
-            if(desc.length()>400)
+            if(desc.length()>3000)
                 errore += "Descrizione troppo lunga";
 
-            if (img != null && !img.isEmpty()) {
-                String extension = img.substring(img.lastIndexOf(".") + 1);
-                if (!extension.equalsIgnoreCase("jpg") && !extension.equalsIgnoreCase("jpeg") && !extension.equalsIgnoreCase("png") && !extension.equalsIgnoreCase("gif")){
-                    errore += "Immagine non valida";
-                }
-            }
 
 
             if(!errore.equals(""))
@@ -74,7 +67,6 @@ public class AddProdotto extends HttpServlet {
             prodotto.setPrezzo(Double.valueOf(prezzoString));
             prodotto.setDescrizione(desc);
             prodotto.setQuantita(quantita);
-            prodotto.setImg(img);
             prodotto.setCategoria(categoria);
             prodotto.setIdSquadra(idSquadra);
 

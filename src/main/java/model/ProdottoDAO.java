@@ -8,7 +8,7 @@ public class ProdottoDAO {
     public Prodotto doRetrieveById(int id) throws java.sql.SQLException {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
-                    con.prepareStatement("SELECT idProdotto, descrizione, nomeProdotto, quantita, prezzo, idSquadra, image, categoria FROM prodotto WHERE idProdotto=?");
+                    con.prepareStatement("SELECT idProdotto, descrizione, nomeProdotto, quantita, prezzo, idSquadra, categoria FROM prodotto WHERE idProdotto=?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -19,8 +19,7 @@ public class ProdottoDAO {
                 p.setQuantita(rs.getInt(4));
                 p.setPrezzo(rs.getDouble(5));
                 p.setIdSquadra(rs.getString(6));
-                p.setImg(rs.getString(7));
-                p.setCategoria(rs.getString(8));
+                p.setCategoria(rs.getString(7));
 
                 return p;
             }
@@ -33,15 +32,14 @@ public class ProdottoDAO {
     public void doSave(Prodotto prodotto) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO prodotto (descrizione, nomeProdotto, quantita, prezzo, idSquadra, image, categoria) VALUES(?,?,?,?,?,?,?)",
+                    "INSERT INTO prodotto (descrizione, nomeProdotto, quantita, prezzo, idSquadra, categoria) VALUES(?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, prodotto.getDescrizione());
             ps.setString(2, prodotto.getNome());
             ps.setInt(3, prodotto.getQuantita());
             ps.setDouble(4, prodotto.getPrezzo());
             ps.setString(5,prodotto.getIdSquadra());
-            ps.setString(6, prodotto.getImg());
-            ps.setString(7, prodotto.getCategoria());
+            ps.setString(6, prodotto.getCategoria());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -74,8 +72,7 @@ public class ProdottoDAO {
                 pr.setQuantita(rs.getInt(4));
                 pr.setPrezzo(rs.getDouble(5));
                 pr.setIdSquadra(rs.getString(6));
-                pr.setImg(rs.getString(7));
-                pr.setCategoria(rs.getString(8));
+                pr.setCategoria(rs.getString(7));
 
 
                 Prodottos.add(pr);
@@ -95,7 +92,7 @@ public class ProdottoDAO {
         try (Connection con = ConPool.getConnection()) {
             Statement st = con.createStatement();
             String query = "update prodotto set nome='" + c.getNome() + "', prezzo='" + c.getPrezzo() +
-                    "', descrizione='" + c.getDescrizione() + "', quantita=" + c.getQuantita() +", idSquadra="+c.getIdSquadra()+ ", img='" + c.getImg() + "', categoria='" + c.getCategoria() + "' where idProdotto=" + c.getId() + ";";
+                    "', descrizione='" + c.getDescrizione() + "', quantita=" + c.getQuantita() +", idSquadra="+c.getIdSquadra()+ "', categoria='" + c.getCategoria() + "' where idProdotto=" + c.getId() + ";";
             st.executeUpdate(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -119,6 +116,7 @@ public class ProdottoDAO {
                 PreparedStatement psp = con.prepareStatement(sqlProdotto);
                 psp.setInt(1, id);
                 int rowsDeletedProd = psp.executeUpdate();
+
 
                 if (rowsDeletedProd > 0) {  //cancellazione avvenuta correttamente
                     con.commit();

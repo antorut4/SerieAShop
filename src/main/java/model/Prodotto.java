@@ -8,7 +8,6 @@ public class Prodotto {
     private Double prezzo;
     private String descrizione;
     private int quantita;
-    private String img;
     private String idSquadra;
     private String categoria;
 
@@ -16,13 +15,12 @@ public class Prodotto {
     public Prodotto() {
     }
 
-    public Prodotto(int id, String nome, Double prezzo, String descrizione, int quantita, String image, String idSquadra, String categoria) {
+    public Prodotto(int id, String nome, Double prezzo, String descrizione, int quantita, String idSquadra, String categoria) {
         this.id = id;
         this.nome = nome;
         this.prezzo = prezzo;
         this.descrizione = descrizione;
         this.quantita = quantita;
-        this.img = image;
         this.idSquadra = idSquadra;
         this.categoria = categoria;
     }
@@ -55,9 +53,6 @@ public class Prodotto {
         return quantita;
     }
 
-    public String getImg() {
-        return img;
-    }
 
     public String getCategoria() {
         return categoria;
@@ -83,10 +78,6 @@ public class Prodotto {
         this.quantita = quantita;
     }
 
-    public void setImg(String image) {
-        this.img = image;
-    }
-
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
@@ -96,17 +87,17 @@ public class Prodotto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Prodotto prodotto = (Prodotto) o;
-        return id == prodotto.id && Double.compare(prodotto.prezzo, prezzo) == 0 && quantita == prodotto.quantita && Objects.equals(nome, prodotto.nome) && Objects.equals(descrizione, prodotto.descrizione) && Objects.equals(img, prodotto.img);
+        return id == prodotto.id && Double.compare(prodotto.prezzo, prezzo) == 0 && quantita == prodotto.quantita && Objects.equals(nome, prodotto.nome) && Objects.equals(descrizione, prodotto.descrizione);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, prezzo, descrizione, quantita, img);
+        return Objects.hash(id, nome, prezzo, descrizione, quantita);
     }
 
     public Prodotto cloneProd() {
         Prodotto prodotto;
-        prodotto = new Prodotto(this.id, this.nome, this.prezzo, this.descrizione, this.quantita, this.img, this.idSquadra, this.categoria);
+        prodotto = new Prodotto(this.id, this.nome, this.prezzo, this.descrizione, this.quantita, this.idSquadra, this.categoria);
         return prodotto;
     }
 

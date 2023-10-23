@@ -48,28 +48,25 @@
                 <option value="Bologna">Bologna</option>
                 <option value="Sassuolo">Sassuolo</option>
                 <option value="Udinese">Udinese</option>
-                <option value="Sampdoria">Sampdoria</option>
+                <option value="Monza">Monza</option>
                 <option value="Empoli">Empoli</option>
-                <option value="Venezia">Venezia</option>
+                <option value="Frosinone">Frosinone</option>
                 <option value="Cagliari">Cagliari</option>
                 <option value="Torino">Torino</option>
                 <option value="Salernitana">Salernitana</option>
-                <option value="Spezia">Spezia</option>
+                <option value="Lecce">Lecce</option>
                 <option value="Genoa">Genoa</option>
             </select>
 
             <label for="prezzo">Prezzo:</label>
             <input type="number" id="prezzo" name="prezzo" step="0.01" onkeyup="prezzoValidation(this.form.prezzo)" required>
 
-        <label for="image">ImagePath:</label>
-        <input type="text" id="image" name="image"  onkeyup="imageValidation(this.form.image)" required>
 
         <label for="categoria">Categoria:</label>
         <select name="categoria" id="categoria" class="select">
             <option value="maglia">Maglia</option>
-            <option value="calzatura">Calzatura</option>
-            <option value="t-shirt">T-shirt</option>
-            <option value="Retro">Retro</option>
+            <option value="pantaloncini">Pantaloncini</option>
+            <option value="calzettoni">Calzettoni</option>
         </select>
 
         <input type="submit" value="Aggiungi">
@@ -144,11 +141,27 @@
 </div>
 
 <script>
+
     document.addEventListener('DOMContentLoaded', function () {
         const showProductsBtn = document.getElementById('showProductsBtn');
         const productsTableContainer = document.getElementById('productsTableContainer');
         const showOrderBtn = document.getElementById('showOrderBtn');
         const orderTableContainer = document.getElementById('orderTableContainer');
+
+        const toggleBtns = document.querySelectorAll('.toggle-btn');
+        const forms = document.querySelectorAll('form');
+
+        toggleBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (forms[index] && forms[index].classList) {
+                    if (forms[index].classList.contains('visible')) {
+                        forms[index].classList.remove('visible');
+                    } else {
+                        forms[index].classList.add('visible');
+                    }
+                }
+            })
+        });
 
         if (showProductsBtn) {
             showProductsBtn.addEventListener('click', () => {

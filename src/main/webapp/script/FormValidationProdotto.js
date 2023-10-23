@@ -1,17 +1,15 @@
-function nomeProdValidation(obj)
-{
-    var nomeProdotto= obj.value;
-    var regEx= new RegExp ("^[a-zA-Z, .'-]{1,50}$");
+function nomeProdValidation(obj) {
+    var nomeProdotto = obj.value;
+    var regEx = /^[a-zA-Z0-9, .'/-]{1,50}$/;
 
-    if (regEx.exec(nomeProdotto) == null) {
+    if (!regEx.test(nomeProdotto)) {
         obj.style.border = "2px solid red";
         alert("Nome prodotto errato");
+    } else {
+        obj.style.border = "2px solid lime";
     }
-
-    else
-        obj.style.border="2px solid lime";
-
 }
+
 
 function prezzoValidation(obj)
 {
@@ -32,7 +30,7 @@ function prezzoValidation(obj)
 function descrizioneValidation(obj)
 {
     var descr = obj.value;
-    var regEx = new RegExp("^[a-zA-Z ,.'-]{1,400}$")
+    var regEx = new RegExp("^[a-zA-Z0-9 ,.'-]{1,400}$")
 
     if(regEx.exec(descr)==null) {
         obj.style.border = "2px solid red";
