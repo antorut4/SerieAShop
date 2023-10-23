@@ -20,7 +20,7 @@ public class OrdineDAO {
                 ordine.setPagamento(rs.getString(4));
                 ordine.setSpedizione(rs.getString(5));
                 ordine.setIdCarrello(rs.getInt(6));
-                ordine.setIdCliente(rs.getInt(7));
+                ordine.setIdCliente(rs.getString(7));
                 return ordine;
             }
             return null;
@@ -45,7 +45,7 @@ public class OrdineDAO {
                 ordine.setPagamento(rs.getString(4));
                 ordine.setSpedizione(rs.getString(5));
                 ordine.setIdCarrello(rs.getInt(6));
-                ordine.setIdCliente(rs.getInt(7));
+                ordine.setIdCliente(rs.getString(7));
                 ordini.add(ordine);
             }
         } catch (SQLException e) {
@@ -69,7 +69,7 @@ public class OrdineDAO {
             ps.setString(3, ordine.getPagamento());
             ps.setString(4, ordine.getSpedizione());
             ps.setInt(5, ordine.getIdCarrello());
-            ps.setInt(6, ordine.getIdCliente());
+            ps.setString(6, ordine.getIdCliente());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -101,8 +101,8 @@ public class OrdineDAO {
                 or.setDataOrd(rs.getDate(3));
                 or.setPagamento(rs.getString(4));
                 or.setSpedizione(rs.getString(5));
-                or.setIdCarrello(rs.getInt(6));
-                or.setIdCliente(rs.getInt(7));
+                or.setIdCliente(rs.getString(6));
+                or.setIdCarrello(rs.getInt(7));
 
                 ordini.add(or);
             }

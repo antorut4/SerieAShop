@@ -9,14 +9,14 @@ public class Ordine {
     private Date dataOrd;
     private String pagamento;
     private String spedizione;
-    private int idCliente;
+    private String idCliente;
     private int idCarrello;
 
 
     public Ordine() {
     }
 
-    public Ordine(int id, Double costo, Date dataOrd, String pagamento, String spedizione, int idCarrelloello, int idClientee) {
+    public Ordine(int id, Double costo, Date dataOrd, String pagamento, String spedizione, int idCarrelloello, String idClientee) {
         this.id = id;
         this.totale = costo;
         this.dataOrd = dataOrd;
@@ -74,9 +74,9 @@ public class Ordine {
         this.idCarrello = idCarrelloello;
     }
 
-    public int getIdCliente() { return idCliente; }
+    public String getIdCliente() { return idCliente; }
 
-    public void setIdCliente(int idClientee) { this.idCliente = idClientee; }
+    public void setIdCliente(String idCliente) { this.idCliente = idCliente; }
 
     @Override
     public boolean equals(Object o) {

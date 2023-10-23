@@ -24,7 +24,7 @@ public class CreaOrdine extends HttpServlet {
         carrello.setTotale(costo);
 
         User cliente = (User) request.getSession().getAttribute("cliente");
-        int idCliente = cliente.getId();
+        String idCliente = cliente.getUsername();
         String spedizione = cliente.getIndirizzo();
         String pagamento = request.getParameter("metodoPagamento");
 
