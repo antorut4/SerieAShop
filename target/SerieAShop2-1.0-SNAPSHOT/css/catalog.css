@@ -1,0 +1,21 @@
+.Grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+}
+
+.Card {
+    position: relative;
+    text-align: center;
+    margin: 5px;
+    max-width: 500px;
+}
+
+.Banner{
+    text-align: center;
+}
+
+.Banner img{
+    max-width: 100%;
+    height: auto;
+}
