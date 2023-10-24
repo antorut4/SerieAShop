@@ -9,7 +9,6 @@ public class User {
     private String email;
     private String indirizzo;
     private String password;
-
     private String telefono;
     private boolean admin;
 

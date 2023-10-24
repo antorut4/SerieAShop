@@ -15,7 +15,7 @@
             PrintWriter outf = response.getWriter();
             for (Squadra s : squadre) {
         %>
-        <a>
+        <a href="leggi-prodotto?squadraScelta=<%=  s.getNomeSquadra()%>">
             <img height="80px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
         </a>
         <%

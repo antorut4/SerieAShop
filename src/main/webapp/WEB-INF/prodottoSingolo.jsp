@@ -1,3 +1,7 @@
+<%@ page import="model.Prodotto" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="model.Squadra" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,29 +10,42 @@
 </head>
 <body>
 <%--Caricamento Automatico Foto e info--%>
+<%response.setContentType("text/html");
+    String categoria=(String)request.getSession().getAttribute("categoria");
+    String idSquadra=(String)request.getSession().getAttribute("idSquadra");
+    List<Squadra> squadre=(List<Squadra>) request.getSession().getAttribute("squadre");
+    Squadra squadra=new Squadra();
+    Prodotto prodotto = (Prodotto) request.getSession().getAttribute("prodotto");
+    for(Squadra sq: squadre){
+        if(sq.getNomeSquadra().equals(prodotto.getIdSquadra())){
+           squadra=sq;
+        }
+    }
+    PrintWriter outp = response.getWriter();
+%>
 <div id="container">
     <div class="colonna" id="colonna1">
-        <img src="P1.jpg" alt="Immagine Principale" id="immaginePrincipale"  >
+        <img src="${pageContext.request.contextPath}/image/PathOggetti/<%=prodotto.getId()%>/1.jpg" alt="Immagine Principale" id="immaginePrincipale"  >
         <div class="immagini-piccole">
-            <img src="P1.jpg" alt="Immagine 1" class="piccola" onclick="selezionaImmagine(this)">
-            <img src="P2.jpg" alt="Immagine 2" class="piccola" onclick="selezionaImmagine(this)">
-            <img src="P3.jpg" alt="Immagine 3" class="piccola" onclick="selezionaImmagine(this)">
+            <img src="${pageContext.request.contextPath}/image/PathOggetti/<%=prodotto.getId()%>/1.jpg" alt="Immagine 1" class="piccola" onclick="selezionaImmagine(this)">
+            <img src="${pageContext.request.contextPath}/image/PathOggetti/<%=prodotto.getId()%>/2.jpg" alt="Immagine 2" class="piccola" onclick="selezionaImmagine(this)">
+            <img src="${pageContext.request.contextPath}/image/PathOggetti/<%=prodotto.getId()%>/3.jpg" alt="Immagine 3" class="piccola" onclick="selezionaImmagine(this)">
         </div>
     </div>
     <div class="colonna" id="colonna2">
         <!-- Contenuto della seconda colonna -->
         <div class="contenitore-riga">
             <div class="stemma">
-                <img src="napoli.png" alt="Altra Immagine">
+                <img src=".<%=squadra.getPathLogo()%>" alt="Altra Immagine">
             </div>
             <div class="fraseDiv">
                 <p>Officially Licensed Gear</p>
             </div>
         </div>
 
-        <h1>SSC Napoli Maglia Gara 2023/2024</h1>
+        <h1><%=prodotto.getNome()%></h1>
 
-        <h2>Prezzo: 130&#8364</h2>
+        <h2>Prezzo: <%= prodotto.getPrezzo()%>&euro;</h2>
 
         <div class="taglie">
             <p class="taglie-paragrafo">Taglie</p>
@@ -39,7 +56,7 @@
             <button class="bottone">XL</button>
             <button class="bottone">2XL</button>
 
-            <h1 class="quantita">Quantit&#224</h1>
+            <h1 class="quantita">Quantita: <%=prodotto.getQuantita()%></h1>
 
             <div class="select-and-button">
                 <select class="dropdown-select">
@@ -60,15 +77,7 @@
         <div class="box-titolo">
             <h2 class="titolo-spedizione" onclick="toggleDescrizione(this)">Descrizione</h2>
             <div class="descrizione-spedizione">
-                &bull;SSC Napoli Maglia gara home 2023/2024<br>
-
-                &bull;Dal brand EA7 by Giorgio Armani Group<br>
-
-                &bull;La Maglia EA7/SSC Napoli Home 2023/2024 rappresenta l’unicit&#224 e la New Era del mondo azzurro.<br>
-
-                &bull;Nuovo styline con manica raglan su tessuto tecnico stretch, piping in contrasto bianco, collo a V ad incrocio con stampa tricolore come sulla linea fondo della manica. Nuovo motivo allover “N” con tecnica di stampa a caldo su materiale tecnico traspirante con tecnologia Dry Touch. Patch classico Napoli in silicone e scudetto tricolore personalizzato.<br>
-
-                &bull;Vestibilit&#224: Slim Fit. Composizione: 82% poliestere, 18% elastane<br>
+                &bull; <%=prodotto.getDescrizione()%>
             </div>
         </div>
 

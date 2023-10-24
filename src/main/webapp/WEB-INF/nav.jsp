@@ -52,7 +52,7 @@
         PrintWriter outf = response.getWriter();
         for (Squadra s : squadre) {
       %>
-      <a href="#">
+      <a href="leggi-prodotto?squadraScelta=<%=  s.getNomeSquadra()%>">
         <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
         <%= s.getNomeSquadra() %>
       </a>
@@ -115,49 +115,26 @@
   </div>
 
   <div class="dropdown">
-  <button name="tshirt" id="tshirt" value="tshirt" class="dropbtn">T-SHIRT</button>
+    <form action="leggi-prodotto">
+  <button name="btn" id="maglia" value="maglia" class="dropbtn">MAGLIA</button>
+    </form>
   <div class="dropdown-content">
-    <%
-      for (Squadra s : squadre) {
-    %>
-    <a href="#">
-      <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
-      <%= s.getNomeSquadra() %>
-    </a>
-    <%
-      }
-    %>
   </div>
   </div>
 
   <div class="dropdown">
-  <button name="retro" id="retro" value="retro" class="dropbtn">RETRO</button><div class="dropdown-content">
-  <%
-    for (Squadra s : squadre) {
-  %>
-  <a href="#">
-    <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
-    <%= s.getNomeSquadra() %>
-  </a>
-  <%
-    }
-  %>
+    <form action="leggi-prodotto">
+  <button name="btn" id="pantaloncini" value="pantaloncini" class="dropbtn">PANTALONCINI</button>
+    </form>
+    <div class="dropdown-content">
 </div>
   </div>
 
   <div class="dropdown">
-  <button name="saldi" id="saldi" value="saldi" class="dropbtn">SALDI</button>
+    <form action="leggi-prodotto">
+      <button name="btn" id="calzettoni" value="calzettoni" class="dropbtn">CALZETTONI</button>
+    </form>
   <div class="dropdown-content">
-    <%
-      for (Squadra s : squadre) {
-    %>
-    <a href="#">
-      <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
-      <%= s.getNomeSquadra() %>
-    </a>
-    <%
-      }
-    %>
   </div>
   </div>
 </div>
