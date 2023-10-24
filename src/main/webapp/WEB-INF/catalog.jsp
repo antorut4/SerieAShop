@@ -4,75 +4,80 @@
 <%@ page import="model.Prodotto" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<link href="${pageContext.request.contextPath}/css/catalog.css" rel="stylesheet">
 <html>
 <head>
+    <title>Tuo Titolo Pagina</title>
+    <link href="${pageContext.request.contextPath}/css/catalog.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="nav.jsp"></jsp:include>
 
 <%
     response.setContentType("text/html");
-    String categoria=(String)request.getSession().getAttribute("categoria");
-    String idSquadra=(String)request.getSession().getAttribute("idSquadra");
-    List<Prodotto> prodotti = (List<Prodotto>)request.getSession().getAttribute("prodotti");
+    String categoria = (String) request.getSession().getAttribute("categoria");
+    String idSquadra = (String) request.getSession().getAttribute("idSquadra");
+    List<Prodotto> prodotti = (List<Prodotto>) request.getSession().getAttribute("prodotti");
     PrintWriter outp = response.getWriter();
-    boolean flag=false;
+    boolean flag = false;
     for (Prodotto s : prodotti) {
-        if(s.getIdSquadra().equals(idSquadra) && flag==false){
+        if (s.getIdSquadra().equals(idSquadra) && !flag) {
 %>
 <div class="Banner">
     <img src="${pageContext.request.contextPath}/image/Banner/<%= s.getIdSquadra() %>/banner.jpg">
 </div>
 <%
-        flag=true;
-    }
+            flag = true;
+        }
     }
 %>
-<%--Creare Ciclo per la stampa di tutti i prdotti--%>
-<div class="Grid">
-    <div class="Carta">
-        <a href="">
-            <div class="card">
-                <%
-                    if(categoria==null){
-                    for (Prodotto s : prodotti) {
-                        if(s.getIdSquadra().equals(idSquadra)){
-                %>
-                <a href="prodotto-singolo?idProdotto=<%=s.getId()%>">
-                    <img height="80px" src="${pageContext.request.contextPath}/image/PathOggetti/<%= s.getId() %>/1.jpg" %>
-                </a>
-                <div classs="price">
-                    <p>Prezzo: <%=s.getPrezzo()%></p>
-                </div>
-                <div class="name">
-                    <p><%=s.getNome()%></p>
-                </div>
-                <%
-                    }
-                    }
-                    }else{
-                        for(Prodotto s: prodotti){
-                            if(s.getCategoria().equals(categoria)){
-                                %>
-                <a href="prodotto-singolo?idProdotto=<%=s.getId()%>">
-                    <img height="80px" src="${pageContext.request.contextPath}/image/PathOggetti/<%= s.getId() %>/1.jpg" %>
-                </a>
-                <div classs="price">
-                    <p>Prezzo: <%=s.getPrezzo()%></p>
-                </div>
-                <div class="name">
-                    <p><%=s.getNome()%></p>
-                </div>
 
-                <%
-                    }
-                    }
-                    }
-                %>
+<div class="Grid">
+    <%
+        if (categoria == null) {
+            for (Prodotto s : prodotti) {
+                if (s.getIdSquadra().equals(idSquadra)) {
+    %>
+    <div class="Carta">
+            <div class="card">
+                <a href="prodotto-singolo?idProdotto=<%= s.getId() %>">
+                <img height="80px" src="${pageContext.request.contextPath}/image/PathOggetti/<%= s.getId() %>/1.jpg">
+                </a>
+                <div class="price">
+                    <p>Prezzo: <%= s.getPrezzo() %></p>
+                </div>
+                <div class="name">
+                    <p><%= s.getNome() %></p>
+                </div>
             </div>
-        </a>
+
     </div>
+    <%
+            }
+        }
+    } else {
+        for (Prodotto s : prodotti) {
+            if (s.getCategoria().equals(categoria)) {
+    %>
+    <div class="Carta">
+
+            <div class="card">
+                <a href="prodotto-singolo?idProdotto=<%= s.getId() %>">
+                <img height="80px" src="${pageContext.request.contextPath}/image/PathOggetti/<%= s.getId() %>/1.jpg">
+            </a>
+                <div class="price">
+                    <p>Prezzo: <%= s.getPrezzo() %></p>
+                </div>
+                <div class="name">
+                    <p><%= s.getNome() %></p>
+                </div>
+            </div>
+    </div>
+    <%
+                }
+            }
+        }
+    %>
 </div>
+
 </body>
 </html>

@@ -1,39 +1,81 @@
+/* Global Styles */
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.Banner {
+    width: 100%;
+    text-align: center;
+}
+
+.Banner img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 .Grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 20px;
+    margin-bottom: 30px;
 }
 
 .Carta {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card {
     position: relative;
-    text-align: center;
-    margin: 5px;
-    max-width: 500px;
+    overflow: hidden;
+    border-radius: 8px;
 }
 
-.Banner{
-    text-align: center;
-}
-
-.Banner img{
+.card img {
     max-width: 100%;
     height: auto;
-}
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+    transition: transform 0.3s ease;
 }
 
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.name {
-    font-size: small;
-    padding: 2px 16px;
+.card:hover img {
+    transform: scale(1.05);
 }
 
 .price {
+    margin-top: 10px;
     font-weight: bold;
-    padding: 1px 16px;
+}
+
+.name {
+    margin-top: 5px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .Grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 }
