@@ -67,21 +67,19 @@
                     <option value="opzione3">3</option>
                  </select>
 
-
-                <form action="aggiungi-al-carrello?idProd=${prodotto.id}">
-                    <input type="hidden" name="id" value="<%=prodotto.getId()%>">
-                 <button class="aggiungi-carrello">Aggiungi al carrello</button>
-                </form>
-            </div>
+                <div class="bottonePezzotto">
+                    <a href="aggiungi-al-carrello?idProd=<%=prodotto.getId()%>">Aggiungi Al Carrello</a>
+                </div>
         </div>
 
         <div class="box-titolo">
-            <h2 class="titolo-spedizione" onclick="toggleDescrizione(this)">Spedizione</h2>
+            <h2 class="titolo-spedizione" onclick="toggleDescrizione(this)">- Spedizione</h2>
             <div class="descrizione-spedizione">&bull; Questo articolo verrà spedito entro 7 giorni lavorativi</div>
         </div>
 
+
         <div class="box-titolo">
-            <h2 class="titolo-spedizione" onclick="toggleDescrizione(this)">Descrizione</h2>
+            <h2 class="titolo-spedizione" onclick="toggleDescrizione(this)">- Descrizione</h2>
             <div class="descrizione-spedizione">
                 &bull; <%=prodotto.getDescrizione()%>
             </div>

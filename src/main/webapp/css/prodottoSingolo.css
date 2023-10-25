@@ -149,3 +149,14 @@ h2 {
 .descrizione{
     display: none;
 }
+
+.bottonePezzotto{
+    background-color: #007bff;
+    width:150px;
+    height:35px;
+    border:2px #000 solid;
+}
+
+a{
+    text-decoration: none;
+}

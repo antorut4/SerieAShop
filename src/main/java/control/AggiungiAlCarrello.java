@@ -22,6 +22,7 @@ public class AggiungiAlCarrello extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         int prodottoId = Integer.parseInt(request.getParameter("idProd"));
+        System.out.println(prodottoId);
         String address = "";
 
         ProdottoDAO prodottoDAO = new ProdottoDAO();
