@@ -2,10 +2,12 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="model.Squadra" %>
 <%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/prodottoSingolo.css">
+
     <jsp:include page="nav.jsp"></jsp:include>
 </head>
 <body>
@@ -65,7 +67,11 @@
                     <option value="opzione3">3</option>
                  </select>
 
+
+                <form action="aggiungi-al-carrello?idProd=${prodotto.id}">
+                    <input type="hidden" name="id" value="<%=prodotto.getId()%>">
                  <button class="aggiungi-carrello">Aggiungi al carrello</button>
+                </form>
             </div>
         </div>
 

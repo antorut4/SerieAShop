@@ -21,7 +21,7 @@ import java.util.List;
 public class AggiungiAlCarrello extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        int prodottoId = Integer.parseInt(request.getParameter("prodottoId"));
+        int prodottoId = Integer.parseInt(request.getParameter("idProd"));
         String address = "";
 
         ProdottoDAO prodottoDAO = new ProdottoDAO();
@@ -70,10 +70,10 @@ public class AggiungiAlCarrello extends HttpServlet {
             List<Prodotto> carrelloProd = carrello.getCarrello();
             session.setAttribute("carrelloProd", carrelloProd);
 
-            address = "./WEB-INF/pagine/confermaAggiuntaCarr.jsp";
+            address = "WEB-INF/index.jsp";
         } else {
             // Reindirizza a una pagina di errore o messaggio di prodotto non trovato
-            address = "./WEB-INF/pagine/erroreCarrello.jsp";
+            address = "./WEB-INF/pagine/ErrorePage.jsp";
         }
 
 
