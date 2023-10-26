@@ -68,7 +68,9 @@
                  </select>
 
                 <div class="bottonePezzotto">
-                    <a href="aggiungi-al-carrello?idProd=<%=prodotto.getId()%>">Aggiungi Al Carrello</a>
+                    <a href="aggiungi-al-carrello?idProd=<%=prodotto.getId()%>">
+                        <button type="submit" value="Aggiungi Al Carrello">Aggiungi Al Carrello </button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ public class DeleteUser extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String address="/WEB-INF/successo.jsp";
+        String address="/WEB-INF/index.jsp";
         HttpSession session= request.getSession();
         User user= (User) session.getAttribute("user");
         try {

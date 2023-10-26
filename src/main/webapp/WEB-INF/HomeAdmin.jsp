@@ -125,6 +125,16 @@
 </div>
 
 <div class="admin-panel">
+    <h2>Elimina Utente</h2>
+    <button class="toggle-btn">Mostra Form Cancella Utente</button>
+    <form class="delete-product-form" action="delete-user" method="post">
+        <label for="id">Username:</label>
+        <input type="text" name="username" required>
+        <input type="submit" value="Elimina">
+    </form>
+</div>
+
+<div class="admin-panel">
     <h2>Visualizza Prodotti</h2>
     <button class="toggle-btn" id="showProductsBtn">Visualizza Prodotti</button>
     <div id="productsTableContainer" style="display: none;">
@@ -140,6 +150,18 @@
     </div>
 </div>
 
+<div class="admin-panel">
+    <h2>Visualizza Utenti</h2>
+    <button class="toggle-btn" id="showUserBtn">Visualizza Utenti</button>
+    <div id="userTableContainer" style="display: none;">
+        <iframe id="userTableFrame" src="TabellaUtenti"></iframe>
+    </div>
+</div>
+
+</body>
+</html>
+
+
 <script>
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -147,6 +169,8 @@
         const productsTableContainer = document.getElementById('productsTableContainer');
         const showOrderBtn = document.getElementById('showOrderBtn');
         const orderTableContainer = document.getElementById('orderTableContainer');
+        const showUserBtn= document.getElementById("showUserBtn");
+        const userTableContainer= document.getElementById("userTableContainer");
 
         const toggleBtns = document.querySelectorAll('.toggle-btn');
         const forms = document.querySelectorAll('form');
@@ -194,9 +218,23 @@
                 }
             });
         }
+
+        if (showUserBtn) {
+            showUserBtn.addEventListener('click', () => {
+                if (userTableContainer.style.display === "none" || userTableContainer.style.display === "") {
+                    fetch("TabellaUtenti")
+                        .then(response => response.text())
+                        .then(data => {
+                            userTableContainer.innerHTML = data;
+                        });
+                    userTableContainer.style.display = "block";
+                } else {
+                    userTableContainer.innerHTML = '';
+                    userTableContainer.style.display = "none";
+                }
+            });
+        }
     });
 </script>
-
-
 </body>
 </html>

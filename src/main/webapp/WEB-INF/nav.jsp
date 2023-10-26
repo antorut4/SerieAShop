@@ -2,6 +2,7 @@
 <link href="${pageContext.request.contextPath}/css/navbar.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/script/FormValidationCliente.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/script/search.js"></script>
 
 <%@ page import="model.Squadra"%>
 <%@ page import="java.util.List" %>
@@ -41,8 +42,13 @@
   </a>
   <div class="containerForm">
     <div class="searchform">
+      <form id="search-form">
       <input type="text" id="search-input" placeholder="Cerca.." title="Inserisci quello che vuoi cercare">
       <button id="search-button" type="submit"><img src="${pageContext.request.contextPath}/image/search.png" id="search-image"></button>
+      </form>
+      <div id="search-results">
+
+      </div>
     </div>
   </div>
 </div>
@@ -151,8 +157,8 @@
   <div class="login form">
     <header>Login</header>
     <form action="log-in" method="post">
-      <input name="logemail" id="logemail" type="text" placeholder="Enter your email">
-      <input name="logpassword" id="logpassword" type="password" placeholder="Enter your password">
+      <input name="logemail" id="logemail" type="text" placeholder="Enter your email" onkeyup="emailValidation(this.form.logemail)">
+      <input name="logpassword" id="logpassword" type="password" placeholder="Enter your password" onkeyup="passwordValidation(this.form.logpassword)">
       <a href="#">Forgot password?</a>
       <input type="submit" class="button" value="Login">
     </form>
@@ -164,13 +170,15 @@
   </div>
   <div class="registration form">
     <header>Signup</header>
-    <form action="#">
-      <input type="text" placeholder="Enter your Name" id="name" onkeyup="nomeClienteValidation(this.form.id);">
-      <input type="text" placeholder="Enter your Surname" id="surname" onkeyup="cognomeValidation(this.label.id);">
-      <input type="text" placeholder="Enter your email" id="email" onkeyup="emailValidation(this.form.id);">
-      <input type="password" placeholder="Create a password" id="password" onkeyup="passwordValidation(this.form.id);">
-      <input type="password" placeholder="Confirm your password">
-      <input type="button" class="button" value="Signup">
+    <form action="new-user">
+      <input type="text" placeholder="Enter your Username" id="username" name="username" onkeyup="usernameValidation(this.form.username)">
+      <input type="text" placeholder="Enter your Name" id="nome" name="nome" onkeyup="nomeClienteValidation(this.form.nome)">
+      <input type="text" placeholder="Enter your Surname" id="surname" name="cognome" onkeyup="cognomeValidation(this.label.surname)">
+      <input type="text" placeholder="Enter your email" id="email" name="email" onkeyup="emailValidation(this.form.email);">
+      <input type="text" placeholder="Enter your Phone number" id="telefono" name="telefono" onkeyup="telefonoValidation(this.form.telefono)">
+      <input type="text" placeholder="Enter your Address" id="indirizzo" name="indirizzo" onkeyup="indirizzoValidation(this.form.indirizzo)">
+      <input type="password" placeholder="Create a password" id="password" name="password" onkeyup="passwordValidation(this.form.password)">
+      <input type="submit" class="button" value="Signup">
     </form>
     <div class="signup">
         <span class="signup">Already have an account?

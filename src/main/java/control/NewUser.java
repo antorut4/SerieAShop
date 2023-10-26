@@ -61,7 +61,7 @@ public class NewUser extends HttpServlet {
         if(!errore.equals(""))
         {
             RequestDispatcher dispatcher =
-                    getServletContext().getRequestDispatcher("/WEB-INF/Errorpage.jsp?errore="+errore);
+                    getServletContext().getRequestDispatcher("/WEB-INF/Errorepage.jsp?errore="+errore);
             dispatcher.forward(request, response);
 
 
@@ -85,7 +85,7 @@ public class NewUser extends HttpServlet {
                 throw new RuntimeException(e);
             }
 
-            address = "/WEB-INF/successo.jsp";
+            address = "/WEB-INF/index.jsp";
             request.setAttribute("cliente", user);
             request.getSession().setAttribute("cliente", user);
 

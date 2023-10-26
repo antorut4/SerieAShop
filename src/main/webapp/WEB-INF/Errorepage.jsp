@@ -1,20 +1,34 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ERROR</title>
-    <link rel="icon" type="image/x-icon" href="./icons/logoBankai.png">
-    <jsp:include page="nav.jsp"></jsp:include>
-    <link rel="stylesheet" type="text/css" href="./CSS/styles.css">
-    <link rel="stylesheet" href="./CSS/tavola.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-</head>
-<body>
-<div class="titolo">
-    <img src="./image/logo.png" alt="Logo" title="Logo">
+<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/errore.css"
+      <script src="${pageContext.request.contextPath}/script/errore.js"></script>
+<body class="loading">
+<h1>500</h1>
+<%String error=request.getParameter("errore");
+if(error!=null){
+%>
+<h2><b><%=error%>:(</b></h2>
+<%}else{
+ %>
+<h2><b>Unexpected error :(</b></h2>
+<%
+}%>
+<div class="gears">
+    <div class="gear one">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="gear two">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="gear three">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
 </div>
-
-<h1 class="message"><%=request.getParameter("errore") %></h1>
-
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="js/main.js" type="text/javascript"></script>
 </body>
-</html>

@@ -1,5 +1,7 @@
 package model;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
     public User doRetrieveById(int id) throws SQLException {
@@ -136,5 +138,37 @@ public class UserDAO {
         }
     }
 
+    public List<User> doRetriveAll(){
+        List<User> utenti = new ArrayList<>();
+        User user;
+
+        ResultSet rs;
+        Statement st;
+
+        try(Connection connection = ConPool.getConnection()) {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT * FROM utente");
+
+            while(rs.next()){
+                user = new User();
+                user.setUsername(rs.getString(1));
+                user.setNome(rs.getString(2));
+                user.setCognome(rs.getString(3));
+                user.setEmail(rs.getString(4));
+                user.setTelefono(rs.getString(5));
+                user.setIndirizzo(rs.getString(6));
+                user.setPassword(rs.getString(7));
+
+                utenti.add(user);
+            }
+
+            connection.close();
+            return utenti;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 }

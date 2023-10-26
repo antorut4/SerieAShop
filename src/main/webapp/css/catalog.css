@@ -19,13 +19,13 @@ h1 {
 
 .Banner {
     width: 100%;
-    text-align: center;
 }
 
 .Banner img {
     max-width: 100%;
     height: auto;
-    display: block;
+    display: flex;
+    text-align: center;
 }
 
 .Grid {
