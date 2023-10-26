@@ -10,7 +10,7 @@
 <body>
 
 <a href="${pageContext.request.contextPath}/home">
-    <img src="image/home.png" width="25px">
+    <img src="image/home.png" width="100px">
     <h1>Benvenuto ${user.username}</h1>
 </a>
     <div class="admin-panel">
