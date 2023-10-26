@@ -52,13 +52,13 @@
         <div class="taglie">
             <p class="taglie-paragrafo">Taglie</p>
 
-            <button class="bottone">S</button>
+            <button class="bottone" disabled>S</button>
             <button class="bottone">M</button>
             <button class="bottone">L</button>
-            <button class="bottone">XL</button>
+            <button class="bottone" disabled>XL</button>
             <button class="bottone">2XL</button>
 
-            <h1 class="quantita">Quantita: <%=prodotto.getQuantita()%></h1>
+            <h1 class="quantita">Quantita: </h1>
 
             <div class="select-and-button">
                 <select class="dropdown-select">
@@ -70,6 +70,7 @@
                 <div class="bottonePezzotto">
                     <a href="aggiungi-al-carrello?idProd=<%=prodotto.getId()%>">Aggiungi Al Carrello</a>
                 </div>
+            </div>
         </div>
 
         <div class="box-titolo">
@@ -83,10 +84,6 @@
             <div class="descrizione-spedizione">
                 &bull; <%=prodotto.getDescrizione()%>
             </div>
-        </div>
-
-
-
         </div>
 
     </div>

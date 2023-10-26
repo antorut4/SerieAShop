@@ -43,7 +43,6 @@
     flex: 1; /* Larghezza della seconda colonna */
     padding: 10px; /* Spazio interno per separare il contenuto dalla cornice */
 
-     /* Cornice leggera */
 }
 
 .contenitore-riga {
@@ -69,26 +68,46 @@ h2 {
 }
 
 .taglie {
-    width: 90%; /* Imposta la larghezza del div (puoi regolarla come desideri) */
+    width: 70%; /* Imposta la larghezza del div (puoi regolarla come desideri) */
     padding:0; /* Aggiunge spazio interno al div */
     background-color: #e3e3e3; /* Colore di sfondo del div */
     font-size: 20px; /* Dimensione del testo all'interno del div */
 }
 
 
+/* Stile dei pulsanti */
 .bottone {
-    padding: 10px 20px; /* Aggiunge spazio interno ai bottoni (altezza x larghezza) */
-    font-size: 18px; /* Dimensione del testo nei bottoni */
-    background-color: #ffffff; /* Colore di sfondo dei bottoni */
-    color: #000; /* Colore del testo */
-    border-color: black; /* Rimuove il bordo del bottone */
-    margin: 5px; /* Aggiunge spazio tra i bottoni */
-    cursor: pointer; /* Cambia il cursore quando si passa sopra il bottone */
-    border-radius: 5px; /* Bordo arrotondato */
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .bottone:hover {
-    background-color: lightgray; /* Cambia il colore di sfondo quando si passa sopra il bottone */
+    background-color: #0056b3;
+}
+
+.bottone:active {
+    background-color: #003a75;
+    transform: scale(0.95); /* Riduci leggermente le dimensioni quando premuto */
+}
+
+.bottone:disabled {
+    background-color: #ccc;
+    color: #888;
+    cursor: not-allowed;
+}
+
+/* Rimuovi la sottolineatura del link */
+.bottone a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .quantita{
@@ -116,6 +135,7 @@ h2 {
     border-radius: 5px; /* Bordo arrotondato */
 }
 
+/* Stile del contenitore */
 .select-and-button {
     display: flex; /* Imposta i figli (select e bottone) in una riga */
     align-items: center; /* Allinea verticalmente al centro */
@@ -123,8 +143,25 @@ h2 {
 
 /* Spazio tra select e bottone */
 .select-and-button select {
-    margin-right: 200px;
+    margin-right: 360px; /* Riduci lo spazio tra il select e il bottone */
+    margin-bottom: 10px;
 }
+
+/* Stile del select */
+.select-and-button .dropdown-select {
+    padding: 10px; /* Aggiunge spazio interno al select */
+    font-size: 16px; /* Dimensione del testo nel select */
+    border: 1px solid #ccc; /* Bordo del select */
+    border-radius: 5px; /* Bordo arrotondato */
+}
+
+/* Stile del select quando è attivo (aperto) */
+.select-and-button .dropdown-select:focus {
+    outline: none; /* Rimuovi l'outline predefinito */
+    border-color: #007BFF; /* Cambia il colore del bordo quando il select è attivo */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Aggiunge una leggera ombra quando il select è attivo */
+}
+
 
 /* Stile della box titolo */
 .box-titolo {
@@ -150,12 +187,23 @@ h2 {
     display: none;
 }
 
-.bottonePezzotto{
-    background-color: #007bff;
-    width:150px;
-    height:35px;
-    border:2px #000 solid;
+/* Stile del pulsante */
+.bottonePezzotto a {
+    display: inline-block;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
+
+/* Stile del pulsante al passaggio del mouse */
+.bottonePezzotto a:hover {
+    background-color: #0056b3; /* Cambia il colore di sfondo al passaggio del mouse */
+}
+
 
 a{
     text-decoration: none;
