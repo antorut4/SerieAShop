@@ -24,9 +24,15 @@
       </div>
     </c:otherwise>
   </c:choose>
-  <a href="">
-    <img src="${pageContext.request.contextPath}/image/cart.png">
-  </a>
+
+  <c:choose>
+  <c:when test="${sessionScope.user != null}">
+    <a href="carrello-servlet">
+      <img src="${pageContext.request.contextPath}/image/cart.png">
+    </a>
+  </c:when>
+  </c:choose>
+
 </div>
 
 <div class="centernav">

@@ -2,10 +2,12 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="model.Squadra" %>
 <%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/prodottoSingolo.css">
+
     <jsp:include page="nav.jsp"></jsp:include>
 </head>
 <body>
@@ -65,17 +67,19 @@
                     <option value="opzione3">3</option>
                  </select>
 
-                 <button class="aggiungi-carrello">Aggiungi al carrello</button>
-            </div>
+                <div class="bottonePezzotto">
+                    <a href="aggiungi-al-carrello?idProd=<%=prodotto.getId()%>">Aggiungi Al Carrello</a>
+                </div>
         </div>
 
         <div class="box-titolo">
-            <h2 class="titolo-spedizione" onclick="toggleDescrizione(this)">Spedizione</h2>
+            <h2 class="titolo-spedizione" onclick="toggleDescrizione(this)">- Spedizione</h2>
             <div class="descrizione-spedizione">&bull; Questo articolo verrà spedito entro 7 giorni lavorativi</div>
         </div>
 
+
         <div class="box-titolo">
-            <h2 class="titolo-spedizione" onclick="toggleDescrizione(this)">Descrizione</h2>
+            <h2 class="titolo-spedizione" onclick="toggleDescrizione(this)">- Descrizione</h2>
             <div class="descrizione-spedizione">
                 &bull; <%=prodotto.getDescrizione()%>
             </div>
