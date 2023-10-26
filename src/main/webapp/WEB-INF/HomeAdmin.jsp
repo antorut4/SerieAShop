@@ -11,7 +11,7 @@
 
 <a href="${pageContext.request.contextPath}/home">
     <img src="image/home.png" width="25px">
-    <h1>Benvenuto ${admin.username}</h1>
+    <h1>Benvenuto ${user.username}</h1>
 </a>
     <div class="admin-panel">
     <h2>Aggiungi Prodotto</h2>
