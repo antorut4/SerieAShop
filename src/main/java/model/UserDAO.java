@@ -171,4 +171,28 @@ public class UserDAO {
 
     }
 
+    public User doRetrieveByUsername(String username) throws SQLException {
+        try(Connection con=ConPool.getConnection()){
+            PreparedStatement ps=con.prepareStatement("SELECT Username, nome, Cognome, Email, Telefono, Indirizzo, Password,admin FROM utente WHERE Username=?");
+            ps.setString(1,username);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                User p=new User();
+                p.setUsername(rs.getString(1));
+                p.setNome(rs.getString(2));
+                p.setCognome(rs.getString(3));
+                p.setEmail(rs.getString(4));
+                p.setTelefono(rs.getString(5));
+                p.setIndirizzo(rs.getString(6));
+                p.setPassword(rs.getString(7));
+                p.setAdmin(rs.getBoolean(8));
+
+                return p;
+            }
+            return null;
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 }

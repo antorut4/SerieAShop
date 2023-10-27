@@ -44,6 +44,25 @@ public class CarrelloDAO {
         }
     }
 
+    public void doCreateCarrello(Carrello carrello){
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO Carrello (username) VALUES(?)",
+                    Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, carrello.getUsername());
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            int idCarr = rs.getInt(1);
+            carrello.setIdCarrello(idCarr);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<Carrello> doRetriveAll() {
         List<Carrello> carrelli = new ArrayList<>();
         Carrello cs;
@@ -119,7 +138,7 @@ public class CarrelloDAO {
 
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
-                    con.prepareStatement("SELECT idProdotto FROM composto where idCarrello=?");
+                    con.prepareStatement("SELECT idProdotto FROM prodottiCarrello where idCarrello=?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
@@ -134,6 +153,24 @@ public class CarrelloDAO {
             con.close();
             return composto;
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Carrello doRetriveByUsername(String username){
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT idCarrello, username,totale FROM carrello WHERE username=?");
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Carrello c = new Carrello();
+                c.setIdCarrello(rs.getInt(1));
+                c.setUsername(rs.getString(2));
+                c.setTotale(rs.getInt(3));
+                return c;
+            }
+            return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Carrello;
+import model.CarrelloDAO;
 import model.UserDAO;
 import model.User;
 
@@ -21,14 +23,14 @@ public class LogIn extends HttpServlet {
 
             HttpSession session = request.getSession();
 
-            String email=request.getParameter("logemail");
+            String username=request.getParameter("logusername");
             String password=request.getParameter("logpassword");
 
 
             UserDAO rd= new UserDAO();
             User user = null;
             try {
-                user = rd.doRetrieveByMail(email);
+                user = rd.doRetrieveByUsername(username);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -36,7 +38,7 @@ public class LogIn extends HttpServlet {
                 String error = "Credenziali errate o Account Inesistente. Riprova o registrati";
                 request.setAttribute("errorMessageLogin", error);
             }else{
-                if(email.equals(user.getEmail())){
+                if(username.equals(user.getUsername())){
                     if(password.equals(user.getPassword())){
                         if(user.isAdmin()){
                             request.getSession().setAttribute("user",user);
@@ -45,6 +47,10 @@ public class LogIn extends HttpServlet {
                         }else {
                             // Se l'utente ha già effettuato l'accesso, reindirizzarlo alla pagina utente
                             request.getSession().setAttribute("user", user);
+                            CarrelloDAO cdao=new CarrelloDAO();
+                            Carrello carrello;
+                            carrello=cdao.doRetriveByUsername(user.getUsername());
+                            request.getSession().setAttribute("carrello",carrello);
                             address = "/WEB-INF/account.jsp";
                             System.out.println(address);
                         }

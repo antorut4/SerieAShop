@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Carrello;
+import model.CarrelloDAO;
 import model.User;
 import model.UserDAO;
 
@@ -84,8 +86,12 @@ public class NewUser extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
+            CarrelloDAO cdao=new CarrelloDAO();
+            Carrello carrello=new Carrello(username);
+            cdao.doCreateCarrello(carrello);
+            carrello=cdao.doRetriveByUsername(username);
             address = "/WEB-INF/index.jsp";
+            request.getSession().setAttribute("carrello",carrello);
             request.setAttribute("cliente", user);
             request.getSession().setAttribute("cliente", user);
 

@@ -69,7 +69,7 @@
 
                 <div class="bottonePezzotto">
                     <a href="aggiungi-al-carrello?idProd=<%=prodotto.getId()%>">
-                        <button class="bottonePezzotto" type="submit" value="Aggiungi Al Carrello">Aggiungi Al Carrello </button>
+                        <button type="submit" value="Aggiungi Al Carrello">Aggiungi Al Carrello </button>
                     </a>
                 </div>
             </div>

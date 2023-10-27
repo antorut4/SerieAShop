@@ -17,6 +17,10 @@ public class Carrello {
         listaCarrello=new ArrayList<>();
     }
 
+    public Carrello(String username){
+        this.username=username;
+    }
+
     public Carrello() {
         listaCarrello=new ArrayList<>();
     }
