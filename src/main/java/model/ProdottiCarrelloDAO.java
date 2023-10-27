@@ -144,5 +144,42 @@ public class ProdottiCarrelloDAO {
 
     }
 
+    public List<ProdottiCarrello> doRetrieveByCarrello(int idCarrello) {
+        System.out.println(idCarrello);
+        List<ProdottiCarrello> prod=new ArrayList<>();
+        ProdottiCarrello pc=new ProdottiCarrello();
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps =
+                    con.prepareStatement("SELECT idProdCarr, quantita, idCarrello, idProdotto, taglia FROM ProdottiCarrello WHERE idCarrello=?");
+            ps.setInt(1, idCarrello);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                pc=new ProdottiCarrello();
+                pc.setIdProdCarr(rs.getInt(1));
+                pc.setQuantita(rs.getInt(2));
+                pc.setIdCarrello(rs.getInt(3));
+                pc.setIdProdotto(rs.getInt(4));
+                pc.setTaglia(rs.getString(5));
+                prod.add(pc);
+            }
+            for(ProdottiCarrello pr: prod){
+                System.out.println(pc.getIdProdotto());
+            }
+            return prod;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doUpdateProdottiQuantita(ProdottiCarrello pc) {
+
+        try (Connection con = ConPool.getConnection()) {
+            Statement st = con.createStatement();
+            String query = "update ProdottiCarrello set quantita='"+pc.getQuantita()+"' WHERE idProdotto="+pc.getIdProdotto();
+            st.executeUpdate(query);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

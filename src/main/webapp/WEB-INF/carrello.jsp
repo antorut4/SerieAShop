@@ -1,18 +1,32 @@
+<%@ page import="model.Prodotto" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.User" %>
+<%@ page import="control.ManageProdottoCarrello" %>
+<%@ page import="model.ProdottiCarrello" %>
+
 <link href="${pageContext.request.contextPath}/css/carrello.css" rel="stylesheet">
+<jsp:include page="nav.jsp"></jsp:include>
+<%
+    List<ProdottiCarrello> pc=new ArrayList<>();
+    pc=(List<ProdottiCarrello>)request.getSession().getAttribute("pc");
+    List<Prodotto> prodotti=new ArrayList<>();
+    prodotti=(List<Prodotto>)request.getSession().getAttribute("prodottiDaStampare");
+    User user=(User)request.getSession().getAttribute("user");
+    int totale=(int)request.getSession().getAttribute("totale");
+
+%>
 
 <div class="container">
     <div class="heading">
         <h1>
-            <span class="shopper">s</span> Shopping Cart
+                Carrello di <%=user.getNome()%>
         </h1>
 
         <a href="#" class="visibility-cart transition is-open">X</a>
     </div>
 
     <div class="cart transition is-open">
-
-        <a href="#" class="btn btn-update">Update cart</a>
-
 
         <div class="table">
 
@@ -22,111 +36,46 @@
                     Price
                 </div>
                 <div class="col col-qty align-center">QTY</div>
-                <div class="col">VAT</div>
-                <div class="col">Total</div>
             </div>
-
+<%for(Prodotto p: prodotti) {%>
             <div class="layout-inline row">
-
+            <%System.out.println(p.getId());%>
                 <div class="col col-pro layout-inline">
-                    <img src="${pageContext.request.contextPath}/image/PathOggetti/1/1.jpg" alt="kitten" />
-                    <p>Happy Little Critter</p>
+                    <img src="${pageContext.request.contextPath}/image/PathOggetti/<%=p.getId()%>/1.jpg" />
+                    <p><%=p.getNome()%></p>
                 </div>
 
                 <div class="col col-price col-numeric align-center ">
-                    <p>£59.99</p>
+                    <p><%=p.getPrezzo()%></p>
                 </div>
 
                 <div class="col col-qty layout-inline">
-                    <a href="#" class="qty qty-minus">-</a>
-                    <input type="numeric" value="3" />
-                    <a href="#" class="qty qty-plus">+</a>
-                </div>
-
-                <div class="col col-vat col-numeric">
-                    <p>£2.95</p>
-                </div>
-                <div class="col col-total col-numeric">               <p> £182.95</p>
-                </div>
-            </div>
-
-            <div class="layout-inline row row-bg2">
-
-                <div class="col col-pro layout-inline">
-                    <img src="${pageContext.request.contextPath}/image/PathOggetti/2/1.jpg" alt="kitten" />
-                    <p>Scared Little Kittie</p>
-                </div>
-
-                <div class="col col-price col-numeric align-center ">
-                    <p>£23.99</p>
-                </div>
-
-                <div class="col col-qty  layout-inline">
-                    <a href="#" class="qty qty-minus ">-</a>
-                    <input type="numeric" value="1" />
-                    <a href="#" class="qty qty-plus">+</a>
-                </div>
-
-                <div class="col col-vat col-numeric">
-                    <p>£1.95</p>
-                </div>
-                <div class="col col-total col-numeric">
-                    <p>£25.94</p>
+                    <%for(ProdottiCarrello pcar: pc){
+                    if(p.getId()== pcar.getIdProdotto()){
+                    System.out.println(p.getId()+"ei");%>
+                    <a href="manage-prodotto-carrello?valore=piu&Prod=<%=p.getId()%>" class="qty qty-plus">+</a>
+                    <input type="numeric" value="<%=pcar.getQuantita()%>" />
+                    <a href="manage-prodotto-carrello?valore=meno&Prod=<%=p.getId()%>" class="qty qty-minus">-</a>
+                    <%}}%>
                 </div>
 
             </div>
-
-            <div class="layout-inline row">
-
-                <div class="col col-pro layout-inline">
-                    <img src="${pageContext.request.contextPath}/image/PathOggetti/5/1.jpg" alt="kitten" />
-                    <p>Curious Little Begger</p>
-                </div>
-
-                <div class="col col-price col-numeric align-center ">
-                    <p>£59.99</p>
-                </div>
-
-                <div class="col col-qty layout-inline">
-                    <a href="#" class="qty qty-minus">-</a>
-                    <input type="numeric" value="3" />
-                    <a href="#" class="qty qty-plus">+</a>
-                </div>
-
-                <div class="col col-vat col-numeric">
-                    <p>£2.95</p>
-                </div>
-                <div class="col col-total col-numeric">
-                    <p>£182.95</p>
-                </div>
-            </div>
+            <%}%>
 
             <div class="tf">
                 <div class="row layout-inline">
                     <div class="col">
-                        <p>VAT</p>
-                    </div>
-                    <div class="col"></div>
-                </div>
-                <div class="row layout-inline">
-                    <div class="col">
-                        <p>Shipping</p>
-                    </div>
-                    <div class="col"></div>
-                </div>
-                <div class="row layout-inline">
-                    <div class="col">
-                        <p>Total</p>
+                        <p>Total: <%=totale%>&euro;</p>
                     </div>
                     <div class="col"></div>
                 </div>
             </div>
         </div>
 
-        <a href="#" class="btn btn-update">Update cart</a>
+        <a href="#" class="btn btn-update">Acquista</a>
 
     </div>
-
+</div>
 <script>
     $('.visibility-cart').on('click',function(){
 
@@ -151,37 +100,6 @@
 
     });
 
-    // SHOPPING CART PLUS OR MINUS
-    $('a.qty-minus').on('click', function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var $input = $this.closest('div').find('input');
-        var value = parseInt($input.val());
-
-        if (value > 1) {
-            value = value - 1;
-        } else {
-            value = 0;
-        }
-
-        $input.val(value);
-
-    });
-
-    $('a.qty-plus').on('click', function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var $input = $this.closest('div').find('input');
-        var value = parseInt($input.val());
-
-        if (value < 100) {
-            value = value + 1;
-        } else {
-            value =100;
-        }
-
-        $input.val(value);
-    });
 
     // RESTRICT INPUTS TO NUMBERS ONLY WITH A MIN OF 0 AND A MAX 100
     $('input').on('blur', function(){

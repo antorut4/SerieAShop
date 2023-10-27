@@ -23,18 +23,20 @@ public class AggiungiAlCarrello extends HttpServlet {
 
 
         Prodotto prod;
-
+        int quantita=Integer.parseInt(request.getParameter("quantita"));
+        String taglia=request.getParameter("taglia");
         prod=(Prodotto)request.getSession().getAttribute("prodAgg");
 
         Carrello carrello=(Carrello)request.getSession().getAttribute("carrello");
         ProdottiCarrello prodottiCarrello=new ProdottiCarrello();
         prodottiCarrello.setIdCarrello(carrello.getIdCarrello());
         prodottiCarrello.setIdProdotto(prod.getId());
+        prodottiCarrello.setTaglia(taglia);
+        prodottiCarrello.setQuantita(quantita);
         ProdottiCarrelloDAO prodcardao= new ProdottiCarrelloDAO();
         prodcardao.doSaveProdottoCarrello(prodottiCarrello);
-        prodottiCarrello.setQuantita(1);
-
         carrello.addProdotto(prod);
+
         RequestDispatcher rd = request.getRequestDispatcher(address);
         rd.forward(request, response);
     }

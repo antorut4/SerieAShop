@@ -10,6 +10,7 @@ import model.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/carrello-servlet")
@@ -17,75 +18,36 @@ public class CarrelloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String address = "WEB-INF/carrello.jsp";
-
+        int totale=0;
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
-        User user = (User) request.getSession().getAttribute("cliente");
+        int idCarr= carrello.getIdCarrello();
+        User user = (User) request.getSession().getAttribute("user");
+        List<Prodotto> prodottiStampa= new ArrayList<>();
+        List<ProdottiCarrello> prodottiCarrello=new ArrayList<>();
+        if(user!=null){
+
+            ProdottiCarrelloDAO pcdao=new ProdottiCarrelloDAO();
+            prodottiCarrello=pcdao.doRetrieveByCarrello(idCarr);
 
 
-        if(user != null) {
-            if (carrello != null) {
-                CarrelloDAO cdao = new CarrelloDAO();
+            Prodotto prodotto;
+            ProdottoDAO pdao=new ProdottoDAO();
 
-                String username = user.getUsername();
 
-                //controllo e aggiornamento sui prezzi dal database
-                List<Prodotto> prodList = carrello.getCarrello();
-                ProdottoDAO pdao = new ProdottoDAO();
-                for (Prodotto prodotto : prodList){
-                    int id = prodotto.getId();
-                    Double prezzoCarr = prodotto.getPrezzo();
-                    Prodotto prodDataBase = null;
-                    try {
-                        prodDataBase = pdao.doRetrieveById(id);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    Double prezzDB = prodDataBase.getPrezzo();
-                    if( !(prezzoCarr.equals(prezzDB)) ){
-                        prodotto.setPrezzo(prezzDB);
-                    }
-                }
-                carrello.setCarrello(prodList);
-
-                Double costo = carrello.sumPrezzi();
-                carrello.setTotale(costo);
-                carrello.setUsername(username);
-
-                int id = carrello.getIdCarrello();
-                Carrello carrelloTest = null;
+            for(ProdottiCarrello p: prodottiCarrello){
                 try {
-                    carrelloTest = cdao.doRetrieveById(id);
+                    prodotto=pdao.doRetrieveById(p.getIdProdotto());
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                if(carrelloTest != null ){
-                    cdao.doUpdateCarrello(carrello);
-                }else{
-                    cdao.doSave(carrello);
-                }
-
-                request.getSession().setAttribute("carrello", carrello);
-
-                //salvare prodotti in prodottiCarrello nel DB
-                ProdottiCarrelloDAO pdDao = new ProdottiCarrelloDAO();
-                List<Prodotto> prodottiList = carrello.getCarrello();
-                int idCarr = carrello.getIdCarrello();
-                ProdottiCarrello prodCarrello  = new ProdottiCarrello();
-                for( Prodotto prodSession : prodottiList) {
-
-                    prodCarrello.setQuantita(prodSession.getQuantita());
-                    prodCarrello.setIdCarrello(idCarr);
-                    prodCarrello.setIdProdotto(prodSession.getId());
-
-                    ProdottiCarrello pcTest = pdDao.doRetrieveByCarrelloAndProdotto(idCarr, prodSession.getId());
-                    if(pcTest != null){
-                        pdDao.doUpdateProdottiCarrello(prodCarrello);
-                    }else {
-                        pdDao.doSaveProdottoCarrello( prodCarrello);
-                    }
-                }
+                totale+=prodotto.getPrezzo();
+                prodottiStampa.add(prodotto);
             }
         }
+
+        request.getSession().setAttribute("pc",prodottiCarrello);
+        request.getSession().setAttribute("totale",totale);
+        request.getSession().setAttribute("prodottiDaStampare", prodottiStampa);
 
         RequestDispatcher rd = request.getRequestDispatcher(address);
         rd.forward(request, response);

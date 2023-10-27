@@ -75,40 +75,6 @@ h2 {
 }
 
 
-/* Stile dei pulsanti */
-.bottone {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    margin: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.bottone:hover {
-    background-color: #0056b3;
-}
-
-.bottone:active {
-    background-color: #003a75;
-    transform: scale(0.95); /* Riduci leggermente le dimensioni quando premuto */
-}
-
-.bottone:disabled {
-    background-color: #ccc;
-    color: #888;
-    cursor: not-allowed;
-}
-
-/* Rimuovi la sottolineatura del link */
-.bottone a {
-    text-decoration: none;
-    color: inherit;
-}
 
 .quantita{
     font-size: 20px;
@@ -207,4 +173,18 @@ h2 {
 
 a{
     text-decoration: none;
+}
+
+.bottone {
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.bottone option {
+    padding: 5px 10px;
+    font-size: 16px;
 }

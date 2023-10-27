@@ -49,34 +49,40 @@
 
         <h2>Prezzo: <%= prodotto.getPrezzo()%>&euro;</h2>
 
+        <%Prodotto prodScelto=prodotto;
+            request.getSession().setAttribute("prodAgg", prodScelto);
+        %>
+
+        <form action="aggiungi-al-carrello">
         <div class="taglie">
             <p class="taglie-paragrafo">Taglie</p>
 
-            <button class="bottone">S</button>
-            <button class="bottone">M</button>
-            <button class="bottone">L</button>
-            <button class="bottone">XL</button>
-            <button class="bottone">2XL</button>
+            <select name="taglia" class="bottone">
+                <option value="s">S</option>
+                <option value="m">M</option>
+                <option value="l">L</option>
+                <option value="xl">XL</option>
+                <option value="2xl">2XL</option>
+            </select>
 
-            <h1 class="quantita">Quantita: </h1>
+
+        <h1 class="quantita">Quantita: </h1>
 
             <div class="select-and-button">
-                <select class="dropdown-select">
-                    <option value="opzione1" selected>1</option>
-                    <option value="opzione2">2</option>
-                    <option value="opzione3">3</option>
-                 </select>
+                <select class="bottone" name="quantita">
+                <%for(int i=0;i<prodotto.getQuantita();i++){%>
+                    <option value="<%=i%>"><%=i%></option>
+                    <%}%>
+                </select>
 
-                <%Prodotto prodScelto=prodotto;
-                request.getSession().setAttribute("prodAgg", prodScelto);
-                %>
-                <div class="bottonePezzotto">
-                    <form action="aggiungi-al-carrello">
-                        <button type="submit" value="Aggiungi Al Carrello">Aggiungi Al Carrello </button>
-                    </form>
+
+
+                <div class="bottone">
+                        <button type="submit" class="bottone" value="Aggiungi Al Carrello">Aggiungi Al Carrello </button>
                 </div>
             </div>
         </div>
+        </form>
 
         <div class="box-titolo">
             <h2 class="titolo-spedizione" onclick="toggleDescrizione(this)">- Spedizione</h2>

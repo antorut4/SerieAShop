@@ -19,11 +19,12 @@ public class ManageProdottoCarrello extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String scelta=request.getParameter("manage");
-        int idProdotto= Integer.parseInt(request.getParameter("prodManage"));
+        System.out.println("ciao");
+        String scelta=request.getParameter("valore");
+        int idProdotto=Integer.parseInt(request.getParameter("Prod"));
         Carrello carrello= (Carrello)request.getSession().getAttribute("carrello");
         ProdottiCarrelloDAO pcdao= new ProdottiCarrelloDAO();
-
+        ProdottiCarrello pc;
         if(carrello!=null){
             switch (scelta) {
                 case "rimuovi": {
@@ -43,27 +44,25 @@ public class ManageProdottoCarrello extends HttpServlet {
                 }
                     break;
 
-                case "abbassa":{
-                    carrello.abbassaQuantitaProdotto(idProdotto);
-                    request.getSession().setAttribute("carrello",carrello);
-                    if(carrello.isEmpty()){
-                        request.getSession().removeAttribute("carrello");
-                    }
+                case "meno":{
+                    pc=pcdao.doRetrieveByCarrelloAndProdotto(carrello.getIdCarrello(), idProdotto);
+                    pc.setQuantita(pc.getQuantita()-1);
 
-                    //se la quantita prodotto arriva a 0, lo cancella
-                    Prodotto prodotto=carrello.getProdottoById(idProdotto);
-                    User user=(User)request.getSession().getAttribute("User");
-                    if(prodotto == null && user!=null){
-                        ProdottiCarrello proCarDB= pcdao.doRetrieveByCarrelloAndProdotto(carrello.getIdCarrello(),idProdotto);
+                    if(pc.getQuantita()==0){
                         pcdao.deleteProdottoCarrello(idProdotto);
-
+                    }else{
+                        pcdao.doUpdateProdottiQuantita(pc);
                     }
                 }
                 break;
 
-                case"alza":{
-                    carrello.alzaQuantitaProdotto(idProdotto);
-                    request.getSession().setAttribute("carrello",carrello);
+                case"piu":{
+                    pc=pcdao.doRetrieveByCarrelloAndProdotto(carrello.getIdCarrello(), idProdotto);
+                    pc.setQuantita(pc.getQuantita()+1);
+                    pcdao.doUpdateProdottiQuantita(pc);
+                    if(pc.getQuantita()==0){
+                        pcdao.deleteProdottoCarrello(idProdotto);
+                    }
                 }
                 break;
             }
