@@ -1,21 +1,3 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: serieashop
--- ------------------------------------------------------
--- Server version	8.1.0
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
 -- Table structure for table `carrello`
 --
 
@@ -32,48 +14,6 @@ CREATE TABLE `carrello` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `carrello`
---
-
-LOCK TABLES `carrello` WRITE;
-/*!40000 ALTER TABLE `carrello` DISABLE KEYS */;
-INSERT INTO `carrello` VALUES (2,'utente2',NULL),(3,'utente3',NULL),(4,'utente4',NULL),(5,'utente5',NULL),(6,'utente6',NULL),(7,'utente7',NULL),(8,'utente8',NULL),(9,'utente9',NULL),(10,'utente10',NULL);
-/*!40000 ALTER TABLE `carrello` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `genera`
---
-
-DROP TABLE IF EXISTS `genera`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `genera` (
-  `id` int NOT NULL,
-  `username` varchar(25) DEFAULT NULL,
-  `idOrdine` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `username` (`username`),
-  KEY `idOrdine` (`idOrdine`),
-  CONSTRAINT `genera_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`Username`),
-  CONSTRAINT `genera_ibfk_2` FOREIGN KEY (`idOrdine`) REFERENCES `ordine` (`idOrdine`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `genera`
---
-
-LOCK TABLES `genera` WRITE;
-/*!40000 ALTER TABLE `genera` DISABLE KEYS */;
-INSERT INTO `genera` VALUES (2,'utente2',2),(3,'utente3',3),(4,'utente4',4),(5,'utente5',5),(6,'utente6',6),(7,'utente7',7),(8,'utente8',8),(9,'utente9',9),(10,'utente10',10);
-/*!40000 ALTER TABLE `genera` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ordine`
---
 
 DROP TABLE IF EXISTS `ordine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -92,21 +32,7 @@ CREATE TABLE `ordine` (
   CONSTRAINT `ordine_ibfk_1` FOREIGN KEY (`username`) REFERENCES `utente` (`Username`),
   CONSTRAINT `ordine_ibfk_2` FOREIGN KEY (`idCarrello`) REFERENCES `carrello` (`idCarrello`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `ordine`
---
-
-LOCK TABLES `ordine` WRITE;
-/*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
-INSERT INTO `ordine` VALUES (1,95,NULL,'Carta di credito','Via Roma 123 00100','utente2',2),(2,45,NULL,'PayPal','Via Milano 456 00200','utente2',2),(3,75,NULL,'Carta di credito Via Napoli 789','00300','utente2',2),(4,60,NULL,'PayPal','Via Firenze 01 00400','utente2',2),(5,120,NULL,'Carta di credito','Via Torino 202 00500','utente2',2),(6,30,NULL,'PayPal','Via Bologna 303 00600','utente2',2),(7,50,NULL,'Carta di credito','Via Venezia 404 00700','utente2',2),(8,90,NULL,'PayPal','Via Verona 505 00800','utente2',2),(9,110,NULL,'Carta di credito','Via Pisa 606 00900','utente2',2),(10,70,NULL,'PayPal','Via Genova 707 01000','utente2',2);
-/*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `prodotticarrello`
---
 
 DROP TABLE IF EXISTS `prodotticarrello`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -122,20 +48,7 @@ CREATE TABLE `prodotticarrello` (
   CONSTRAINT `prodotticarrello_ibfk_1` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`),
   CONSTRAINT `prodotticarrello_ibfk_2` FOREIGN KEY (`idCarrello`) REFERENCES `carrello` (`idCarrello`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `prodotticarrello`
---
-
-LOCK TABLES `prodotticarrello` WRITE;
-/*!40000 ALTER TABLE `prodotticarrello` DISABLE KEYS */;
-/*!40000 ALTER TABLE `prodotticarrello` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `prodotto`
---
 
 DROP TABLE IF EXISTS `prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -214,7 +127,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES ('admin','Antonio','Ruta','admin@gmail.com','3456789042','via 1','admin',1),('utente10','NomeUtente10','CognomeUtente10','utente10@email.com','234546546','via 10','passwordUtente10',0),('utente2','NomeUtente2','CognomeUtente2','utente2@email.com','2354525425','via 2','passwordUtente2',0),('utente3','NomeUtente3','CognomeUtente3','utente3@email.com','2344556777','via 3','passwordUtente3',0),('utente4','NomeUtente4','CognomeUtente4','utente4@email.com','4566677235','via 4','passwordUtente4',0),('utente5','NomeUtente5','CognomeUtente5','utente5@email.com','3546365656','via 5','passwordUtente5',0),('utente6','NomeUtente6','CognomeUtente6','utente6@email.com','35776874555','via 6','passwordUtente6',0),('utente7','NomeUtente7','CognomeUtente7','utente7@email.com','456789999','via 7','passwordUtente7',0),('utente8','NomeUtente8','CognomeUtente8','utente8@email.com','3544657537','via 8','passwordUtente8',0),('utente9','NomeUtente9','CognomeUtente9','utente9@email.com','23454545454','via 9','passwordUtente9',0);
+INSERT INTO `utente` VALUES ('Fozza Napoli','admin','admin','admin@gmail.com','3456789042','via 1','admin',1);
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

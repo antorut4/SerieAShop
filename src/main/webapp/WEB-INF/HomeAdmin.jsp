@@ -117,7 +117,7 @@
     <button class="toggle-btn">Mostra Form Cancella Prodotto</button>
     <form class="delete-product-form" action="update-prezzo" method="post">
         <label for="id">ID Prodotto:</label>
-        <input type="text" name="id" required>
+        <input type="text" name="idProdotto" required>
         <label for="prezzo">Prezzo:</label>
         <input type="number" name="prezzo" id="prezz" onkeyup="prezzoValidation(this.form.prezz)">
         <input type="submit" value="Modifica Prezzo">
