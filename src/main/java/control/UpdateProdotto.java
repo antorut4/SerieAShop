@@ -16,7 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-@WebServlet("/update-prezzo")
+@WebServlet("/update-prodotto")
 public class UpdateProdotto extends HttpServlet {
 
     private ProdottoDAO prodottoDAO;

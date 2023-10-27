@@ -1,84 +1,200 @@
-<!-- Font Awesome -->
-<html>
-<script src="https://use.fontawesome.com/2d1c7583b1.js"></script>
+<link href="${pageContext.request.contextPath}/css/carrello.css" rel="stylesheet">
 
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/carrello.css">
+<div class="container">
+    <div class="heading">
+        <h1>
+            <span class="shopper">s</span> Shopping Cart
+        </h1>
 
-<body>
-<section class="container">
-    <header>
-        <div id="menu"><img src="https://thinsoldier.com/wip/nike-grid/images/icon-menu.svg" alt="Menu"></div>
-        <div id="logo"><img src="https://thinsoldier.com/wip/nike-grid/images/nike_logo.png" alt="Nike Logo"></div>
-        <div id="cart"><p>1 item <i class="fa fa-shopping-cart" aria-hidden="true"></i></p></div>
-    </header>
-    <section class="content">
-        <article id="checkoutNav" class="shadow">
-            <ul>
-                <li>
-                    <p>01</p>
-                    <i class="fa fa-truck" aria-hidden="true"></i>
-                    <p>Shipping</p>
-                </li>
-                <li class="active">
-                    <p>02</p>
-                    <i class="fa fa-credit-card" aria-hidden="true"></i>
-                    <p>Payment</p>
-                </li>
-                <li>
-                    <p>03</p>
-                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                    <p>Success</p>
-                </li>
-            </ul>
-        </article>
-        <article id="product" class="shadow"><img src="https://thinsoldier.com/wip/nike-grid/images/lunar2_full.jpg" alt="Lunar 2"></article>
-        <h1>Flyknit Lunar 2</h1>
-        <article id="checkoutCard" class="shadow">
-            <div id="details">
-                <dl class="">
-                    <dt>Product</dt>
-                    <dd> <img id="thumbnail" src="http://thinsoldier.com/wip/nike-grid/images/nike_luna_thumbnail.png" alt="Lunar 2"></dd>
-                    <dt>Quantity</dt>
-                    <dd> <input type="number" value="1"> </dd>
-                    <dt>Price</dt>
-                    <dd> $69.99 </dd>
-                </dl>
+        <a href="#" class="visibility-cart transition is-open">X</a>
+    </div>
+
+    <div class="cart transition is-open">
+
+        <a href="#" class="btn btn-update">Update cart</a>
+
+
+        <div class="table">
+
+            <div class="layout-inline row th">
+                <div class="col col-pro">Product</div>
+                <div class="col col-price align-center ">
+                    Price
+                </div>
+                <div class="col col-qty align-center">QTY</div>
+                <div class="col">VAT</div>
+                <div class="col">Total</div>
             </div>
-            <form action="">
-                <div id="cards">
 
-                    <ul>
-                        <li><label for="" name="Card Type">Card Type</label></li>
-                        <li><i class="fa fa-cc-visa" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-cc-paypal" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-cc-amex" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-cc-mastercard" aria-hidden="true"></i></li>
-                    </ul>
-                </div>
-                <div id="cardNumber">
-                    <label for="">Card number</label>
-                    <input type="number" placeholder="XXXX">
-                    <input type="number" placeholder="XXXX">
-                    <input type="number" placeholder="XXXX">
-                    <input type="number" placeholder="XXXX">
-                </div>
-                <div id="securityInfo">
-                    <label for="">Start date</label>
-                    <label for="">Expiry date</label>
-                    <label for="">Cvv</label>
-                    <input type="text" placeholder="MM/YY">
-                    <input type="text" placeholder="MM/YY">
-                    <input type="number" placeholder="XXX">
+            <div class="layout-inline row">
+
+                <div class="col col-pro layout-inline">
+                    <img src="${pageContext.request.contextPath}/image/PathOggetti/1/1.jpg" alt="kitten" />
+                    <p>Happy Little Critter</p>
                 </div>
 
-                <input type="submit" value="Check out" id="btnSubmit">
-            </form>
-        </article>
-    </section>
-    <footer><a href="https://edwardfury.com/nikelunar2">Photographer: Edward Fury</a><a href="https://dribbble.com/shots/2469246-Credit-Card-Checkout-Daily-UI-002" target="_blank">Designer: Nathan Riley</a><a href="https://rayhatron.github.io" target="_blank">Web developers: Rayhatron &amp; thinsoldier</a> </footer>
-</section>
+                <div class="col col-price col-numeric align-center ">
+                    <p>£59.99</p>
+                </div>
 
-</body>
-</html>
+                <div class="col col-qty layout-inline">
+                    <a href="#" class="qty qty-minus">-</a>
+                    <input type="numeric" value="3" />
+                    <a href="#" class="qty qty-plus">+</a>
+                </div>
+
+                <div class="col col-vat col-numeric">
+                    <p>£2.95</p>
+                </div>
+                <div class="col col-total col-numeric">               <p> £182.95</p>
+                </div>
+            </div>
+
+            <div class="layout-inline row row-bg2">
+
+                <div class="col col-pro layout-inline">
+                    <img src="${pageContext.request.contextPath}/image/PathOggetti/2/1.jpg" alt="kitten" />
+                    <p>Scared Little Kittie</p>
+                </div>
+
+                <div class="col col-price col-numeric align-center ">
+                    <p>£23.99</p>
+                </div>
+
+                <div class="col col-qty  layout-inline">
+                    <a href="#" class="qty qty-minus ">-</a>
+                    <input type="numeric" value="1" />
+                    <a href="#" class="qty qty-plus">+</a>
+                </div>
+
+                <div class="col col-vat col-numeric">
+                    <p>£1.95</p>
+                </div>
+                <div class="col col-total col-numeric">
+                    <p>£25.94</p>
+                </div>
+
+            </div>
+
+            <div class="layout-inline row">
+
+                <div class="col col-pro layout-inline">
+                    <img src="${pageContext.request.contextPath}/image/PathOggetti/5/1.jpg" alt="kitten" />
+                    <p>Curious Little Begger</p>
+                </div>
+
+                <div class="col col-price col-numeric align-center ">
+                    <p>£59.99</p>
+                </div>
+
+                <div class="col col-qty layout-inline">
+                    <a href="#" class="qty qty-minus">-</a>
+                    <input type="numeric" value="3" />
+                    <a href="#" class="qty qty-plus">+</a>
+                </div>
+
+                <div class="col col-vat col-numeric">
+                    <p>£2.95</p>
+                </div>
+                <div class="col col-total col-numeric">
+                    <p>£182.95</p>
+                </div>
+            </div>
+
+            <div class="tf">
+                <div class="row layout-inline">
+                    <div class="col">
+                        <p>VAT</p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row layout-inline">
+                    <div class="col">
+                        <p>Shipping</p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row layout-inline">
+                    <div class="col">
+                        <p>Total</p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="btn btn-update">Update cart</a>
+
+    </div>
+
+<script>
+    $('.visibility-cart').on('click',function(){
+
+        var $btn =  $(this);
+        var $cart = $('.cart');
+        console.log($btn);
+
+        if ($btn.hasClass('is-open')) {
+            $btn.removeClass('is-open');
+            $btn.text('O')
+            $cart.removeClass('is-open');
+            $cart.addClass('is-closed');
+            $btn.addClass('is-closed');
+        } else {
+            $btn.addClass('is-open');
+            $btn.text('X')
+            $cart.addClass('is-open');
+            $cart.removeClass('is-closed');
+            $btn.removeClass('is-closed');
+        }
+
+
+    });
+
+    // SHOPPING CART PLUS OR MINUS
+    $('a.qty-minus').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+
+        if (value > 1) {
+            value = value - 1;
+        } else {
+            value = 0;
+        }
+
+        $input.val(value);
+
+    });
+
+    $('a.qty-plus').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+
+        if (value < 100) {
+            value = value + 1;
+        } else {
+            value =100;
+        }
+
+        $input.val(value);
+    });
+
+    // RESTRICT INPUTS TO NUMBERS ONLY WITH A MIN OF 0 AND A MAX 100
+    $('input').on('blur', function(){
+
+        var input = $(this);
+        var value = parseInt($(this).val());
+
+        if (value < 0 || isNaN(value)) {
+            input.val(0);
+        } else if
+        (value > 100) {
+            input.val(100);
+        }
+    });
+
+</script>
