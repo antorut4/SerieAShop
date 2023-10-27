@@ -8,10 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import jakarta.servlet.http.HttpSession;
-import model.Carrello;
-import model.ProdottiCarrello;
-import model.Prodotto;
-import model.ProdottoDAO;
+import model.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,7 +19,7 @@ import java.util.List;
 public class AggiungiAlCarrello extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        String address = "";
+        String address = "WEB-INF/index.jsp";
 
 
         Prodotto prod;
@@ -33,11 +30,11 @@ public class AggiungiAlCarrello extends HttpServlet {
         ProdottiCarrello prodottiCarrello=new ProdottiCarrello();
         prodottiCarrello.setIdCarrello(carrello.getIdCarrello());
         prodottiCarrello.setIdProdotto(prod.getId());
+        ProdottiCarrelloDAO prodcardao= new ProdottiCarrelloDAO();
+        prodcardao.doSaveProdottoCarrello(prodottiCarrello);
         prodottiCarrello.setQuantita(1);
 
         carrello.addProdotto(prod);
-
-
         RequestDispatcher rd = request.getRequestDispatcher(address);
         rd.forward(request, response);
     }

@@ -7,6 +7,8 @@ public class ProdottiCarrello {
     private int idCarrello;
     private int idProdotto;
 
+    private String taglia;
+
     public ProdottiCarrello(){
     }
 
@@ -32,4 +34,12 @@ public class ProdottiCarrello {
     public int getIdProdotto() { return idProdotto; }
 
     public void setIdProdotto(int idProdotto) { this.idProdotto = idProdotto; }
+
+    public String getTaglia() {
+        return taglia;
+    }
+
+    public void setTaglia(String taglia) {
+        this.taglia = taglia;
+    }
 }

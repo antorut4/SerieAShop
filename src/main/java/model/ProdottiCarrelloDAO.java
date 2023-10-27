@@ -9,11 +9,12 @@ public class ProdottiCarrelloDAO {
     public void doSaveProdottoCarrello(ProdottiCarrello prodottiCarrello) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO ProdottiCarrello (quantita, idCarrello, idProdotto) VALUES (?, ?, ?)",
+                    "INSERT INTO ProdottiCarrello (quantita, idCarrello, idProdotto, taglia) VALUES (?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, prodottiCarrello.getQuantita());
             ps.setInt(2, prodottiCarrello.getIdCarrello());
             ps.setInt(3, prodottiCarrello.getIdProdotto());
+            ps.setString(4, prodottiCarrello.getTaglia());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -30,7 +31,7 @@ public class ProdottiCarrelloDAO {
     public ProdottiCarrello doRetrieveById(int id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
-                    con.prepareStatement("SELECT idProdCarr ,quantita, idCarrello, idProdotto FROM ProdottiCarrello WHERE idProdCarr=?");
+                    con.prepareStatement("SELECT idProdCarr ,quantita, idCarrello, idProdotto, taglia FROM ProdottiCarrello WHERE idProdCarr=?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -39,6 +40,7 @@ public class ProdottiCarrelloDAO {
                 pc.setQuantita(rs.getInt(2));
                 pc.setIdCarrello(rs.getInt(3));
                 pc.setIdProdotto(rs.getInt(4));
+                pc.setTaglia(rs.getString(5));
                 return pc;
             }
             return null;
@@ -50,7 +52,7 @@ public class ProdottiCarrelloDAO {
     public ProdottiCarrello doRetrieveByCarrelloAndProdotto(int idCarrello, int idProdotto) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
-                    con.prepareStatement("SELECT idProdCarr, quantita, idCarrello, idProdotto FROM ProdottiCarrello WHERE idCarrello=? AND idProdotto=?");
+                    con.prepareStatement("SELECT idProdCarr, quantita, idCarrello, idProdotto, taglia FROM ProdottiCarrello WHERE idCarrello=? AND idProdotto=?");
             ps.setInt(1, idCarrello);
             ps.setInt(2, idProdotto);
             ResultSet rs = ps.executeQuery();
@@ -60,6 +62,7 @@ public class ProdottiCarrelloDAO {
                 pc.setQuantita(rs.getInt(2));
                 pc.setIdCarrello(rs.getInt(3));
                 pc.setIdProdotto(rs.getInt(4));
+                pc.setTaglia(rs.getString(5));
                 return pc;
             }
             return null;
@@ -84,6 +87,7 @@ public class ProdottiCarrelloDAO {
                 pc.setQuantita(rs.getInt(2));
                 pc.setIdCarrello(rs.getInt(3));
                 pc.setIdProdotto(rs.getInt(4));
+                pc.setTaglia(rs.getString(5));
 
                 prodotticarrello.add(pc);
             }

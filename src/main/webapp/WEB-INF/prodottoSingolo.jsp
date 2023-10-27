@@ -52,10 +52,10 @@
         <div class="taglie">
             <p class="taglie-paragrafo">Taglie</p>
 
-            <button class="bottone" disabled>S</button>
+            <button class="bottone">S</button>
             <button class="bottone">M</button>
             <button class="bottone">L</button>
-            <button class="bottone" disabled>XL</button>
+            <button class="bottone">XL</button>
             <button class="bottone">2XL</button>
 
             <h1 class="quantita">Quantita: </h1>
@@ -67,10 +67,13 @@
                     <option value="opzione3">3</option>
                  </select>
 
+                <%Prodotto prodScelto=prodotto;
+                request.getSession().setAttribute("prodAgg", prodScelto);
+                %>
                 <div class="bottonePezzotto">
-                    <a href="aggiungi-al-carrello?idProd=<%=prodotto.getId()%>">
+                    <form action="aggiungi-al-carrello">
                         <button type="submit" value="Aggiungi Al Carrello">Aggiungi Al Carrello </button>
-                    </a>
+                    </form>
                 </div>
             </div>
         </div>
