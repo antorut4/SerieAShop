@@ -21,7 +21,7 @@ public class DeleteOrdineServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int idOrdine = Integer.parseInt(request.getParameter("idOrdine"));
+        /*int idOrdine = Integer.parseInt(request.getParameter("idOrdine"));
         int idClient = Integer.parseInt(request.getParameter("idCliente"));
         request.setAttribute("idCliente", idClient);
         String address = "/visualizza-ordini";
@@ -57,7 +57,7 @@ public class DeleteOrdineServlet extends HttpServlet {
             prodottoDAO.doUpdateQuantita(prodDB);
 
             int idProdCarr = proCarrDB.getIdProdCarr();
-            pdDao.deleteProdottoCarrello(idProdCarr);
+            pdDao.deleteProdottoCarrello();
         }
 
         ordineDAO.deleteOrdine(idOrdine);
@@ -65,7 +65,7 @@ public class DeleteOrdineServlet extends HttpServlet {
         //fine rollback da ordine
 
         RequestDispatcher rd = request.getRequestDispatcher(address);
-        rd.forward(request, response);
+        rd.forward(request, response);*/
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

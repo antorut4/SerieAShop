@@ -77,7 +77,6 @@ public class ProdottoDAO {
 
                 Prodottos.add(pr);
             }
-
             connection.close();
             return Prodottos;
 

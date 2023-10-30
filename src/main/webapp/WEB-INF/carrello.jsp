@@ -76,9 +76,12 @@
                 </div>
             </div>
         </div>
-
+        <%if(!pc.isEmpty()){%>
         <a href="elenco-servlet?buttonName=ordina" class="btn btn-update">Acquista</a>
-
+        <%}else{
+          %>
+        <a href="#" class="btn btn-update">Acquista</a>
+        <%}%>
     </div>
 </div>
 <script>

@@ -62,10 +62,7 @@ public class OrdineDAO {
                     "INSERT INTO Ordine (PrezzoTotale, dataOrdine, metodoDiPagamento, indirizzoSpedizione, username, idCarrello) VALUES(?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setDouble(1, ordine.getTotale());
-
-            java.sql.Date sqlData = new java.sql.Date(ordine.getDataOrd().getTime());
-            ps.setDate(2, sqlData);
-            //ps.setDate(2, (Date) ordine.getDataOrd());
+            ps.setDate(2, (Date) ordine.getDataOrd());
             ps.setString(3, ordine.getPagamento());
             ps.setString(4, ordine.getSpedizione());
             ps.setInt(6, ordine.getIdCarrello());
@@ -77,6 +74,7 @@ public class OrdineDAO {
             rs.next();
             int id = rs.getInt(1);
             ordine.setId(id);
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

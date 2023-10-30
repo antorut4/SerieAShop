@@ -113,7 +113,7 @@ public class ProdottiCarrelloDAO {
         }
     }
 
-    public ProdottiCarrello deleteProdottoCarrello(int id) {
+    public ProdottiCarrello deleteProdottoCarrello(int id, int idCar) {
 
         ProdottiCarrello prodottiCarrello = doRetrieveById(id);
         if (prodottiCarrello != null) {
@@ -122,13 +122,14 @@ public class ProdottiCarrelloDAO {
 
                 con.setAutoCommit(false);
 
-                String sqlCarrello = "DELETE FROM ProdottiCarrello WHERE idProdotto = ?";
+                String sqlCarrello = "DELETE FROM ProdottiCarrello WHERE idProdotto = ? and idCarrello=?";
                 PreparedStatement ps = con.prepareStatement(sqlCarrello);
                 ps.setInt(1, id);
+                ps.setInt(2,idCar);
                 int rowsDeletedCarr = ps.executeUpdate();
 
                 if (rowsDeletedCarr > 0) {  //cancellazione avvenuta correttamente
-
+                    con.commit();
                     System.out.println("Il prodotto è stato cancellato correttamente. id=" + id);
                 } else {    //cancellazione fallita e si riporta indietro la query (transazione)
                     System.out.println("Il prodotto non è stato eliminato");

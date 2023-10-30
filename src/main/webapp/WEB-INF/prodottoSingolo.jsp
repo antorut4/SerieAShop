@@ -2,6 +2,7 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="model.Squadra" %>
 <%@ page import="java.util.List" %>
+<%@ page import="model.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -70,16 +71,21 @@
 
             <div class="select-and-button">
                 <select class="bottone" name="quantita">
-                <%for(int i=0;i<prodotto.getQuantita();i++){%>
+                <%for(int i=1;i<prodotto.getQuantita();i++){%>
                     <option value="<%=i%>"><%=i%></option>
                     <%}%>
                 </select>
 
 
-
+            <%User user=(User) request.getSession().getAttribute("user");
+            if(user!=null){
+            %>
                 <div class="bottone">
                         <button type="submit" class="bottone" value="Aggiungi Al Carrello">Aggiungi Al Carrello </button>
                 </div>
+                <%}else{%>
+                <p color="  red">Per procedere all'acquisto, effettua il login.</p>
+                <%}%>
             </div>
         </div>
         </form>

@@ -12,7 +12,8 @@ import model.*;
 import javax.swing.text.Caret;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -32,15 +33,14 @@ public class CreaOrdine extends HttpServlet {
         Ordine ordine = new Ordine();
         OrdineDAO ordineDAO = new OrdineDAO();
         List<ProdottiCarrello> p= (List<ProdottiCarrello>) request.getSession().getAttribute("prodottiDaStampare");
-        Date data = new Date();
-
+        Calendar calendar= Calendar.getInstance();
+        Date data = new Date(calendar.getTime().getTime());
         User user = (User) request.getSession().getAttribute("user");
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
 
         if(button.equals("back")){
             address = "/WEB-INF/carrello.jsp";
         } else{
-            if(p!=null) {
                 ordine.setIdCliente(user.getUsername());
                 ordine.setIdCarrello(carrello.getIdCarrello());
                 ordine.setSpedizione(via + " " + city + " " + cap);
@@ -49,10 +49,7 @@ public class CreaOrdine extends HttpServlet {
                 ordine.setDataOrd(data);
                 ordineDAO.doSave(ordine);
                 address = "/WEB-INF/index.jsp";
-            }else{
-                address="/WEB-INF/carrello.jsp";
             }
-        }
         RequestDispatcher rd = request.getRequestDispatcher(address);
         rd.forward(request, response);
     }

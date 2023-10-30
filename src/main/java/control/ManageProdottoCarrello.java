@@ -25,10 +25,11 @@ public class ManageProdottoCarrello extends HttpServlet {
         Carrello carrello= (Carrello)request.getSession().getAttribute("carrello");
         ProdottiCarrelloDAO pcdao= new ProdottiCarrelloDAO();
         ProdottiCarrello pc;
+        Carrello car=(Carrello) request.getSession().getAttribute("carrello");
         if(carrello!=null){
             switch (scelta) {
                 case "rimuovi":{
-                    pcdao.deleteProdottoCarrello(idProdotto);
+                    pcdao.deleteProdottoCarrello(idProdotto, car.getIdCarrello());
                 }
                 break;
                 case "meno":{
@@ -36,7 +37,7 @@ public class ManageProdottoCarrello extends HttpServlet {
                     pc.setQuantita(pc.getQuantita()-1);
 
                     if(pc.getQuantita()==0){
-                        pcdao.deleteProdottoCarrello(idProdotto);
+                        pcdao.deleteProdottoCarrello(idProdotto, carrello.getIdCarrello());
                     }else{
                         pcdao.doUpdateProdottiQuantita(pc);
                     }
@@ -47,9 +48,6 @@ public class ManageProdottoCarrello extends HttpServlet {
                     pc=pcdao.doRetrieveByCarrelloAndProdotto(carrello.getIdCarrello(), idProdotto);
                     pc.setQuantita(pc.getQuantita()+1);
                     pcdao.doUpdateProdottiQuantita(pc);
-                    if(pc.getQuantita()==0){
-                        pcdao.deleteProdottoCarrello(idProdotto);
-                    }
                 }
                 break;
             }
