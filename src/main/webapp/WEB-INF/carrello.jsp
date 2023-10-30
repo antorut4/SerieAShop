@@ -14,7 +14,6 @@
     prodotti=(List<Prodotto>)request.getSession().getAttribute("prodottiDaStampare");
     User user=(User)request.getSession().getAttribute("user");
     int totale=(int)request.getSession().getAttribute("totale");
-
 %>
 
 <div class="container" id="CartForm">
@@ -78,7 +77,7 @@
             </div>
         </div>
 
-        <a href="#" class="btn btn-update">Acquista</a>
+        <a href="elenco-servlet?buttonName=ordina" class="btn btn-update">Acquista</a>
 
     </div>
 </div>

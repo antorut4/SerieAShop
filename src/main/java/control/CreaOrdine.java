@@ -28,7 +28,7 @@ public class CreaOrdine extends HttpServlet {
         String card = request.getParameter("card-num");
         String cvc = request.getParameter("security");
         String button = request.getParameter("button");
-
+        int totale=(int)request.getSession().getAttribute("totale");
         Ordine ordine = new Ordine();
         OrdineDAO ordineDAO = new OrdineDAO();
 
@@ -44,6 +44,7 @@ public class CreaOrdine extends HttpServlet {
             ordine.setIdCarrello(carrello.getIdCarrello());
             ordine.setSpedizione(via + " " + city + " " + cap);
             ordine.setPagamento("Numero Carta: " + card + " CVC: " + cvc);
+            ordine.setTotale(totale);
             ordine.setDataOrd(data);
             ordineDAO.doSave(ordine);
             address = "/WEB-INF/index.jsp";

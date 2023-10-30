@@ -15,7 +15,7 @@ public class OrdineDAO {
             if (rs.next()) {
                 Ordine ordine = new Ordine();
                 ordine.setId(rs.getInt(1));
-                ordine.setTotale(rs.getDouble(2));
+                ordine.setTotale(rs.getInt(2));
                 ordine.setDataOrd(rs.getDate(3));
                 ordine.setPagamento(rs.getString(4));
                 ordine.setSpedizione(rs.getString(5));
@@ -40,7 +40,7 @@ public class OrdineDAO {
             while (rs.next()) {
                 Ordine ordine = new Ordine();
                 ordine.setId(rs.getInt(1));
-                ordine.setTotale(rs.getDouble(2));
+                ordine.setTotale(rs.getInt(2));
                 ordine.setDataOrd(rs.getDate(3));
                 ordine.setPagamento(rs.getString(4));
                 ordine.setSpedizione(rs.getString(5));
@@ -59,7 +59,7 @@ public class OrdineDAO {
     public void doSave(Ordine ordine){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO Ordine (totale, dataOrdine, metodoDiPagamento, indirizzoSpedizione, idCarrello, username) VALUES(?,?,?,?,?,?)",
+                    "INSERT INTO Ordine (PrezzoTotale, dataOrdine, metodoDiPagamento, indirizzoSpedizione, username, idCarrello) VALUES(?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setDouble(1, ordine.getTotale());
 
@@ -68,8 +68,8 @@ public class OrdineDAO {
             //ps.setDate(2, (Date) ordine.getDataOrd());
             ps.setString(3, ordine.getPagamento());
             ps.setString(4, ordine.getSpedizione());
-            ps.setInt(5, ordine.getIdCarrello());
-            ps.setString(6, ordine.getIdCliente());
+            ps.setInt(6, ordine.getIdCarrello());
+            ps.setString(5, ordine.getIdCliente());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -97,7 +97,7 @@ public class OrdineDAO {
             while(rs.next()){
                 or = new Ordine();
                 or.setId(rs.getInt(1));
-                or.setTotale(rs.getDouble(2));
+                or.setTotale(rs.getInt(2));
                 or.setDataOrd(rs.getDate(3));
                 or.setPagamento(rs.getString(4));
                 or.setSpedizione(rs.getString(5));

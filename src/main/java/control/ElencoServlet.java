@@ -23,9 +23,7 @@ public class ElencoServlet extends HttpServlet {
                 case "uomo" : address =  "./WEB-INF/WorkInProgress.jsp"; break;
                 case "donna": address = "./WEB-INF/WorkInProgress.jsp"; break;
                 case "bambino": address = "./WEB-INF/WorkInProgress.jsp"; break;
-                case "t-shirt" : address = "./WEB-INF/t-shirt.jsp"; break;
-                case "retro" : address = "./WEB-INF/retro.jsp"; break;
-                case "saldi" : address = "./WEB-INF/saldi.jsp"; break;
+                case "ordina" : address= "./WEB-INF/ordine.jsp";break;
             }
 
             RequestDispatcher rd = request.getRequestDispatcher(address);

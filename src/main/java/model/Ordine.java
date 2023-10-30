@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Ordine {
     private int id;
-    private Double totale;
+    private int totale;
     private Date dataOrd;
     private String pagamento;
     private String spedizione;
@@ -16,7 +16,7 @@ public class Ordine {
     public Ordine() {
     }
 
-    public Ordine(int id, Double costo, Date dataOrd, String pagamento, String spedizione, int idCarrelloello, String idClientee) {
+    public Ordine(int id, int costo, Date dataOrd, String pagamento, String spedizione, int idCarrelloello, String idClientee) {
         this.id = id;
         this.totale = costo;
         this.dataOrd = dataOrd;
@@ -34,11 +34,11 @@ public class Ordine {
         this.id = id;
     }
 
-    public Double getTotale() {
+    public int getTotale() {
         return totale;
     }
 
-    public void setTotale(Double costo) {
+    public void setTotale(int costo) {
         this.totale = costo;
     }
 

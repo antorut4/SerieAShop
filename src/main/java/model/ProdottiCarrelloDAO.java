@@ -116,7 +116,6 @@ public class ProdottiCarrelloDAO {
     public ProdottiCarrello deleteProdottoCarrello(int id) {
 
         ProdottiCarrello prodottiCarrello = doRetrieveById(id);
-        System.out.println(prodottiCarrello.getTaglia() + "ciso");
         if (prodottiCarrello != null) {
             System.out.println("Entro qui?");
             try (Connection con = ConPool.getConnection()) {

@@ -111,7 +111,7 @@
 
   <!-- Dropdown 4 -->
   <div class="dropdown">
-    <button id="bambino" name="bambino" value="bambin0" class="dropbtn">BAMBINI</button>
+    <button id="bambino" name="bambino" value="bambino" class="dropbtn">BAMBINI</button>
     <div class="dropdown-content">
       <%
         for (Squadra s : squadre) {
@@ -200,9 +200,6 @@
     var uomoButton = document.getElementById('uomo');
     var bambinoButton= document.getElementById("bambino");
     var donnaButton= document.getElementById("donna");
-    var tshirtButton=document.getElementById("tshirt");
-    var retroButton=document.getElementById("retro");
-    var saldiButton=document.getElementById("saldi");
 
     // Aggiungi un gestore di eventi al clic del pulsante "UOMO"
     uomoButton.addEventListener('click', function() {
@@ -217,21 +214,6 @@
     bambinoButton.addEventListener('click', function() {
       // Reindirizza l'utente alla servlet "direct-servlet"
       window.location.href = 'elenco-servlet?buttonName=bambino';
-    });
-
-    tshirtButton.addEventListener('click', function() {
-      // Reindirizza l'utente alla servlet "direct-servlet"
-      window.location.href = 'elenco-servlet?buttonName=tshirt';
-    });
-
-    retroButton.addEventListener('click', function() {
-      // Reindirizza l'utente alla servlet "direct-servlet"
-      window.location.href = 'elenco-servlet?buttonName=retro';
-    });
-
-    saldiButton.addEventListener('click', function() {
-      // Reindirizza l'utente alla servlet "direct-servlet"
-      window.location.href = 'direct-servlet?buttonName=saldi';
     });
 
   });
