@@ -31,7 +31,7 @@ public class CreaOrdine extends HttpServlet {
         int totale=(int)request.getSession().getAttribute("totale");
         Ordine ordine = new Ordine();
         OrdineDAO ordineDAO = new OrdineDAO();
-
+        List<ProdottiCarrello> p= (List<ProdottiCarrello>) request.getSession().getAttribute("prodottiDaStampare");
         Date data = new Date();
 
         User user = (User) request.getSession().getAttribute("user");
@@ -40,14 +40,18 @@ public class CreaOrdine extends HttpServlet {
         if(button.equals("back")){
             address = "/WEB-INF/carrello.jsp";
         } else{
-            ordine.setIdCliente(user.getUsername());
-            ordine.setIdCarrello(carrello.getIdCarrello());
-            ordine.setSpedizione(via + " " + city + " " + cap);
-            ordine.setPagamento("Numero Carta: " + card + " CVC: " + cvc);
-            ordine.setTotale(totale);
-            ordine.setDataOrd(data);
-            ordineDAO.doSave(ordine);
-            address = "/WEB-INF/index.jsp";
+            if(p!=null) {
+                ordine.setIdCliente(user.getUsername());
+                ordine.setIdCarrello(carrello.getIdCarrello());
+                ordine.setSpedizione(via + " " + city + " " + cap);
+                ordine.setPagamento("Numero Carta: " + card + " CVC: " + cvc);
+                ordine.setTotale(totale);
+                ordine.setDataOrd(data);
+                ordineDAO.doSave(ordine);
+                address = "/WEB-INF/index.jsp";
+            }else{
+                address="/WEB-INF/carrello.jsp";
+            }
         }
         RequestDispatcher rd = request.getRequestDispatcher(address);
         rd.forward(request, response);
