@@ -36,7 +36,7 @@ public class ManageProdottoCarrello extends HttpServlet {
                     pc.setQuantita(pc.getQuantita()-1);
 
                     if(pc.getQuantita()==0){
-                        pc=pcdao.deleteProdottoCarrello(idProdotto);
+                        pcdao.deleteProdottoCarrello(idProdotto);
                     }else{
                         pcdao.doUpdateProdottiQuantita(pc);
                     }

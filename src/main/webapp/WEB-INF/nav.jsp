@@ -42,8 +42,8 @@
   </a>
   <div class="containerForm">
     <div class="searchform">
-      <form id="search-form">
-      <input type="text" id="search-input" placeholder="Cerca.." title="Inserisci quello che vuoi cercare">
+      <form id="search-form" action="search" method="post">
+      <input type="text" name="query" id="search-input" placeholder="Cerca.." title="Inserisci quello che vuoi cercare">
       <button id="search-button" type="submit"><img src="${pageContext.request.contextPath}/image/search.png" id="search-image"></button>
       </form>
       <div id="search-results">
