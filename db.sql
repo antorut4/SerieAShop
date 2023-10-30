@@ -59,7 +59,7 @@ CREATE TABLE `carrello` (
 
 
 CREATE TABLE `ordine` (
-                          `idOrdine` int NOT NULL,
+                          `idOrdine` int NOT NULL AUTO_INCREMENT,
                           `PrezzoTotale` double DEFAULT NULL,
                           `dataOrdine` date DEFAULT NULL,
                           `metodoDiPagamento` varchar(45) DEFAULT NULL,
@@ -88,7 +88,6 @@ CREATE TABLE `prodotto` (
                             KEY `idSquadra` (`idSquadra`),
                             CONSTRAINT `prodotto_ibfk_1` FOREIGN KEY (`idSquadra`) REFERENCES `squadra` (`idSquadra`)
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `prodotto`
