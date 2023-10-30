@@ -27,29 +27,16 @@ public class ManageProdottoCarrello extends HttpServlet {
         ProdottiCarrello pc;
         if(carrello!=null){
             switch (scelta) {
-                case "rimuovi": {
-                    Prodotto pr = carrello.removeProdotto(idProdotto);
-
-                    User user = (User) request.getSession().getAttribute("user");
-                    if (user != null) {
-                        ProdottiCarrello proCarDB = pcdao.doRetrieveByCarrelloAndProdotto(carrello.getIdCarrello(), idProdotto);
-                        pcdao.deleteProdottoCarrello(proCarDB.getIdProdotto());
-                    }
-
-
-                    request.getSession().setAttribute("carrello", carrello);
-                    if (carrello.isEmpty()) {
-                        request.getSession().removeAttribute("carrello");
-                    }
+                case "rimuovi":{
+                    pcdao.deleteProdottoCarrello(idProdotto);
                 }
-                    break;
-
+                break;
                 case "meno":{
                     pc=pcdao.doRetrieveByCarrelloAndProdotto(carrello.getIdCarrello(), idProdotto);
                     pc.setQuantita(pc.getQuantita()-1);
 
                     if(pc.getQuantita()==0){
-                        pcdao.deleteProdottoCarrello(idProdotto);
+                        pc=pcdao.deleteProdottoCarrello(idProdotto);
                     }else{
                         pcdao.doUpdateProdottiQuantita(pc);
                     }

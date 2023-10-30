@@ -17,7 +17,7 @@
 
 %>
 
-<div class="container">
+<div class="container" id="CartForm">
     <div class="heading">
         <h1>
                 Carrello di <%=user.getNome()%>
@@ -52,11 +52,17 @@
                 <div class="col col-qty layout-inline">
                     <%for(ProdottiCarrello pcar: pc){
                     if(p.getId()== pcar.getIdProdotto()){
-                    System.out.println(p.getId()+"ei");%>
+                    %>
                     <a href="manage-prodotto-carrello?valore=piu&Prod=<%=p.getId()%>" class="qty qty-plus">+</a>
                     <input type="numeric" value="<%=pcar.getQuantita()%>" />
                     <a href="manage-prodotto-carrello?valore=meno&Prod=<%=p.getId()%>" class="qty qty-minus">-</a>
-                    <%}}%>
+                    <%
+                        }
+                        }
+                    %>
+                </div>
+                <div class="col col-total layout-inline">
+                    <a href="manage-prodotto-carrello?valore=rimuovi&Prod=<%=p.getId()%>"> X </a>
                 </div>
 
             </div>

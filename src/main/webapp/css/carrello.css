@@ -70,7 +70,7 @@ a {
     position: relative;
     z-index: 1;
     color: #f7f7f7;
-    background: #171D8DFF;
+    background: var(--main-blue);
 }
 
 .cart {
@@ -101,7 +101,7 @@ a {
 }
 
 .th {
-    background: #171D8DFF;
+    background: var(--main-blue);
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
@@ -109,7 +109,7 @@ a {
 }
 
 .tf {
-    background: #171D8DFF;
+    background: var(--main-blue);
     text-transform: uppercase;
     text-align: right;
     font-size: 1.2em;

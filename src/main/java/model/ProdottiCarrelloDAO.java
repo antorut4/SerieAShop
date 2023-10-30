@@ -31,7 +31,7 @@ public class ProdottiCarrelloDAO {
     public ProdottiCarrello doRetrieveById(int id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
-                    con.prepareStatement("SELECT idProdCarr ,quantita, idCarrello, idProdotto, taglia FROM ProdottiCarrello WHERE idProdCarr=?");
+                    con.prepareStatement("SELECT idProdCarr ,quantita, idCarrello, idProdotto, taglia FROM ProdottiCarrello WHERE idProdotto=?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -116,7 +116,9 @@ public class ProdottiCarrelloDAO {
     public ProdottiCarrello deleteProdottoCarrello(int id) {
 
         ProdottiCarrello prodottiCarrello = doRetrieveById(id);
+        System.out.println(prodottiCarrello.getTaglia() + "ciso");
         if (prodottiCarrello != null) {
+            System.out.println("Entro qui?");
             try (Connection con = ConPool.getConnection()) {
 
                 con.setAutoCommit(false);
@@ -127,13 +129,10 @@ public class ProdottiCarrelloDAO {
                 int rowsDeletedCarr = ps.executeUpdate();
 
                 if (rowsDeletedCarr > 0) {  //cancellazione avvenuta correttamente
-                    con.commit();
-                    return prodottiCarrello;
-                    //System.out.println("Il prodotto è stato cancellato correttamente. id=" + id);
+
+                    System.out.println("Il prodotto è stato cancellato correttamente. id=" + id);
                 } else {    //cancellazione fallita e si riporta indietro la query (transazione)
-                    con.rollback();
-                    return null;
-                    //System.out.println("Cancellazione fallita o ID prodotto non trovato.");
+                    System.out.println("Il prodotto non è stato eliminato");
                 }
             } catch (SQLException e) {
                 throw new RuntimeException("Errore durante l'eliminazione del prodotto.", e);
@@ -141,7 +140,7 @@ public class ProdottiCarrelloDAO {
         } else {
             return null;
         }
-
+        return null;
     }
 
     public List<ProdottiCarrello> doRetrieveByCarrello(int idCarrello) {
@@ -182,4 +181,34 @@ public class ProdottiCarrelloDAO {
         }
     }
 
+    public List<ProdottiCarrello> doRetriveAll(){
+        List<ProdottiCarrello> prodotti = new ArrayList<>();
+        User user;
+
+        ResultSet rs;
+        Statement st;
+
+        try(Connection connection = ConPool.getConnection()) {
+            st = connection.createStatement();
+            rs = st.executeQuery("SELECT * FROM prodotticarrello");
+
+            while(rs.next()){
+                ProdottiCarrello p = new ProdottiCarrello();
+                p.setIdProdCarr(rs.getInt(1));
+                p.setQuantita(rs.getInt(2));
+                p.setIdCarrello(rs.getInt(3));
+                p.setIdProdotto(rs.getInt(4));
+                p.setTaglia(rs.getString(5));
+
+                prodotti.add(p);
+            }
+
+            connection.close();
+            return prodotti;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
