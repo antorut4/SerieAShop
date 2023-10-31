@@ -88,7 +88,6 @@ CREATE TABLE `prodotto` (
                             KEY `idSquadra` (`idSquadra`),
                             CONSTRAINT `prodotto_ibfk_1` FOREIGN KEY (`idSquadra`) REFERENCES `squadra` (`idSquadra`)
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `prodotto`
@@ -114,7 +113,3 @@ CREATE TABLE `prodotticarrello` (
                                     CONSTRAINT `prodotticarrello_ibfk_1` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`),
                                     CONSTRAINT `prodotticarrello_ibfk_2` FOREIGN KEY (`idCarrello`) REFERENCES `carrello` (`idCarrello`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
-
-

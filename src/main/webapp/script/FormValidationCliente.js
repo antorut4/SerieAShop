@@ -9,6 +9,7 @@ function nomeClienteValidation(obj)
 
     if (regEx.exec(nomeCliente) == null) {
         obj.style.border = "2px solid red";
+        window.alert("Errore Inserimento Nome Modificare in modo appropriato, niente caratteri speciali");
     }
 
     else
@@ -23,6 +24,7 @@ function cognomeValidation(obj)
 
     if (regEx.exec(cognome) == null) {
         obj.style.border = "2px solid red";
+        window.alert("Errore Inserimento Cognome Modificare in modo appropriato, niente caratteri speciali");
     }
 
     else
@@ -38,6 +40,7 @@ function usernameValidation(obj)
 
     if (regEx.exec(cognome) == null) {
         obj.style.border = "2px solid red";
+        window.alert("Errore Inserimento Username Modificare in modo appropriato, niente Spazzi");
     }
 
     else
@@ -53,6 +56,7 @@ function emailValidation(obj)
 
     if(regEx.exec(email)==null) {
         obj.style.border = "2px solid red";
+        window.alert("Errore Inserimento Email Modificare in modo appropriato");
     }
 
     else
@@ -64,9 +68,9 @@ function passwordValidation(obj)
     var password = obj.value;
     var regEx = new RegExp("^([a-zA-Z0-9@*#]{4,})$")
 
-    if (regEx.exec(password) == null)
+    if (regEx.exec(password) == null) {
         obj.style.border = "2px solid red";
-
+    }
     else
         obj.style.border = "2px solid lime";
 }
