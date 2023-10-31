@@ -4,8 +4,23 @@
 <%@ page import="java.io.PrintWriter" %>
 <!--<%//@ include file="nav.jsp" %>-->
 <link href="css/index.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <jsp:include page="nav.jsp"></jsp:include>
+<head>
+    <script>
+        $(function() {
+            // Recupera gli errori dall'oggetto `Map`
+            var errori = $(document).find("input[name='errori']").val();
 
+            // Visualizza gli errori in un pop up
+            if (errori) {
+                var alert = $("<div class='alert alert-danger'></div>");
+                alert.html(errori);
+                alert.appendTo("body");
+            }
+        });
+    </script>
+</head>
 <h2 style="text-align: center;">Serie A Teams</h2>
 <div class="containerIndex">
     <div class="stemma">
