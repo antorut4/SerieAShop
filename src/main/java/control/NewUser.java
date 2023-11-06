@@ -1,5 +1,4 @@
 package control;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -81,10 +80,11 @@ public class NewUser extends HttpServlet {
 
         if (!errori.isEmpty()) {
             request.getSession().setAttribute("errori", errori);
+            for(String s: errori){
+                System.out.println("Errore :"+s);
+            }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
             dispatcher.forward(request, response);
-
-
         }
 
         user = new User();
@@ -108,7 +108,7 @@ public class NewUser extends HttpServlet {
         Carrello carrello = new Carrello(username);
         cdao.doCreateCarrello(carrello);
         carrello = cdao.doRetriveByUsername(username);
-        address = "/WEB-INF/index.jsp";
+        address = "/WEB-INF/account.jsp";
         request.getSession().setAttribute("carrello", carrello);
         request.setAttribute("user", user);
         request.getSession().setAttribute("user", user);
