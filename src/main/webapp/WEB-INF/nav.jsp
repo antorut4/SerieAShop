@@ -115,18 +115,7 @@
   <!-- Dropdown 2 -->
   <div class="dropdown">
     <button name="uomo" id="uomo" value="uomo" class="dropbtn">UOMO</button>
-
     <div class="dropdown-content">
-      <%
-        for (Squadra s : squadre) {
-      %>
-      <a href="#">
-        <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
-        <%= s.getNomeSquadra() %>
-      </a>
-      <%
-        }
-      %>
     </div>
   </div>
 
@@ -134,16 +123,6 @@
   <div class="dropdown">
     <button name="donna" id="donna" value="donna" class="dropbtn">DONNA</button>
     <div class="dropdown-content">
-      <%
-        for (Squadra s : squadre) {
-      %>
-      <a href="#">
-        <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
-        <%= s.getNomeSquadra() %>
-      </a>
-      <%
-        }
-      %>
     </div>
   </div>
 
@@ -151,16 +130,6 @@
   <div class="dropdown">
     <button id="bambino" name="bambino" value="bambino" class="dropbtn">BAMBINI</button>
     <div class="dropdown-content">
-      <%
-        for (Squadra s : squadre) {
-      %>
-      <a href="#">
-        <img height="40px" src=".<%= s.getPathLogo() %>" alt="<%= s.getNomeSquadra() %>">
-        <%= s.getNomeSquadra() %>
-      </a>
-      <%
-        }
-      %>
     </div>
   </div>
 
@@ -208,10 +177,10 @@
   </div>
   <div class="registration form">
     <header>Signup</header>
-    <form action="new-user">
+    <form action="new-user" method="post">
       <input type="text" placeholder="Enter your Username" id="username" name="username" onkeyup="usernameValidation(this.form.username)">
       <input type="text" placeholder="Enter your Name" id="nome" name="nome" onkeyup="nomeClienteValidation(this.form.nome)">
-      <input type="text" placeholder="Enter your Surname" id="surname" name="cognome" onkeyup="cognomeValidation(this.label.surname)">
+      <input type="text" placeholder="Enter your Surname" id="surname" name="cognome" onkeyup="nomeClienteValidation(this.label.cognome)">
       <input type="text" placeholder="Enter your email" id="email" name="email" onkeyup="emailValidation(this.form.email);">
       <input type="text" placeholder="Enter your Phone number" id="telefono" name="telefono" onkeyup="telefonoValidation(this.form.telefono)">
       <input type="text" placeholder="Enter your Address" id="indirizzo" name="indirizzo" onkeyup="indirizzoValidation(this.form.indirizzo)">

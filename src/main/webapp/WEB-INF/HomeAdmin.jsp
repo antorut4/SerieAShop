@@ -11,8 +11,13 @@
 
 <a href="${pageContext.request.contextPath}/home">
     <img src="image/home.png" width="100px">
-    <h1>Benvenuto ${user.username}</h1>
 </a>
+<form class="logout" action="log-out" method="post">
+    <input type="submit" value="Esci-LogOut">
+</form>
+
+    <h1>Benvenuto ${user.username}</h1>
+
     <div class="admin-panel">
     <h2>Aggiungi Prodotto</h2>
     <button class="toggle-btn">Mostra Form Aggiungi Prodotto</button>
