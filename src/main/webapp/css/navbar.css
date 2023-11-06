@@ -71,7 +71,11 @@
     cursor: pointer;
 }
 
-#search-image {
+.search-results{
+    background: var(--main-white);
+}
+
+.search-results img {
     width: 24px;
     height: 24px;
 }
