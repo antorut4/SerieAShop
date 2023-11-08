@@ -1,29 +1,33 @@
 $(document).ready(function () {
-    $("#search-results").hide(); // Nascondi inizialmente l'elemento dei risultati
+    var searchResults = $("#search-results");
+    var searchInput = $("#search");
 
-    $("#search").on("input", function () {
+    // Nascondi inizialmente l'elemento dei risultati
+    searchResults.hide();
+
+    // Gestisci l'input nel campo di ricerca
+    searchInput.on("input", function () {
         var searchQuery = $(this).val();
-        console.log("Search Query: " + searchQuery); // Messaggio di log per la query di ricerca
+        console.log("Search Query: " + searchQuery);
 
-        // Dividi la query in parole chiave separate da spazi e rimuovi spazi vuoti
         var keywords = searchQuery.split(" ").filter(function (keyword) {
             return keyword.trim() !== "";
         });
 
-        // Esegui la ricerca solo se ci sono almeno 3 caratteri in ciascuna parola chiave
         var minLength = 3;
         var areKeywordsValid = keywords.every(function (keyword) {
             return keyword.length >= minLength;
         });
 
         if (areKeywordsValid) {
+            // Esegui la ricerca solo se le parole chiave sono valide
             $.ajax({
                 url: "searchServlet",
                 method: "GET",
                 data: { query: keywords.join(" ") },
                 dataType: "json",
                 success: function (data) {
-                    console.log(data); // Verifica i dati ricevuti in console
+                    console.log(data);
                     var resultsHtml = "<ul>";
 
                     data.forEach(function (item) {
@@ -35,16 +39,22 @@ $(document).ready(function () {
 
                     resultsHtml += "</ul>";
 
-                    // Inserisci i risultati nell'elemento con ID "search-results"
-                    $("#search-results").html(resultsHtml).show(); // Mostra i risultati
+                    searchResults.html(resultsHtml).show();
                 },
                 error: function (error) {
                     console.log("Errore nella richiesta AJAX: " + error);
                 }
             });
         } else {
-            // Se le parole chiave non hanno almeno 3 caratteri ciascuna, nascondi e cancella i risultati
-            $("#search-results").empty().hide();
+            // Nascondi e cancella i risultati se le parole chiave non sono valide
+            searchResults.empty().hide();
+        }
+    });
+
+    // Nascondi i risultati quando si fa clic al di fuori del form
+    $(document).on("click", function (e) {
+        if (!$(e.target).closest("#search-form").length) {
+            searchResults.empty().hide();
         }
     });
 });
