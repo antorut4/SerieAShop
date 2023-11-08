@@ -129,8 +129,8 @@
   <div class="login form">
     <header>Login</header>
     <form action="log-in" method="post">
-      <input name="logusername" id="logusername" type="text" placeholder="Enter your username" onkeyup="usernameValidation(this.form.logusername)">
-      <input name="logpassword" id="logpassword" type="password" placeholder="Enter your password" onkeyup="passwordValidation(this.form.logpassword)">
+      <input name="logusername" id="logusername" type="text" placeholder="Enter your username" onblur="usernameValidation(this.form.logusername)">
+      <input name="logpassword" id="logpassword" type="password" placeholder="Enter your password" onblur="passwordValidation(this.form.logpassword)">
       <a href="#">Forgot password?</a>
       <input type="submit" class="button" value="Login">
     </form>

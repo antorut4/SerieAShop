@@ -264,3 +264,88 @@
 .signup label:hover{
     text-decoration: underline;
 }
+
+/* Media Query for Small Devices (portrait phones and tablets) */
+@media (max-width: 768px) {
+    /* Top Nav */
+    .topnav {
+        height: 60px;
+    }
+
+    .topnav a {
+        margin-left: 10px;
+        font-size: 15px;
+    }
+
+    .topnav img {
+        width: 30px;
+    }
+
+    /* Center Nav */
+    .centernav {
+        height: 80px;
+    }
+
+    .containerForm {
+        max-width: 90%;
+    }
+
+    /* Search Form */
+    .searchform {
+        padding: 20px;
+    }
+
+    #search {
+        font-size: 30px;
+        padding: 20px;
+    }
+
+    #search-button {
+        padding: 10px 20px;
+    }
+
+    /* Search Results */
+    .search-results {
+        margin-top: 40px;
+    }
+
+    /* Downbar */
+    .downbar a {
+        font-size: 20px;
+        padding: 20px 30px;
+    }
+
+    .dropdown-content a {
+        padding: 20px 30px;
+        font-size: 20px;
+    }
+
+    /* Login-Register Form */
+    .container {
+        max-width: 80%;
+    }
+
+    .form header {
+        font-size: 2.5rem;
+    }
+
+    .form input {
+        height: 70px;
+        font-size: 20px;
+        margin-bottom: 2rem;
+    }
+
+    .form input.button {
+        font-size: 1.5rem;
+        margin-top: 2.5rem;
+    }
+
+    .signup {
+        font-size: 20px;
+    }
+
+    .signup label {
+        font-size: 20px;
+    }
+}
+

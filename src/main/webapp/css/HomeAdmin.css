@@ -158,14 +158,93 @@ tr:hover {
 }
 
 
-.logout {
-    text-align: center;
-    margin-top: 30px;
-}
-.logout input[type="submit"] {
-    background-color: #dc3545;
+/* Global Styles */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    a #img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .admin-panel {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .admin-panel h2 {
+        font-size: 18px;
+    }
+
+    .toggle-btn {
+        font-size: 12px;
+    }
+
+    label {
+        font-size: 12px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    input[type="submit"] {
+        font-size: 12px;
+    }
 }
 
-.logout input[type="submit"]:hover {
-    background-color: #b02838;
+@media (max-width: 576px) {
+    body {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    a #img {
+        width: 100%;
+        max-width: 50px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    .admin-panel {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .admin-panel h2 {
+        font-size: 16px;
+    }
+
+    .toggle-btn {
+        font-size: 10px;
+    }
+
+    label {
+        font-size: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+        width: 100%;
+        font-size: 10px;
+    }
+
+    input[type="submit"] {
+        font-size: 10px;
+    }
 }

@@ -1,239 +1,57 @@
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Arimo');
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ordine.css">
+</head>
+<body>
 
-
-    body {
-        display: flex;
-        justify-content: center;
-    }
-
-    .wrapper {
-        margin-top: 5%;
-        width: 60%;
-        display: flex;
-        justify-content: center;
-        font-family: "Arimo";
-        background-color: #565759;
-        -webkit-box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
-        -moz-box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
-        box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
-        animation: slideUp 2000ms ease;
-    }
-
-    @keyframes slideUp {
-        0% {
-            -webkit-transform: translateY(100%);
-            transform: translateY(100%);
-            visibility: visible;
-        }
-
-        100% {
-            -webkit-transform: translateY(0);
-            transform: translateY(0);
-
-        }
-    }
-
-    .container {
-        width: 65%;
-        padding: 5% 10%;
-    }
-
-    h1 {
-        align-self: center;
-    }
-
-    form {
-        width: 100%;
-        margin-top: 20px;
-    }
-
-    input {
-        width: 100%;
-        min-height: 25px;
-        border: 0;
-        font-size: 1rem;
-        letter-spacing: .15rem;
-        font-family: "Arimo";
-        margin-top: 5px;
-        color: #070707;
-        border-radius: 4px;
-    }
-
-    label {
-        text-transform: uppercase;
-        font-size: 12px;
-        letter-spacing: 2px;
-        color: #ffffff;
-    }
-
-    h1 {
-        font-size: 24px;
-        line-height: 10px;
-        color: #005bff;
-        letter-spacing: 1px;
-    }
-
-    h1:nth-of-type(2) {
-        margin-top: 10%;
-    }
-
-
-    .name {
-        justify-content: space-between;
-        display: flex;
-        width: 100%;
-    }
-    div {
-        width: 45%;
-    }
-
-
-    .address-info {
-        display: flex;
-        justify-content: space-between;
-    }
-    div {
-        width: 30%;
-    }
-
-
-    .cc-info {
-        display: flex;
-        justify-content: space-between;
-    }
-    div {
-        width: 45%;
-    }
-
-
-    .btns {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    button {
-        margin: 3px 0;
-        height: 30px;
-        width: 40%;
-        color: #cfc9e1;
-        background-color: #4a3b76;
-        text-transform: uppercase;
-        border: 0;
-        border-radius: .3rem;
-        letter-spacing: 2px;
-    }
-
-    hover {
-        animation-name: btn-hov;
-        animation-duration: 550ms;
-        animation-fill-mode: forwards;
-    }
-
-
-    @keyframes btn-hov {
-        100% {
-            background-color: #cfc9e1;
-            color: #4a3b76;
-            transform: scale(1.05)
-        }
-    }
-
-    input:focus,
-    button:focus {
-        outline: none;
-    }
-
-    @media (max-width: 736px) {
-        .wrapper {
-            width: 100%;
-        }
-
-        .container {
-            width: 100%;
-        }
-
-        .btns {
-            align-items: center;
-        }
-        button {
-            width: 50%;
-        }
-    }
-
-    form h1 {
-        text-align: center;
-    }
-
-    .name,
-    .address-info,
-    .cc-info {
-        flex-direction: column;
-        width: 100%;
-        justify-content: space-between;
-    }
-    div {
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        display: flex;
-    }
-
-
-    .street,
-    .cc-num {
-        text-align: center;
-    }
-
-    input {
-        margin: 5px 0;
-        min-height: 30px;
-    }
-
-</style>
 <div class="wrapper">
     <div class="container">
         <form action="crea-ordine">
-            <h1>
+            <h1 class="heading">
                 <i class="fas fa-shipping-fast"></i>
-                Shipping Details
+                Dettagli di spedizione
             </h1>
             <div class="street">
-                <%--@declare id="name"--%><label for="name">Street</label>
-                <input type="text" name="address">
+                <label for="name">Indirizzo</label>
+                <input type="text" name="address" id="name" class="input">
             </div>
             <div class="address-info">
                 <div>
-                    <%--@declare id="city"--%><label for="city">City</label>
-                    <input type="text" name="city">
+                    <label for="city">Città</label>
+                    <input type="text" name="city" id="city" class="input">
                 </div>
                 <div>
-                    <%--@declare id="zip"--%><label for="zip">Zip</label>
-                    <input type="text" name="cap">
+                    <label for="zip">CAP</label>
+                    <input type="text" name="cap" id="zip" class="input">
                 </div>
             </div>
-            <h1>
-                <i class="far fa-credit-card"></i> Payment Information
+            <h1 class="heading">
+                <i class="far fa-credit-card"></i> Informazioni di pagamento
             </h1>
             <div class="cc-num">
-                <%--@declare id="card-num"--%><label for="card-num">Credit Card No.</label>
-                <input type="text" name="card-num">
+                <label for="card-num">Numero di carta di credito</label>
+                <input type="text" name="card-num" id="card-num" class="input">
             </div>
             <div class="cc-info">
                 <div>
-                    <label for="card-num">Scad</label>
-                    <input type="text" name="scad">
+                    <label for="scad">Scadenza</label>
+                    <input type="text" name="scad" id="scad" class="input">
                 </div>
                 <div>
-                    <label for="card-num">CCV</label>
-                    <input type="text" name="security">
+                    <label for="security">CVV</label>
+                    <input type="text" name="security" id="security" class="input">
                 </div>
             </div>
             <div class="btns">
-                <button name="button" value="acquista">Purchase</button>
-                <button name="button" value="back">Back to cart</button>
+                <button type="submit" name="button" value="acquista" class="btn">Acquista</button>
+                <button type="submit" name="button" value="back" class="btn">Torna al carrello</button>
             </div>
         </form>
     </div>
 </div>
+</body>
+</html>
