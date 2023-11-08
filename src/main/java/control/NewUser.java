@@ -77,6 +77,7 @@ public class NewUser extends HttpServlet {
             errori.add("Devi compilare il campo numero di telefono");
         }
 
+        System.out.println();
 
         if (!errori.isEmpty()) {
             request.getSession().setAttribute("errori", errori);
