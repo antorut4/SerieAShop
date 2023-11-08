@@ -10,6 +10,7 @@
 <%@ page import="control.LogIn"%>
 <%@ page import="control.NewUser"%>
 <%@ page import="control.SearchServlet" %>
+<%@ page import="model.User" %>
 
 <div class="topnav">
   <a href="">Traccia Ordine</a>
@@ -32,9 +33,12 @@
 
   <c:choose>
   <c:when test="${sessionScope.user != null}">
+    <%User user=(User) request.getSession().getAttribute("user");
+    if(!user.isAdmin()){%>
     <a href="carrello-servlet">
       <img src="${pageContext.request.contextPath}/image/cart.png">
     </a>
+    <%}%>
   </c:when>
   </c:choose>
 
