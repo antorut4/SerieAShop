@@ -12,6 +12,8 @@ public class Ordine {
     private String idCliente;
     private int idCarrello;
 
+    private String prodotti;
+
 
     public Ordine() {
     }
@@ -89,5 +91,13 @@ public class Ordine {
     @Override
     public int hashCode() {
         return Objects.hash(id, totale, dataOrd, pagamento, spedizione, idCarrello, idCliente);
+    }
+
+    public String getProdotti() {
+        return prodotti;
+    }
+
+    public void setProdotti(String prodotti) {
+        this.prodotti = prodotti;
     }
 }

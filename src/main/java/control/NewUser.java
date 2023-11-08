@@ -83,39 +83,40 @@ public class NewUser extends HttpServlet {
             for(String s: errori){
                 System.out.println("Errore :"+s);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Errorepage.jsp");
             dispatcher.forward(request, response);
+        }else {
+
+            user = new User();
+
+            user.setNome(nome);
+            user.setCognome(cognome);
+            user.setEmail(email);
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setIndirizzo(indirizzo);
+            user.setTelefono(telefono);
+
+            UserDAO udao = new UserDAO();
+
+            try {
+                udao.doSave(user);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            CarrelloDAO cdao = new CarrelloDAO();
+            Carrello carrello = new Carrello(username);
+            cdao.doCreateCarrello(carrello);
+            carrello = cdao.doRetriveByUsername(username);
+            address = "/WEB-INF/account.jsp";
+            request.getSession().setAttribute("carrello", carrello);
+            request.setAttribute("user", user);
+            request.getSession().setAttribute("user", user);
+
+
+            RequestDispatcher rd = request.getRequestDispatcher(address);
+            rd.forward(request, response);
         }
-
-        user = new User();
-
-        user.setNome(nome);
-        user.setCognome(cognome);
-        user.setEmail(email);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setIndirizzo(indirizzo);
-        user.setTelefono(telefono);
-
-        UserDAO udao = new UserDAO();
-
-        try {
-            udao.doSave(user);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        CarrelloDAO cdao = new CarrelloDAO();
-        Carrello carrello = new Carrello(username);
-        cdao.doCreateCarrello(carrello);
-        carrello = cdao.doRetriveByUsername(username);
-        address = "/WEB-INF/account.jsp";
-        request.getSession().setAttribute("carrello", carrello);
-        request.setAttribute("user", user);
-        request.getSession().setAttribute("user", user);
-
-
-    RequestDispatcher rd = request.getRequestDispatcher(address);
-            rd.forward(request,response);
     }
 
 

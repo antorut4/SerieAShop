@@ -7,14 +7,11 @@
     <link rel="stylesheet" type="text/css" href="css/HomeAdmin.css">
     <script src="${pageContext.request.contextPath}/script/FormValidationProdotto.js"></script>
 </head>
-<body>
+<div>
 
 <a href="${pageContext.request.contextPath}/home">
     <img src="image/home.png" width="100px">
 </a>
-<form class="logout" action="log-out" method="post">
-    <input type="submit" value="Esci-LogOut">
-</form>
 
     <h1>Benvenuto ${user.username}</h1>
 
@@ -163,6 +160,11 @@
     </div>
 </div>
 
+<div class="admin-panel"
+    <form class="delete-product-form" action="log-out" method="post">
+        <input type="submit" id="logout" value="Log Out">
+    </form>
+</div>
 </body>
 </html>
 
@@ -240,6 +242,21 @@
             });
         }
     });
+
+
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleziona il pulsante "UOMO" per il reindirizzamento
+        var logout = document.getElementById('logout');
+
+
+        // Aggiungi un gestore di eventi al clic del pulsante "UOMO"
+        logout.addEventListener('click', function() {
+            // Reindirizza l'utente alla servlet "direct-servlet"
+            window.location.href = 'log-out';
+        });
+        });
 </script>
 </body>
 </html>

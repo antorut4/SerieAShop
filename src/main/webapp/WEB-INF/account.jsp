@@ -24,10 +24,8 @@
 <br>
 <div style="text-align: center">
     <br>
-    <form action="visualizza-ordini" method="get">
-        <input type="hidden" name="idCliente" value="${user.id}">
-        <input type="submit" value="Visualizza ordini">
-    </form>
+            <iframe id="orderTableFrame" src="TabellaOrdini"></iframe>
+    </div>
 
     <br><br>
     <form class="logout" action="log-out" method="post">
@@ -39,3 +37,27 @@
 </div>
 </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const showOrderBtn = document.getElementById('showOrderBtn');
+        const orderTableContainer = document.getElementById('orderTableContainer');
+
+        const toggleBtns = document.querySelectorAll('.toggle-btn');
+
+    if (showOrderBtn) {
+        showOrderBtn.addEventListener('click', () => {
+            if (orderTableContainer.style.display === "none" || orderTableContainer.style.display === "") {
+                fetch("TabellaOrdini")
+                    .then(response => response.text())
+                    .then(data => {
+                        orderTableContainer.innerHTML = data;
+                    });
+                orderTableContainer.style.display = "block";
+            } else {
+                orderTableContainer.innerHTML = '';
+                orderTableContainer.style.display = "none";
+            }
+        });
+    }
+</script>

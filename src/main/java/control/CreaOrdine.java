@@ -13,6 +13,7 @@ import javax.swing.text.Caret;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -22,6 +23,8 @@ public class CreaOrdine extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String address = null;
+        ProdottiCarrelloDAO pdao=new ProdottiCarrelloDAO();
+
 
         String via = request.getParameter("address");
         String city = request.getParameter("city");
@@ -37,6 +40,9 @@ public class CreaOrdine extends HttpServlet {
         Date data = new Date(calendar.getTime().getTime());
         User user = (User) request.getSession().getAttribute("user");
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
+        List <ProdottiCarrello> pc=new ArrayList<>();
+        ProdottiCarrelloDAO pcdao=new ProdottiCarrelloDAO();
+        String prodotti="";
 
         if(button.equals("back")){
             address = "/WEB-INF/carrello.jsp";
@@ -47,8 +53,14 @@ public class CreaOrdine extends HttpServlet {
                 ordine.setPagamento("Numero Carta: " + card + " CVC: " + cvc);
                 ordine.setTotale(totale);
                 ordine.setDataOrd(data);
+                pc=pcdao.doRetriveAllById(carrello.getIdCarrello());
+                for(ProdottiCarrello ps: pc){
+                    prodotti+="Id prodotto: "+Integer.toString(ps.getIdProdotto())+", quantita': "+Integer.toString(ps.getQuantita())+", taglia: "+ps.getTaglia()+"\r\n";
+                }
+                ordine.setProdotti(prodotti);
                 ordineDAO.doSave(ordine);
                 address = "/WEB-INF/index.jsp";
+                pdao.deleteProdottoCarrelloByCarrello(carrello.getIdCarrello());
             }
         RequestDispatcher rd = request.getRequestDispatcher(address);
         rd.forward(request, response);

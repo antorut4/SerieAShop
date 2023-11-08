@@ -1,16 +1,7 @@
-<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,3>
-      <script src="${pageContext.request.contextPath}/script/errore.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,3">
 <body class="loading">
 <h1>500</h1>
-<%String error=request.getParameter("errore");
-if(!error.isEmpty()){
-%>
-<h2><b><%=error%>:(</b></h2>
-<%}else{
- %>
-<h2><b>Unexpected error :(</b></h2>
-<%
-}%>
+<h2><b >Unexpected error :(</b></h2>
 <div class="gears">
     <div class="gear one">
         <div class="bar"></div>
@@ -46,7 +37,7 @@ if(!error.isEmpty()){
     }
     h1 {
         margin: 100px auto 0 auto;
-        color: var(--stroke-color);
+        color: black;
         font-family: 'Encode Sans Semi Condensed', Verdana, sans-serif;
         font-size: 10rem; line-height: 10rem;
         font-weight: 200;
@@ -58,6 +49,7 @@ if(!error.isEmpty()){
         font-size: 1.5rem;
         font-weight: 200;
         text-align: center;
+        color: black;
     }
     h1, h2 {
         -webkit-transition: none;

@@ -9,7 +9,7 @@ public class OrdineDAO {
     public Ordine doRetrieveById(int id){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
-                    con.prepareStatement("SELECT idOrdine, totale, dataOrdine, metodoDiPagamamento, indirizzoSpedizione, username, idCarrello FROM Ordine WHERE idOrdine=?");
+                    con.prepareStatement("SELECT idOrdine, totale, dataOrdine, metodoDiPagamamento, indirizzoSpedizione, username, idCarrello,prodotti FROM Ordine WHERE idOrdine=?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -21,6 +21,7 @@ public class OrdineDAO {
                 ordine.setSpedizione(rs.getString(5));
                 ordine.setIdCarrello(rs.getInt(6));
                 ordine.setIdCliente(rs.getString(7));
+                ordine.setProdotti(rs.getString(8));
                 return ordine;
             }
             return null;
@@ -33,7 +34,7 @@ public class OrdineDAO {
         List<Ordine> ordini = new ArrayList<>();
 
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT idOrdine, totale, dataOrdine, metodoDiPagamamento, indirizzoSpedizione, idCarrello FROM Ordine WHERE username=?");
+            PreparedStatement ps = con.prepareStatement("SELECT idOrdine, totale, dataOrdine, metodoDiPagamamento, indirizzoSpedizione, idCarrello,prodotti FROM Ordine WHERE username=?");
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
 
@@ -46,6 +47,7 @@ public class OrdineDAO {
                 ordine.setSpedizione(rs.getString(5));
                 ordine.setIdCarrello(rs.getInt(6));
                 ordine.setIdCliente(rs.getString(7));
+                ordine.setProdotti(rs.getString(8));
                 ordini.add(ordine);
             }
         } catch (SQLException e) {
@@ -59,7 +61,7 @@ public class OrdineDAO {
     public void doSave(Ordine ordine){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO Ordine (PrezzoTotale, dataOrdine, metodoDiPagamento, indirizzoSpedizione, username, idCarrello) VALUES(?,?,?,?,?,?)",
+                    "INSERT INTO Ordine (PrezzoTotale, dataOrdine, metodoDiPagamento, indirizzoSpedizione, username, idCarrello, prodotti) VALUES(?,?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setDouble(1, ordine.getTotale());
             ps.setDate(2, (Date) ordine.getDataOrd());
@@ -67,6 +69,7 @@ public class OrdineDAO {
             ps.setString(4, ordine.getSpedizione());
             ps.setInt(6, ordine.getIdCarrello());
             ps.setString(5, ordine.getIdCliente());
+            ps.setString(7,ordine.getProdotti());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -101,6 +104,7 @@ public class OrdineDAO {
                 or.setSpedizione(rs.getString(5));
                 or.setIdCliente(rs.getString(6));
                 or.setIdCarrello(rs.getInt(7));
+                or.setProdotti(rs.getString(8));
 
                 ordini.add(or);
             }

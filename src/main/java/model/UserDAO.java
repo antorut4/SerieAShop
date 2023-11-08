@@ -81,11 +81,6 @@ public class UserDAO {
             statement.setString(1, username);
             statement.executeUpdate();
 
-            sql="DELETE FROM genera WHERE username =?";
-            statement=connection.prepareStatement(sql);
-            statement.setString(1, username);
-            statement.executeUpdate();
-
 
             sql = "DELETE FROM utente WHERE Username = ?";
             statement = connection.prepareStatement(sql);

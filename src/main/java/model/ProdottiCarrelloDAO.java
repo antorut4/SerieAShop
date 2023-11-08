@@ -143,6 +143,35 @@ public class ProdottiCarrelloDAO {
         return null;
     }
 
+    public ProdottiCarrello deleteProdottoCarrelloByCarrello(int idCar) {
+
+        List<ProdottiCarrello> prodottiCarrello = doRetriveAllById(idCar);
+        if (prodottiCarrello != null) {
+            System.out.println("Entro qui?");
+            try (Connection con = ConPool.getConnection()) {
+
+                con.setAutoCommit(false);
+
+                String sqlCarrello = "DELETE FROM ProdottiCarrello WHERE idCarrello=?";
+                PreparedStatement ps = con.prepareStatement(sqlCarrello);
+                ps.setInt(1,idCar);
+                int rowsDeletedCarr = ps.executeUpdate();
+
+                if (rowsDeletedCarr > 0) {  //cancellazione avvenuta correttamente
+                    con.commit();
+                    System.out.println("Il prodotto è stato cancellato correttamente. id=" + idCar);
+                } else {    //cancellazione fallita e si riporta indietro la query (transazione)
+                    System.out.println("Il prodotto non è stato eliminato");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Errore durante l'eliminazione del prodotto.", e);
+            }
+        } else {
+            return null;
+        }
+        return null;
+    }
+
     public List<ProdottiCarrello> doRetrieveByCarrello(int idCarrello) {
         System.out.println(idCarrello);
         List<ProdottiCarrello> prod=new ArrayList<>();

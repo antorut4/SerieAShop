@@ -9,44 +9,6 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="control.LogIn"%>
 <%@ page import="control.NewUser"%>
-<%@ page import="control.SearchServlet" %>
-
-<script>
-  $(document).ready(function () {
-    $("#search-button").click(function () {
-      var searchQuery = $("#search").val();
-
-      $.ajax({
-        url: "searchServlet",
-        method: "GET",
-        data: { query: searchQuery },
-        dataType: "json",
-        success: function (data) {
-
-
-          // Manipola i dati JSON ricevuti e mostra i risultati
-          var resultsHtml = "<ul>";
-
-          // Itera su ciascun oggetto JSON nell'array
-          for (var i = 0; i < data.length; i++) {
-            resultsHtml += "<a href='prodotto-singolo?idProdotto=" + data[i].id + "'>";
-            resultsHtml += "<img width='80px' src =image/PathOggetti/" + data[i].id + "/1.jpg>";
-            resultsHtml += "<li>" + data[i].nome + "</li>";
-            resultsHtml += "</a>";
-          }
-
-          resultsHtml += "</ul>";
-
-          // Inserisci i risultati nell'elemento con ID "search-results"
-          $("#search-results").html(resultsHtml);
-        },
-        error: function (error) {
-          console.log("Errore nella richiesta AJAX: " + error);
-        }
-      });
-    });
-  });
-</script>
 
 <div class="topnav">
   <a href="">Traccia Ordine</a>
@@ -80,15 +42,15 @@
   </a>
   <div class="containerForm">
     <div class="searchform">
-      <input type="text" name="query" id="search" placeholder="Cerca.." title="Inserisci quello che vuoi cercare" class="search-input">
-      <ul id="suggestions"></ul>
-      <button type="button" id="search-button" class="search-button">
-        <img src="${pageContext.request.contextPath}/image/search.png" id="search-image">
-      </button>
-    </div>
-    <div id="search-results" class="search-results"></div>
-  </div>
+      <form id="search-form" action="search" method="post">
+      <input type="text" name="query" id="search-input" placeholder="Cerca.." title="Inserisci quello che vuoi cercare">
+      <button id="search-button" type="submit"><img src="${pageContext.request.contextPath}/image/search.png" id="search-image"></button>
+      </form>
+      <div id="search-results">
 
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="downbar">
