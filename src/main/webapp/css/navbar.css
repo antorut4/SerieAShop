@@ -53,11 +53,11 @@
 
 /* Stile del form di ricerca */
 .searchform {
-    display: block; /* Cambia da "inline-block" a "block" per spostare i risultati in basso */
+    display: flex; /* Utilizza il display "flex" per posizionare gli elementi su una stessa riga */
+    align-items: center; /* Allinea verticalmente gli elementi al centro */
     background-color: white;
-    padding: 10px;
     border-radius: 15px;
-    text-align: center; /* Per centrare il form e il pulsante */
+    position: relative;
 }
 
 /* Stile del campo di ricerca */
@@ -65,26 +65,52 @@
     border: none;
     font-size: 24px;
     padding: 11px;
+    flex: 1; /* Il campo di ricerca occupa tutto lo spazio disponibile in larghezza */
+    border-radius: 20px;
+
 }
 
 /* Stile del pulsante di ricerca */
 #search-button {
     background-color: white;
     border: none;
+    cursor: pointer;
+}
+
+
+/* Stile dei risultati della ricerca (dropdown) */
+#search-results {
+    position: absolute;
+    top: 20%;
+    background: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    width: 20%; /* Larghezza uguale a quella del form */
+    display: none; /* Inizia nascosto */
+    z-index: 1;
+}
+
+/* Stile delle immagini dei risultati */
+#search-results a {
+    display: block;
     padding: 5px 10px;
     cursor: pointer;
-    margin-left: 10px; /* Aggiungi spazio a sinistra per spostare il pulsante a destra */
+    text-decoration: none;
 }
 
-/* Stile dei risultati della ricerca */
-.search-results {
-    background: var(--main-white);
-    margin-top: 20px; /* Aggiungi spazio sopra i risultati per spostarli in basso */
+#search-results a:hover {
+    background-color: #f0f0f0;
 }
 
-.search-results img {
-    width: 24px;
-    height: 24px;
+/* Stile dei nomi dei risultati */
+.result-name {
+    /* Aggiungi ulteriori stili qui, se necessario */
+}
+
+/* Stile delle immagini dei risultati */
+.result-image {
+    width: 80px;
+    /* Aggiungi ulteriori stili qui, se necessario */
 }
 
 /*Down navbar*/

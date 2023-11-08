@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="${pageContext.request.contextPath}/css/navbar.css" rel="stylesheet">
-<script src="${pageContext.request.contextPath}/script/FormValidationCliente.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/script/FormValidationCliente.js"></script>
 <script src="${pageContext.request.contextPath}/script/search.js"></script>
 
 <%@ page import="model.Squadra"%>
@@ -10,52 +10,6 @@
 <%@ page import="control.LogIn"%>
 <%@ page import="control.NewUser"%>
 <%@ page import="control.SearchServlet" %>
-
-<script>
-  $(document).ready(function () {
-    $("#search").on("input", function () {
-      var searchQuery = $(this).val();
-
-      // Dividi la query in parole chiave separate da spazi
-      var keywords = searchQuery.split(" ").filter(function (keyword) {
-        return keyword.trim() !== "";
-      });
-
-      // Esegui la ricerca solo se ci sono almeno 3 caratteri in ciascuna parola chiave
-      if (keywords.every(function (keyword) { return keyword.length >= 3; })) {
-        $.ajax({
-          url: "searchServlet",
-          method: "GET",
-          data: { query: keywords.join(" ") },
-          dataType: "json",
-          success: function (data) {
-            // Manipola i dati JSON ricevuti e mostra i risultati
-            var resultsHtml = "<ul>";
-
-            // Itera su ciascun oggetto JSON nell'array
-            for (var i = 0; i < data.length; i++) {
-              resultsHtml += "<a href='prodotto-singolo?idProdotto=" + data[i].id + "'>";
-              resultsHtml += "<img width='80px' src='image/PathOggetti/" + data[i].id + "/1.jpg'>";
-              resultsHtml += "<li>" + data[i].nome + "</li>";
-              resultsHtml += "</a>";
-            }
-
-            resultsHtml += "</ul>";
-
-            // Inserisci i risultati nell'elemento con ID "search-results"
-            $("#search-results").html(resultsHtml);
-          },
-          error: function (error) {
-            console.log("Errore nella richiesta AJAX: " + error);
-          }
-        });
-      } else {
-        // Se le parole chiave non hanno almeno 3 caratteri ciascuna, cancella i risultati
-        $("#search-results").empty();
-      }
-    });
-  });
-</script>
 
 <div class="topnav">
   <a href="">Traccia Ordine</a>
@@ -100,7 +54,6 @@
     </div>
     <div id="search-results" class="search-results"></div>
   </div>
-
 </div>
 
 <div class="downbar">
@@ -190,13 +143,13 @@
   <div class="registration form">
     <header>Signup</header>
     <form action="new-user" method="post">
-      <input type="text" placeholder="Enter your Username" id="username" name="username" onkeyup="usernameValidation(this.form.username)">
-      <input type="text" placeholder="Enter your Name" id="nome" name="nome" onkeyup="nomeClienteValidation(this.form.nome)">
-      <input type="text" placeholder="Enter your Surname" id="surname" name="cognome" onkeyup="cognomeValidation(this.form.surname)">
-      <input type="text" placeholder="Enter your email" id="email" name="email" onkeyup="emailValidation(this.form.email);">
-      <input type="text" placeholder="Enter your Phone number" id="telefono" name="telefono" onkeyup="telefonoValidation(this.form.telefono)">
-      <input type="text" placeholder="Enter your Address" id="indirizzo" name="indirizzo" onkeyup="indirizzoValidation(this.form.indirizzo)">
-      <input type="password" placeholder="Create a password" id="password" name="password" onkeyup="passwordValidation(this.form.password)">
+      <input type="text" placeholder="Enter your Username" id="username" name="username" onblur="usernameValidation(this)">
+      <input type="text" placeholder="Enter your Name" id="nome" name="nome" onblur="nomeClienteValidation(this)">
+      <input type="text" placeholder="Enter your Surname" id="surname" name="cognome" onblur="cognomeValidation(this)">
+      <input type="text" placeholder="Enter your email" id="email" name="email" onblur="emailValidation(this)">
+      <input type="text" placeholder="Enter your Phone number" id="telefono" name="telefono" onblur="telefonoValidation(this)">
+      <input type="text" placeholder="Enter your Address" id="indirizzo" name="indirizzo" onblur="indirizzoValidation(this)">
+      <input type="password" placeholder="Create a password" id="password" name="password" onblur="passwordValidation(this)">
       <input type="submit" class="button" value="Signup">
     </form>
     <div class="signup">
