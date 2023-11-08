@@ -113,22 +113,6 @@ h2 {
     margin-bottom: 10px;
 }
 
-/* Stile del select */
-.select-and-button .dropdown-select {
-    padding: 10px; /* Aggiunge spazio interno al select */
-    font-size: 16px; /* Dimensione del testo nel select */
-    border: 1px solid #ccc; /* Bordo del select */
-    border-radius: 5px; /* Bordo arrotondato */
-}
-
-/* Stile del select quando è attivo (aperto) */
-.select-and-button .dropdown-select:focus {
-    outline: none; /* Rimuovi l'outline predefinito */
-    border-color: #007BFF; /* Cambia il colore del bordo quando il select è attivo */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Aggiunge una leggera ombra quando il select è attivo */
-}
-
-
 /* Stile della box titolo */
 .box-titolo {
 
@@ -177,7 +161,7 @@ a{
 
 .bottone {
     cursor: pointer;
-    background-color: #333;
+    background-color: var(--main-blue);
     color: #fff;
     border: 1px solid #ccc;
     padding: 5px 10px;
