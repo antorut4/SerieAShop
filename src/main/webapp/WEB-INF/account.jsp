@@ -22,10 +22,10 @@
 </div>
 
 <br>
-<div style="text-align: center">
+<div class="frame">
     <br>
-            <iframe id="orderTableFrame" src="TabellaOrdini"></iframe>
-    </div>
+            <iframe id="orderTableFrame" class="order-table" src="TabellaOrdini"></iframe>
+</div>
 
     <br><br>
     <form class="logout" action="log-out" method="post">
