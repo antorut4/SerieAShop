@@ -45,23 +45,28 @@ function usernameValidation(obj)
 
     else
         obj.style.border="2px solid lime";
-
-
 }
 
-function emailValidation(obj)
-{
+function emailValidation(obj) {
     var email = obj.value;
-    var regEx = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,100}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,100}[a-zA-Z0-9])?)*$")
+    var regEx = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$");
 
-    if(regEx.exec(email)==null) {
+    if (regEx.exec(email) == null) {
         obj.style.border = "2px solid red";
-        window.alert("Errore Inserimento Email Modificare in modo appropriato");
+        // Display error message
+        alert("Invalid email format. Please enter a valid email address.");
+    } else {
+        obj.style.border = "2px solid lime";
+        // Email is valid
     }
-
-    else
-        obj.style.border="2px solid lime";
 }
+
+// Attach the validation function to the form's onchange event
+document.getElementById("myForm").onchange = function() {
+    emailValidation(document.getElementById("emailInput"));
+};
+
+
 
 function passwordValidation(obj)
 {

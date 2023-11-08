@@ -142,7 +142,7 @@
     <form action="new-user" method="post">
       <input type="text" placeholder="Enter your Username" id="username" name="username" onkeyup="usernameValidation(this.form.username)">
       <input type="text" placeholder="Enter your Name" id="nome" name="nome" onkeyup="nomeClienteValidation(this.form.nome)">
-      <input type="text" placeholder="Enter your Surname" id="surname" name="cognome" onkeyup="nomeClienteValidation(this.label.cognome)">
+      <input type="text" placeholder="Enter your Surname" id="surname" name="cognome" onkeyup="cognomeValidation(this.form.surname)">
       <input type="text" placeholder="Enter your email" id="email" name="email" onkeyup="emailValidation(this.form.email);">
       <input type="text" placeholder="Enter your Phone number" id="telefono" name="telefono" onkeyup="telefonoValidation(this.form.telefono)">
       <input type="text" placeholder="Enter your Address" id="indirizzo" name="indirizzo" onkeyup="indirizzoValidation(this.form.indirizzo)">
