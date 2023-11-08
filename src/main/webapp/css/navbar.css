@@ -51,28 +51,35 @@
     justify-content: flex-start;
 }
 
+/* Stile del form di ricerca */
 .searchform {
-    display: inline-block;
+    display: block; /* Cambia da "inline-block" a "block" per spostare i risultati in basso */
     background-color: white;
     padding: 10px;
     border-radius: 15px;
+    text-align: center; /* Per centrare il form e il pulsante */
 }
 
-#search-input {
+/* Stile del campo di ricerca */
+#search {
     border: none;
     font-size: 24px;
     padding: 11px;
 }
 
+/* Stile del pulsante di ricerca */
 #search-button {
     background-color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    margin-left: 10px; /* Aggiungi spazio a sinistra per spostare il pulsante a destra */
 }
 
-.search-results{
+/* Stile dei risultati della ricerca */
+.search-results {
     background: var(--main-white);
+    margin-top: 20px; /* Aggiungi spazio sopra i risultati per spostarli in basso */
 }
 
 .search-results img {

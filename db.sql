@@ -1,5 +1,4 @@
-
-DROP DATABASE SerieAShop;
+DROP database serieashop;
 CREATE DATABASE IF NOT EXISTS SerieAShop;
 USE SerieAShop;
 
@@ -59,13 +58,14 @@ CREATE TABLE `carrello` (
 
 
 CREATE TABLE `ordine` (
-                          `idOrdine` int NOT NULL,
+                          `idOrdine` int NOT NULL auto_increment,
                           `PrezzoTotale` double DEFAULT NULL,
                           `dataOrdine` date DEFAULT NULL,
                           `metodoDiPagamento` varchar(45) DEFAULT NULL,
                           `indirizzoSpedizione` varchar(60) DEFAULT NULL,
                           `username` varchar(45) DEFAULT NULL,
                           `idCarrello` int DEFAULT NULL,
+                          prodotti varchar(2000) NOT NULL,
                           PRIMARY KEY (`idOrdine`),
                           KEY `username` (`username`),
                           KEY `idCarrello` (`idCarrello`),
@@ -88,6 +88,7 @@ CREATE TABLE `prodotto` (
                             KEY `idSquadra` (`idSquadra`),
                             CONSTRAINT `prodotto_ibfk_1` FOREIGN KEY (`idSquadra`) REFERENCES `squadra` (`idSquadra`)
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 --
 -- Dumping data for table `prodotto`

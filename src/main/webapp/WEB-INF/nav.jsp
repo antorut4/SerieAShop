@@ -9,12 +9,62 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="control.LogIn"%>
 <%@ page import="control.NewUser"%>
+<%@ page import="control.SearchServlet" %>
+
+<script>
+  $(document).ready(function () {
+    $("#search").on("input", function () {
+      var searchQuery = $(this).val();
+
+      // Dividi la query in parole chiave separate da spazi
+      var keywords = searchQuery.split(" ").filter(function (keyword) {
+        return keyword.trim() !== "";
+      });
+
+      // Esegui la ricerca solo se ci sono almeno 3 caratteri in ciascuna parola chiave
+      if (keywords.every(function (keyword) { return keyword.length >= 3; })) {
+        $.ajax({
+          url: "searchServlet",
+          method: "GET",
+          data: { query: keywords.join(" ") },
+          dataType: "json",
+          success: function (data) {
+            // Manipola i dati JSON ricevuti e mostra i risultati
+            var resultsHtml = "<ul>";
+
+            // Itera su ciascun oggetto JSON nell'array
+            for (var i = 0; i < data.length; i++) {
+              resultsHtml += "<a href='prodotto-singolo?idProdotto=" + data[i].id + "'>";
+              resultsHtml += "<img width='80px' src='image/PathOggetti/" + data[i].id + "/1.jpg'>";
+              resultsHtml += "<li>" + data[i].nome + "</li>";
+              resultsHtml += "</a>";
+            }
+
+            resultsHtml += "</ul>";
+
+            // Inserisci i risultati nell'elemento con ID "search-results"
+            $("#search-results").html(resultsHtml);
+          },
+          error: function (error) {
+            console.log("Errore nella richiesta AJAX: " + error);
+          }
+        });
+      } else {
+        // Se le parole chiave non hanno almeno 3 caratteri ciascuna, cancella i risultati
+        $("#search-results").empty();
+      }
+    });
+  });
+</script>
 
 <div class="topnav">
   <a href="">Traccia Ordine</a>
   <a href="">Aiuto</a>
   <c:choose>
     <c:when test="${sessionScope.user != null}">
+      <div>
+        <a href="log-out">Log-Out</a>
+      </div>
       <div >
         <a href="direct-servlet">Il mio account</a>
       </div>
@@ -42,15 +92,15 @@
   </a>
   <div class="containerForm">
     <div class="searchform">
-      <form id="search-form" action="search" method="post">
-      <input type="text" name="query" id="search-input" placeholder="Cerca.." title="Inserisci quello che vuoi cercare">
-      <button id="search-button" type="submit"><img src="${pageContext.request.contextPath}/image/search.png" id="search-image"></button>
-      </form>
-      <div id="search-results">
-
-      </div>
+      <input type="text" name="query" id="search" placeholder="Cerca.." title="Inserisci quello che vuoi cercare" class="search-input">
+      <ul id="suggestions"></ul>
+      <button type="button" id="search-button" class="search-button">
+        <img width="20px" src="${pageContext.request.contextPath}/image/search.png" id="search-image">
+      </button>
     </div>
+    <div id="search-results" class="search-results"></div>
   </div>
+
 </div>
 
 <div class="downbar">
