@@ -1,168 +1,185 @@
-<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,3">
-<body class="loading">
-<h1>500</h1>
-<h2><b >Unexpected error :(</b></h2>
-<div class="gears">
-    <div class="gear one">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-    <div class="gear two">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-    <div class="gear three">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-</div>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="js/main.js" type="text/javascript"></script>
-</body>
+<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+<style>*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
 
+html,
+body {
+    align-items: center;
+    background: linear-gradient(#003eff, #0028a9);
+    color: white;
+    display: flex;
+    font: 2rem "Poiret One";
+    height: 100vh;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
 
-<style>
-    /**/
-    :root {
-        --main-color: #eaeaea;
-        --stroke-color: black;
+.box {
+    height: 100px;
+    margin: 0 10px;
+    overflow: hidden;
+    position: relative;
+    transform: rotateZ(270deg) scale(1.05);
+    width: 100px;
+}
 
-    }
-    /**/
-    body {
-        background: var(--main-color);
-    }
-    h1 {
-        margin: 100px auto 0 auto;
-        color: black;
-        font-family: 'Encode Sans Semi Condensed', Verdana, sans-serif;
-        font-size: 10rem; line-height: 10rem;
-        font-weight: 200;
-        text-align: center;
-    }
-    h2 {
-        margin: 20px auto 30px auto;
-        font-family: 'Encode Sans Semi Condensed', Verdana, sans-serif;
-        font-size: 1.5rem;
-        font-weight: 200;
-        text-align: center;
-        color: black;
-    }
-    h1, h2 {
-        -webkit-transition: none;
-        transition: none;
-    }
-    .loading h1, .loading h2 {
-        margin-top: 0px;
+.box:nth-of-type(2) {
+    left: -28px;
+    transform: rotateX(-180deg) rotateY(180deg) rotateZ(270deg) scale(1.05);
+}
+
+.box span {
+    animation: loader 4.8s infinite both;
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.box span:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.box span:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.box span:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.box span:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.box span:nth-child(5) {
+    animation-delay: 1s;
+}
+
+.box span:nth-child(6) {
+    animation-delay: 1.2s;
+}
+
+.box span::after {
+    background: #fff;
+    border-radius: 50%;
+    content: "";
+    left: 50%;
+    padding: 6px;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+@keyframes loader {
+    0% {
         opacity: 0;
+        transform: rotate(180deg);
+        animation-timing-function: ease-out;
     }
-    .gears {
-        position: relative;
-        margin: 0 auto;
-        width: auto; height: 0;
+    5% {
+        opacity: 1;
+        transform: rotate(300deg);
+        animation-timing-function: linear;
     }
-    .gear {
-        position: relative;
-        z-index: 0;
-        width: 120px; height: 120px;
-        margin: 0 auto;
-        border-radius: 50%;
-        background: var(--stroke-color);
+    30% {
+        transform: rotate(420deg);
+        animation-timing-function: ease-in-out;
     }
-    .gear:before{
-        position: absolute; left: 5px; top: 5px; right: 5px; bottom: 5px;
-        z-index: 2;
-        content: "";
-        border-radius: 50%;
-        background: var(--main-color);
+    35% {
+        transform: rotate(625deg);
+        animation-timing-function: linear;
     }
-    .gear:after {
-        position: absolute; left: 25px; top: 25px;
-        z-index: 3;
-        content: "";
-        width: 70px; height: 70px;
-        border-radius: 50%;
-        border: 5px solid var(--stroke-color);
-        box-sizing: border-box;
-        background: var(--main-color);
+    70% {
+        transform: rotate(800deg);
+        animation-timing-function: ease-out;
+        opacity: 1;
     }
-    .gear.one {
-        left: -130px;
+    75% {
+        opacity: 0;
+        transform: rotate(900deg);
+        animation-timing-function: ease-out;
     }
-    .gear.two {
-        top: -75px;
+    76% {
+        opacity: 0;
+        transform: rotate(900deg);
     }
-    .gear.three {
-        top: -235px;
-        left: 130px;
+    100% {
+        opacity: 0;
+        transform: rotate(900deg);
     }
-    .gear .bar {
-        position: absolute; left: -15px; top: 50%;
-        z-index: 0;
-        width: 150px; height: 30px;
-        margin-top: -15px;
-        border-radius: 5px;
-        background: var(--stroke-color);
+}
+
+h1 {
+    text-shadow: 0 0 10px #fff;
+    animation: blink 4.8s infinite both;
+}
+
+h1:nth-of-type(2) {
+    animation: none;
+    letter-spacing: -14px;
+    margin: 0 auto;
+    opacity: 0.1;
+    padding-left: 41px;
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+}
+
+@keyframes blink {
+    0%,
+    50%,
+    100% {
+        opacity: 0.2;
     }
-    .gear .bar:before {
-        position: absolute; left: 5px; top: 5px; right: 5px; bottom: 5px;
-        z-index: 1;
-        content: "";
-        border-radius: 2px;
-        background: var(--main-color);
+    25%,
+    75% {
+        opacity: 1;
     }
-    .gear .bar:nth-child(2) {
-        transform: rotate(60deg);
-        -webkit-transform: rotate(60deg);
-    }
-    .gear .bar:nth-child(3) {
-        transform: rotate(120deg);
-        -webkit-transform: rotate(120deg);
-    }
-    @-webkit-keyframes clockwise {
-        0% { -webkit-transform: rotate(0deg);}
-        100% { -webkit-transform: rotate(360deg);}
-    }
-    @-webkit-keyframes anticlockwise {
-        0% { -webkit-transform: rotate(360deg);}
-        100% { -webkit-transform: rotate(0deg);}
-    }
-    @-webkit-keyframes clockwiseError {
-        0% { -webkit-transform: rotate(0deg);}
-        20% { -webkit-transform: rotate(30deg);}
-        40% { -webkit-transform: rotate(25deg);}
-        60% { -webkit-transform: rotate(30deg);}
-        100% { -webkit-transform: rotate(0deg);}
-    }
-    @-webkit-keyframes anticlockwiseErrorStop {
-        0% { -webkit-transform: rotate(0deg);}
-        20% { -webkit-transform: rotate(-30deg);}
-        60% { -webkit-transform: rotate(-30deg);}
-        100% { -webkit-transform: rotate(0deg);}
-    }
-    @-webkit-keyframes anticlockwiseError {
-        0% { -webkit-transform: rotate(0deg);}
-        20% { -webkit-transform: rotate(-30deg);}
-        40% { -webkit-transform: rotate(-25deg);}
-        60% { -webkit-transform: rotate(-30deg);}
-        100% { -webkit-transform: rotate(0deg);}
-    }
-    .gear.one {
-        -webkit-animation: anticlockwiseErrorStop 2s linear infinite;
-    }
-    .gear.two {
-        -webkit-animation: anticlockwiseError 2s linear infinite;
-    }
-    .gear.three {
-        -webkit-animation: clockwiseError 2s linear infinite;
-    }
-    .loading .gear.one, .loading .gear.three {
-        -webkit-animation: clockwise 3s linear infinite;
-    }
-    .loading .gear.two {
-        -webkit-animation: anticlockwise 3s linear infinite;
-    }
+}
+
+h5,
+p {
+    position: absolute;
+    font-family: monospace;
+}
+
+h5 {
+    top: 10%;
+    font-size: 0.4em;
+
+}
+
+p {
+    font-size: 0.3em;
+    bottom: 10%;
+    width: 50%;
+    text-align: center;
+}
+
+p a {
+    color: cyan;
+}
 </style>
+
+<h5>Internal Server error !</h5>
+<h1>5</h1>
+<h1>00</h1>
+<div class="box">
+    <span></span><span></span>
+    <span></span><span></span>
+    <span></span>
+</div>
+<div class="box">
+    <span></span><span></span>
+    <span></span><span></span>
+    <span></span>
+</div>
+<p> We're unable to find out what's happening! We suggest you to
+    <br/>
+    <a href="home">Go Back</a>
+    or visit here later.</p>

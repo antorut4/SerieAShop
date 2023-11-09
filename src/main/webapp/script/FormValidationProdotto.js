@@ -30,12 +30,13 @@ function prezzoValidation(obj)
 function descrizioneValidation(obj)
 {
     var descr = obj.value;
-    var regEx = new RegExp("^[a-zA-Z0-9 ,.'-]{1,400}$")
+    var regEx = new RegExp("^[a-zA-Z0-9 ,.'-]{1,2000}$")
 
     if(regEx.exec(descr)==null) {
         obj.style.border = "2px solid red";
         alert("Descrizione del prodotto errata");
     }
+
 
     else
         obj.style.border="2px solid lime";

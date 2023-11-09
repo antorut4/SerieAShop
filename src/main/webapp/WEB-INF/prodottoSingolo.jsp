@@ -72,7 +72,7 @@
 
             <div class="select-and-button">
                 <select class="bottone" name="quantita">
-                <%for(int i=1;i<prodotto.getQuantita();i++){%>
+                <%for(int i=1;i<=prodotto.getQuantita();i++){%>
                     <option value="<%=i%>"><%=i%></option>
                     <%}%>
                 </select>

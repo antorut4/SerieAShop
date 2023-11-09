@@ -26,15 +26,15 @@
         <%--@declare id="image"--%>
             <%--@declare id="categoria"--%>
             <label for="nome">Nome Prodotto:</label>
-        <input type="text" name="nome" id="nome" onkeyup="nomeProdValidation(this.form.nome)" required>
+        <input type="text" name="nome" id="nome" onblur="nomeProdValidation(this.form.nome)" required>
 
 
             <label for="descrizione">Descrizione:</label>
-            <textarea id="descrizione" name="descrizione" onkeyup="descrizioneValidation(this.form.descrizione)"></textarea>
+            <textarea id="descrizione" name="descrizione" onblur="descrizioneValidation(this.form.descrizione)"></textarea>
 
 
         <label for="quantita">Quantita:</label>
-            <input type="number" id="quantita" name="quantita" step="1" onkeyup="quantitaValidation(this.form.quantita)" required>
+            <input type="number" id="quantita" name="quantita" step="1" onblur="quantitaValidation(this.form.quantita)" required>
 
             <label for="prezzo">idSquadra:</label>
             <select id="squadra" name="idSquadra" class="select" >
@@ -61,7 +61,7 @@
             </select>
 
             <label for="prezzo">Prezzo:</label>
-            <input type="number" id="prezzo" name="prezzo" step="0.01" onkeyup="prezzoValidation(this.form.prezzo)" required>
+            <input type="number" id="prezzo" name="prezzo" step="0.01" onblur="prezzoValidation(this.form.prezzo)" required>
 
 
         <label for="categoria">Categoria:</label>
@@ -84,20 +84,22 @@
         <input type="text" name="id" required>
 
         <label for="nome">Nuovo Nome Prodotto:</label>
-        <input type="text" name="nome" id="nome" onkeyup="nomeProdValidation(this.form.nome)">
+        <input type="text" name="nome" id="nome" onblur="nomeProdValidation(this.form.nome)">
 
         <label for="prezzo">Nuovo Prezzo:</label>
-        <input type="number" name="prezzo" id="prezzo" step="0.01" onkeyup="prezzoValidation(this.form.prezzo)">
+        <input type="number" name="prezzo" id="prezzo" step="0.01" onblur="prezzoValidation(this.form.prezzo)">
 
         <label for="descrizione">Nuova Descrizione:</label>
-        <textarea name="descrizione" id="descrizione" onkeyup="descrizioneValidation(this.form.descrizione)"></textarea>
+        <textarea name="descrizione" id="descrizione" onblur="descrizioneValidation(this.form.descrizione)"></textarea>
 
             <label for="quantita">Quantita:</label>
-            <input type="number" name="quantita" id="quantita" onkeyup="quantitaValidation(this.form.quantita)">
-
-
-        <label for="image">ImagePath:</label>
-        <input type="text" name="image" id="image" onkeyup="imageValidation(this.form.image)">
+            <input type="number" name="quantita" id="quantita" >
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" id="categoria" class="select">
+                <option value="maglia">Maglia</option>
+                <option value="pantaloncini">Pantaloncini</option>
+                <option value="calzettoni">Calzettoni</option>
+            </select>
 
             <input type="submit" value="Modifica">
 
@@ -160,12 +162,12 @@
     </div>
 </div>
 
-<div class="admin-panel"
+<div class="admin-panel">
     <form class="delete-product-form" action="log-out" method="post">
         <input type="submit" id="logout" value="Log Out">
     </form>
 </div>
-</body>
+</div>
 </html>
 
 

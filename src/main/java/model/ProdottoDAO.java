@@ -86,15 +86,35 @@ public class ProdottoDAO {
 
     }
 
-    public void doUpdateProdotto(Prodotto c) {
+    public Prodotto doUpdateProdotto(Prodotto prodotto) {
 
-        try (Connection con = ConPool.getConnection()) {
-            Statement st = con.createStatement();
-            String query = "update prodotto set nome='" + c.getNome() + "', prezzo='" + c.getPrezzo() +
-                    "', descrizione='" + c.getDescrizione() + "', quantita=" + c.getQuantita() +", idSquadra="+c.getIdSquadra()+ "', categoria='" + c.getCategoria() + "' where idProdotto=" + c.getId() + ";";
-            st.executeUpdate(query);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if(prodotto != null) {
+            PreparedStatement st = null;
+            // Aggiorna il prezzo del prodotto nel database
+            try (Connection con = ConPool.getConnection()) {
+                String query = "update prodotto set prezzo= ?, nomeProdotto=? , descrizione=? , quantita=? , categoria=? where idProdotto= ? ";
+                st = con.prepareStatement(query);
+                st.setDouble(1, prodotto.getPrezzo());
+                st.setString(2, prodotto.getNome());
+                st.setString(3, prodotto.getDescrizione());
+                st.setInt(4, prodotto.getQuantita());
+                st.setString(5, prodotto.getCategoria());
+                st.setInt(6, prodotto.getId());
+                int rowsUpdatedProd = st.executeUpdate();
+
+                if (rowsUpdatedProd > 0) {
+                    System.out.println("Prodotto modificato");
+                    return prodotto;
+                } else {
+                    System.out.println("Errore nella modifica");
+                    return null;
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Errore durante l'aggiornamento del prodotto.", e);
+            }
+        }else{
+            System.out.println("Prodotto non modificato");
+            return null;
         }
     }
 
