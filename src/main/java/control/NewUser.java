@@ -81,9 +81,6 @@ public class NewUser extends HttpServlet {
 
         if (!errori.isEmpty()) {
             request.getSession().setAttribute("errori", errori);
-            for(String s: errori){
-                System.out.println("Errore :"+s);
-            }
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Errorepage.jsp");
             dispatcher.forward(request, response);
         }else {

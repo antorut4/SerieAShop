@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
 <style>*,
 *::after,
@@ -165,7 +167,10 @@ p a {
     color: cyan;
 }
 </style>
-
+<%
+    List<String> errori=new ArrayList<>();
+    errori=(List<String>) request.getSession().getAttribute("errori");
+%>
 <h5>Internal Server error !</h5>
 <h1>5</h1>
 <h1>00</h1>
@@ -179,7 +184,18 @@ p a {
     <span></span><span></span>
     <span></span>
 </div>
+<%
+if(errori.isEmpty()){
+%>
 <p> We're unable to find out what's happening! We suggest you to
     <br/>
     <a href="home">Go Back</a>
     or visit here later.</p>
+<%}else{
+    for(String s: errori){
+    %>
+    <p><%=s%> ,</p><br>
+<%}
+}
+session.removeAttribute("errori");
+%>
