@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tuo Titolo Pagina</title>
     <link href="${pageContext.request.contextPath}/css/catalog.css" rel="stylesheet">
 </head>
 <body>
@@ -22,6 +21,9 @@
     for (Prodotto s : prodotti) {
         if (s.getIdSquadra().equals(idSquadra) && !flag) {
 %>
+<title>
+    <%= s.getIdSquadra() %>
+</title>
 <div class="Banner">
     <img src="${pageContext.request.contextPath}/image/Banner/<%= s.getIdSquadra() %>/banner.jpg">
 </div>

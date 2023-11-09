@@ -26,6 +26,7 @@
     }
     PrintWriter outp = response.getWriter();
 %>
+<title><%=prodotto.getNome()%></title>
 <div id="container">
     <div class="colonna" id="colonna1">
         <img src="${pageContext.request.contextPath}/image/PathOggetti/<%=prodotto.getId()%>/1.jpg" alt="Immagine Principale" id="immaginePrincipale"  >

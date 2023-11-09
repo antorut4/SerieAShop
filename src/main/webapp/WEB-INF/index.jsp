@@ -8,7 +8,7 @@
 <jsp:include page="nav.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <head>
-    <title>Index</title>
+    <title>Serie A Shop</title>
 
 </head>
 <h2 style="text-align: center;">Serie A Teams</h2>

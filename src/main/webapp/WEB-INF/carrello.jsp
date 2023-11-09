@@ -16,6 +16,10 @@
     int totale=(int)request.getSession().getAttribute("totale");
 %>
 
+<title>
+    Carrello
+</title>
+
 <div class="container" id="CartForm">
     <div class="heading">
         <h1>
