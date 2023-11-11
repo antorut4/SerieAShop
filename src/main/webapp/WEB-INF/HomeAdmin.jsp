@@ -8,17 +8,16 @@
     <script src="${pageContext.request.contextPath}/script/FormValidationProdotto.js"></script>
 </head>
 <div>
-
-<a href="${pageContext.request.contextPath}/home">
-    <img src="image/home.png" width="100px">
-</a>
+    <a href="${pageContext.request.contextPath}/home">
+        <img src="image/home.png" width="100px">
+    </a>
 
     <h1>Benvenuto ${user.username}</h1>
 
     <div class="admin-panel">
-    <h2>Aggiungi Prodotto</h2>
-    <button class="toggle-btn">Mostra Form Aggiungi Prodotto</button>
-    <form class="add-product-form" action="new-prodotto" method="post">
+        <h2>Aggiungi Prodotto</h2>
+        <button class="toggle-btn">Mostra Form Aggiungi Prodotto</button>
+        <form class="add-product-form" action="new-prodotto" method="post">
 
 
         <%--@declare id="nome"--%><%--@declare id="prezzo"--%><%--@declare id="descrizione"--%>
@@ -26,14 +25,11 @@
         <%--@declare id="image"--%>
             <%--@declare id="categoria"--%>
             <label for="nome">Nome Prodotto:</label>
-        <input type="text" name="nome" id="nome" onblur="nomeProdValidation(this.form.nome)" required>
-
-
+            <input type="text" name="nome" id="nome" onblur="nomeProdValidation(this.form.nome)" required>
             <label for="descrizione">Descrizione:</label>
             <textarea id="descrizione" name="descrizione" onblur="descrizioneValidation(this.form.descrizione)"></textarea>
 
-
-        <label for="quantita">Quantita:</label>
+            <label for="quantita">Quantita:</label>
             <input type="number" id="quantita" name="quantita" step="1" onblur="quantitaValidation(this.form.quantita)" required>
 
             <label for="prezzo">idSquadra:</label>
@@ -63,30 +59,27 @@
             <label for="prezzo">Prezzo:</label>
             <input type="number" id="prezzo" name="prezzo" step="0.01" onblur="prezzoValidation(this.form.prezzo)" required>
 
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" id="categoria" class="select">
+                <option value="maglia">Maglia</option>
+                <option value="pantaloncini">Pantaloncini</option>
+                <option value="calzettoni">Calzettoni</option>
+            </select>
 
-        <label for="categoria">Categoria:</label>
-        <select name="categoria" id="categoria" class="select">
-            <option value="maglia">Maglia</option>
-            <option value="pantaloncini">Pantaloncini</option>
-            <option value="calzettoni">Calzettoni</option>
-        </select>
+            <input type="submit" value="Aggiungi">
+        </form>
+    </div>
 
-        <input type="submit" value="Aggiungi">
-    </form>
-</div>
-
-<div class="admin-panel">
-    <h2>Modifica Prodotto</h2>
-    <button class="toggle-btn">Mostra Form Modifica Prodotto</button>
-    <form class="edit-product-form" action="modifica-prodotto" method="post">
-        <%--@declare id="id"--%>
-            <label for="id">ID Prodotto:</label>
-        <input type="text" name="id" required>
-
-        <label for="nome">Nuovo Nome Prodotto:</label>
-        <input type="text" name="nome" id="nome" onblur="nomeProdValidation(this.form.nome)">
-
-        <label for="prezzo">Nuovo Prezzo:</label>
+    <div class="admin-panel">
+        <h2>Modifica Prodotto</h2>
+        <button class="toggle-btn">Mostra Form Modifica Prodotto</button>
+        <form class="edit-product-form" action="modifica-prodotto" method="post">
+            <%--@declare id="id"--%>
+                <label for="id">ID Prodotto:</label>
+                <input type="text" name="id" required>
+                <label for="nome">Nuovo Nome Prodotto:</label>
+                <input type="text" name="nome" id="nome" onblur="nomeProdValidation(this.form.nome)">
+                <label for="prezzo">Nuovo Prezzo:</label>
         <input type="number" name="prezzo" id="prezzo" step="0.01" onblur="prezzoValidation(this.form.prezzo)">
 
         <label for="descrizione">Nuova Descrizione:</label>

@@ -63,7 +63,7 @@
 
         if (regEx.exec(cap) == null) {
             obj.style.border = "2px solid red";
-            alert("Invalid cap format. Please enter a valid email address.");
+            alert("Invalid cap format. Please enter a valid CAP.");
         } else {
             obj.style.border = "2px solid lime";
         }
@@ -75,7 +75,7 @@
 
         if (regEx.exec(card) == null) {
             obj.style.border = "2px solid red";
-            alert("Invalid card number format. Please enter a valid email address.");
+            alert("Invalid card number format. Please enter a valid CreditCard.");
         } else {
             obj.style.border = "2px solid lime";
         }
@@ -87,7 +87,7 @@
 
         if (regEx.exec(card) == null) {
             obj.style.border = "2px solid red";
-            alert("Invalid scad format. Please enter a valid email address.");
+            alert("Invalid scad format. Please enter a valid CreditCard Scad.");
         } else {
             obj.style.border = "2px solid lime";
         }
@@ -99,7 +99,7 @@
 
         if (regEx.exec(cardcvc) == null) {
             obj.style.border = "2px solid red";
-            alert("Invalid cvc format. Please enter a valid email address.");
+            alert("Invalid cvc format. Please enter a valid CVC.");
         } else {
             obj.style.border = "2px solid lime";
         }
@@ -111,7 +111,7 @@
 
         if (regEx.exec(address) == null) {
             obj.style.border = "2px solid red";
-            alert("Invalid city format. Please enter a valid email address.");
+            alert("Invalid city format. Please enter a valid City.");
         } else {
             obj.style.border = "2px solid lime";
         }
@@ -123,7 +123,7 @@
 
         if (regEx.exec(address) == null) {
             obj.style.border = "2px solid red";
-            alert("Invalid scad format. Please enter a valid email address.");
+            alert("Invalid scad format. Please enter a valid address.");
         } else {
             obj.style.border = "2px solid lime";
         }
