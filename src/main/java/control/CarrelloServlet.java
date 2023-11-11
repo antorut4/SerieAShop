@@ -40,7 +40,7 @@ public class CarrelloServlet extends HttpServlet {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                totale+=prodotto.getPrezzo()*p.getQuantita();
+                totale+=prodotto.getPrezzo();
                 prodottiStampa.add(prodotto);
             }
         }

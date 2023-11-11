@@ -18,11 +18,7 @@ body {
 .banner{
     width: 100%;
     display: flex;
-    align-items: center;
-}
-
-.banner img{
-    width: 100%;
+    justify-content: center;
 }
 
 a{

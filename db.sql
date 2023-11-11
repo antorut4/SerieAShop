@@ -62,7 +62,7 @@ CREATE TABLE `ordine` (
                           `idOrdine` int NOT NULL auto_increment,
                           `PrezzoTotale` double DEFAULT NULL,
                           `dataOrdine` date DEFAULT NULL,
-                          `metodoDiPagamento` varchar(45) DEFAULT NULL,
+                          `metodoDiPagamento` varchar(60) DEFAULT NULL,
                           `indirizzoSpedizione` varchar(60) DEFAULT NULL,
                           `username` varchar(45) DEFAULT NULL,
                           `idCarrello` int DEFAULT NULL,

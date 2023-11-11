@@ -18,14 +18,9 @@ h1 {
 }
 
 .Banner {
-    width: 100%;
-}
-
-.Banner img {
-    max-width: 100%;
-    height: auto;
     display: flex;
-    text-align: center;
+    width: 100%;
+    justify-content: center;
 }
 
 .Grid {
