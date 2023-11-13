@@ -80,6 +80,6 @@
         }
     %>
 </div>
-
+<jsp:include page="foother.html"></jsp:include>
 </body>
 </html>

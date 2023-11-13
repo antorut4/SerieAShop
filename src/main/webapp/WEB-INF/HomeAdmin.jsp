@@ -156,8 +156,8 @@
 </div>
 
 <div class="admin-panel">
-    <form class="delete-product-form" action="log-out" method="post">
-        <input type="submit" id="logout" value="Log Out">
+    <form action="log-out" class="delete-product-form" method="post">
+        <button type="submit" class="toggle-btn" >Log-out</button>
     </form>
 </div>
 </div>

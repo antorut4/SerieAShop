@@ -43,3 +43,5 @@
         <img src="image/Banner2.jpg">
     </a>
 </div>
+
+<jsp:include page="foother.html"></jsp:include>

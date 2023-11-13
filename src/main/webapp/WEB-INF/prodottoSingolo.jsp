@@ -132,6 +132,7 @@
 
 <link rel="stylesheet" type="text/css" href="prodottoSingolo.css">
 
+<jsp:include page="foother.html"></jsp:include>
 </body>
 </html>
 
