@@ -165,25 +165,13 @@
 </div>
 </html>
 <script>
-    document.getElementById('aggiungi').addEventListener('submit', (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        var nome=document.getElementById("nome");
-        var quantita=document.getElementById("quantita");
-        alert(quantita);
-        alert(nome);
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'new-prodotto');
-        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-        xhr.send(formData);
 
-        xhr.onload = () => {
-            if (xhr.status === 200) {
-                // Success handling
-            } else {
-                // Error handling
-            }
-        };
+    document.getElementById('aggiungi').addEventListener('submit', (event) => {
+        // Reindirizza alla servlet
+        window.location.href = "new-prodotto";
+
+        // Imposta il multiparting
+        document.querySelector("form").enctype = "multipart/form-data";
     });
 </script>
 

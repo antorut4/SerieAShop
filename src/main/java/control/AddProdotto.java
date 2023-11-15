@@ -54,49 +54,58 @@ public class AddProdotto extends HttpServlet {
             if(desc.length()>3000)
                 errore += "Descrizione troppo lunga";
 
-
-
-            if(!errore.equals(""))
+            System.out.println("ciao io sono qui vorrei capire dove mi blocco");
+            if(!errore.isEmpty())
             {
-                RequestDispatcher dispatcher =
-                        getServletContext().getRequestDispatcher("/WEB-INF/Errorpage.jsp?errore="+errore);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Errorepage.jsp");
                 dispatcher.forward(request, response);
 
 
             }
 
-            prodotto = new Prodotto();
+                System.out.println("Domenico fa le ricotte");
 
-            prodotto.setNome(nome);
-            prodotto.setPrezzo(prezzo);
-            prodotto.setDescrizione(desc);
-            prodotto.setQuantita(quantita);
-            prodotto.setCategoria(categoria);
-            prodotto.setIdSquadra(idSquadra);
+                prodotto = new Prodotto();
 
-
-            ProdottoDAO cdao = new ProdottoDAO();
-            cdao.doSave(prodotto);
+                prodotto.setNome(nome);
+                prodotto.setPrezzo(prezzo);
+                prodotto.setDescrizione(desc);
+                prodotto.setQuantita(quantita);
+                prodotto.setCategoria(categoria);
+                prodotto.setIdSquadra(idSquadra);
 
 
-            // creo una cartella e inserisco l'immagine
-            File folder = new File(String.valueOf(prodotto.getId()));
-            folder.mkdir();
+                ProdottoDAO cdao = new ProdottoDAO();
+                cdao.doSave(prodotto);
 
-            // Ottieni l'immagine da caricare
-            Part imagePart = request.getPart("image");
+                String path = "/image/PathOggetti/" + prodotto.getId();
 
-            // Salva l'immagine nella cartella appena creata
-            String fileName = imagePart.getSubmittedFileName();
-            File imageFile = new File(folder, fileName);
-            imagePart.write(String.valueOf(imageFile));
+                // creo una cartella e inserisco l'immagine
+                File folder = new File(getServletContext().getRealPath(path));
+                boolean success = folder.mkdir();
+
+                if (success) {
+                    System.out.println("La cartella è stata creata");
+                } else {
+                    System.out.println("La scelta non è stata creata");
+                }
 
 
-            address = "/WEB-INF/HomeAdmin.jsp";
-            request.setAttribute("prodotto", prodotto);
+                // Ottieni l'immagine da caricare
+                Part imagePart = request.getPart("image");
 
-        RequestDispatcher rd = request.getRequestDispatcher(address);
-        rd.forward(request, response);
+                // Salva l'immagine nella cartella appena creata
+                String fileName = imagePart.getSubmittedFileName();
+                File imageFile = new File(folder, fileName);
+                imagePart.write(String.valueOf(imageFile));
+
+
+                address = "/WEB-INF/HomeAdmin.jsp";
+                request.setAttribute("prodotto", prodotto);
+
+                RequestDispatcher rd = request.getRequestDispatcher(address);
+                rd.forward(request, response);
+
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
