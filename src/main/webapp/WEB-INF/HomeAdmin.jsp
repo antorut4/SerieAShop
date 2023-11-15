@@ -17,7 +17,7 @@
     <div class="admin-panel">
         <h2>Aggiungi Prodotto</h2>
         <button class="toggle-btn">Mostra Form Aggiungi Prodotto</button>
-        <form class="add-product-form" action="new-prodotto" method="post">
+        <form class="add-product-form" id="aggiungi" method="post">
 
 
         <%--@declare id="nome"--%><%--@declare id="prezzo"--%><%--@declare id="descrizione"--%>
@@ -30,7 +30,7 @@
             <textarea id="descrizione" name="descrizione" onblur="descrizioneValidation(this.form.descrizione)"></textarea>
 
             <label for="quantita">Quantita:</label>
-            <input type="number" id="quantita" name="quantita" step="1" onblur="quantitaValidation(this.form.quantita)" required>
+            <input type="number" id="quantita" name="quantita" value="10" step="1" onblur="quantitaValidation(this.form.quantita)" required>
 
             <label for="prezzo">idSquadra:</label>
             <select id="squadra" name="idSquadra" class="select" >
@@ -65,7 +65,9 @@
                 <option value="pantaloncini">Pantaloncini</option>
                 <option value="calzettoni">Calzettoni</option>
             </select>
-
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" required>
+            <br>
             <input type="submit" value="Aggiungi">
         </form>
     </div>
@@ -73,7 +75,7 @@
     <div class="admin-panel">
         <h2>Modifica Prodotto</h2>
         <button class="toggle-btn">Mostra Form Modifica Prodotto</button>
-        <form class="edit-product-form" action="modifica-prodotto" method="post">
+        <form class="edit-product-form" action="modifica-prodotto" method="post" enctype="multipart/form-data">
             <%--@declare id="id"--%>
                 <label for="id">ID Prodotto:</label>
                 <input type="text" name="id" required>
@@ -162,7 +164,28 @@
 </div>
 </div>
 </html>
+<script>
+    document.getElementById('aggiungi').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        var nome=document.getElementById("nome");
+        var quantita=document.getElementById("quantita");
+        alert(quantita);
+        alert(nome);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'new-prodotto');
+        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+        xhr.send(formData);
 
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                // Success handling
+            } else {
+                // Error handling
+            }
+        };
+    });
+</script>
 
 <script>
 
