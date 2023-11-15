@@ -20,7 +20,6 @@ import java.sql.SQLException;
 public class AddProdotto extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("entro qua dentro?");
 
         String address;
             String nome = request.getParameter("nome");
@@ -80,16 +79,20 @@ public class AddProdotto extends HttpServlet {
 
                 // creo una cartella e inserisco l'immagine
                 File folder = new File(getServletContext().getRealPath(path));
-                boolean success = folder.mkdir();
+        try {
+            boolean success = folder.mkdirs();
+            if (success) {
+                System.out.println("La cartella è stata creata");
+                System.out.println("Percorso completo della cartella: " + folder.getAbsolutePath());
+            } else {
+                System.out.println("La cartella non è stata creata");
+            }
+        } catch (SecurityException e) {
+            System.out.println("Errore di sicurezza durante la creazione della cartella: " + e.getMessage());
+        }
 
-                if (success) {
-                    System.out.println("La cartella è stata creata");
-                } else {
-                    System.out.println("La scelta non è stata creata");
-                }
 
-
-                // Ottieni l'immagine da caricare
+        // Ottieni l'immagine da caricare
                 Part imagePart = request.getPart("image");
 
                 // Salva l'immagine nella cartella appena creata
