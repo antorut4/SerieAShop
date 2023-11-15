@@ -15,6 +15,7 @@ import model.ProdottoDAO;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 @WebServlet("/new-prodotto")
@@ -88,14 +89,13 @@ public class AddProdotto extends HttpServlet {
                 }
 
 
-                // Ottieni l'immagine da caricare
-                Iterable<Part> imageParts= (Iterable<Part>) request.getPart("image");
+                Collection<Part> imageParts=request.getParts();
+                for(Part part: imageParts){
+                    String fileName=extractFileNamePart(part);
+                    String filePath=folder.getAbsolutePath()+File.separator+fileName;
+                    part.write(filePath);
+                }
 
-        for (Part part : imageParts) {
-            String fileName = part.getSubmittedFileName();
-            File imageFile = new File(folder, fileName);
-            part.write(String.valueOf(imageFile));
-        }
 
 
         address = "/WEB-INF/HomeAdmin.jsp";
@@ -104,6 +104,17 @@ public class AddProdotto extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher(address);
                 rd.forward(request, response);
 
+    }
+
+    private String extractFileNamePart(Part part){
+        String cd= part.getHeader("content-disposition");
+        String [] items= cd.split(";");
+        for(String s: items){
+            if(s.trim().startsWith("filename")){
+                return s.substring(s.indexOf("=")+2, s.length()-1);
+            }
+        }
+        return null;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
