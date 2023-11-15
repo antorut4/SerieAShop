@@ -17,7 +17,7 @@
     <div class="admin-panel">
         <h2>Aggiungi Prodotto</h2>
         <button class="toggle-btn">Mostra Form Aggiungi Prodotto</button>
-        <form class="add-product-form" id="aggiungi" method="post" action="new-prodotto">
+        <form class="add-product-form" action="new-prodotto" id="aggiungi" method="post">
 
 
         <%--@declare id="nome"--%><%--@declare id="prezzo"--%><%--@declare id="descrizione"--%>
@@ -66,7 +66,7 @@
                 <option value="calzettoni">Calzettoni</option>
             </select>
             <label for="image">Image:</label>
-            <input type="file" id="image" name="image" required>
+            <input type="file" id="image" name="image" multiple required>
             <br>
             <input type="submit" value="Aggiungi">
         </form>
@@ -169,13 +169,12 @@
     document.getElementById('aggiungi').addEventListener('submit', (event) => {
         // Imposta il multiparting
         document.querySelector("form").enctype = "multipart/form-data";
-
-        // Rimuovi il reindirizzamento
         event.preventDefault();
-
-        // Invia il modulo
-        document.getElementById('aggiungi').submit();
+        document.getElementById("aggiungi").submit();
     });
+</script>
+
+<script>
 
     document.addEventListener('DOMContentLoaded', function () {
         const showProductsBtn = document.getElementById('showProductsBtn');

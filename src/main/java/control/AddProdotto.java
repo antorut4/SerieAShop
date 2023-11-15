@@ -1,5 +1,6 @@
 package control;
 
+import com.google.protobuf.StringValue;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -14,6 +15,7 @@ import model.ProdottoDAO;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/new-prodotto")
 @MultipartConfig
@@ -51,7 +53,6 @@ public class AddProdotto extends HttpServlet {
             if(desc.length()>3000)
                 errore += "Descrizione troppo lunga";
 
-            System.out.println("ciao io sono qui vorrei capire dove mi blocco");
             if(!errore.isEmpty())
             {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Errorepage.jsp");
@@ -60,7 +61,6 @@ public class AddProdotto extends HttpServlet {
 
             }
 
-                System.out.println("Domenico fa le ricotte");
 
                 prodotto = new Prodotto();
 
@@ -79,29 +79,26 @@ public class AddProdotto extends HttpServlet {
 
                 // creo una cartella e inserisco l'immagine
                 File folder = new File(getServletContext().getRealPath(path));
-        try {
-            boolean success = folder.mkdirs();
-            if (success) {
-                System.out.println("La cartella è stata creata");
-                System.out.println("Percorso completo della cartella: " + folder.getAbsolutePath());
-            } else {
-                System.out.println("La cartella non è stata creata");
-            }
-        } catch (SecurityException e) {
-            System.out.println("Errore di sicurezza durante la creazione della cartella: " + e.getMessage());
+                boolean success = folder.mkdir();
+
+                if (success) {
+                    System.out.println("La cartella è stata creata");
+                } else {
+                    System.out.println("La scelta non è stata creata");
+                }
+
+
+                // Ottieni l'immagine da caricare
+                Iterable<Part> imageParts= (Iterable<Part>) request.getPart("image");
+
+        for (Part part : imageParts) {
+            String fileName = part.getSubmittedFileName();
+            File imageFile = new File(folder, fileName);
+            part.write(String.valueOf(imageFile));
         }
 
 
-        // Ottieni l'immagine da caricare
-                Part imagePart = request.getPart("image");
-
-                // Salva l'immagine nella cartella appena creata
-                String fileName = imagePart.getSubmittedFileName();
-                File imageFile = new File(folder, fileName);
-                imagePart.write(String.valueOf(imageFile));
-
-
-                address = "/WEB-INF/HomeAdmin.jsp";
+        address = "/WEB-INF/HomeAdmin.jsp";
                 request.setAttribute("prodotto", prodotto);
 
                 RequestDispatcher rd = request.getRequestDispatcher(address);
