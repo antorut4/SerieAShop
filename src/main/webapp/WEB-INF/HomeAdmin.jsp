@@ -17,7 +17,7 @@
     <div class="admin-panel">
         <h2>Aggiungi Prodotto</h2>
         <button class="toggle-btn">Mostra Form Aggiungi Prodotto</button>
-        <form class="add-product-form" id="aggiungi" method="post">
+        <form class="add-product-form" id="aggiungi" method="post" action="new-prodotto">
 
 
         <%--@declare id="nome"--%><%--@declare id="prezzo"--%><%--@declare id="descrizione"--%>
@@ -167,15 +167,15 @@
 <script>
 
     document.getElementById('aggiungi').addEventListener('submit', (event) => {
-        // Reindirizza alla servlet
-        window.location.href = "new-prodotto";
-
         // Imposta il multiparting
         document.querySelector("form").enctype = "multipart/form-data";
-    });
-</script>
 
-<script>
+        // Rimuovi il reindirizzamento
+        event.preventDefault();
+
+        // Invia il modulo
+        document.getElementById('aggiungi').submit();
+    });
 
     document.addEventListener('DOMContentLoaded', function () {
         const showProductsBtn = document.getElementById('showProductsBtn');

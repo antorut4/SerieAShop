@@ -20,10 +20,9 @@ import java.sql.SQLException;
 public class AddProdotto extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("entro qua dentro?");
 
         String address;
-
-
             String nome = request.getParameter("nome");
             System.out.println(nome);
             String desc = request.getParameter("descrizione");
@@ -49,7 +48,6 @@ public class AddProdotto extends HttpServlet {
             } catch (NumberFormatException e) {
                 errore += "Prezzo non valido";
             }
-
 
             if(desc.length()>3000)
                 errore += "Descrizione troppo lunga";
