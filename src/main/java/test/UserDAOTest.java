@@ -12,10 +12,8 @@ public class UserDAOTest {
 
     @Test
     public void testDoRetrieveByUsername() throws SQLException {
-        // Assuming you have a working UserDAO class
         UserDAO userDAO = new UserDAO();
 
-        // Insert a test user into the database (make sure the user with this username exists)
         User testUser = new User();
         testUser.setUsername("testUser");
         testUser.setNome("Test");
