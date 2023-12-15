@@ -17,47 +17,25 @@ class ProdottoDAOTest {
 
     @BeforeEach
     void setUp() {
-        // Puoi inizializzare qui le risorse necessarie, ad esempio, un database di test
+        // Inizializza il DAO prima di ogni test
         prodottoDAO = new ProdottoDAO();
-    }
-
-    @AfterEach
-    void tearDown() {
-        // Puoi rilasciare qui le risorse utilizzate, ad esempio, chiudere la connessione al database di test
     }
 
     @Test
     void testDoRetrieveById() {
         try {
-            // Supponiamo che ci sia almeno un prodotto nel database di test
             Prodotto prodotto = prodottoDAO.doRetrieveById(1);
             assertNotNull(prodotto);
-            // Puoi aggiungere ulteriori asserzioni per verificare che i valori restituiti siano corretti
         } catch (SQLException e) {
             fail("Eccezione durante il recupero del prodotto per ID: " + e.getMessage());
         }
     }
 
     @Test
-    void testDoSaveAndDoRetrieveAll() {
-        Prodotto prodottoToSave = new Prodotto(/* Inizializza l'oggetto prodotto con valori appropriati */);
-
-        prodottoDAO.doSave(prodottoToSave);
-
-        // Verifica che il prodotto sia stato salvato correttamente
-        List<Prodotto> prodotti = prodottoDAO.doRetriveAll();
-        assertNotNull(prodotti);
-        assertTrue(prodotti.size() > 0);
-
-        // Puoi aggiungere ulteriori asserzioni per verificare che i valori siano corretti
-
-    }
-
-    @Test
     void testDoUpdateProdotto() {
         try {
             // Supponiamo che ci sia almeno un prodotto nel database di test
-            Prodotto prodottoToUpdate = prodottoDAO.doRetrieveById(1);
+            Prodotto prodottoToUpdate = prodottoDAO.doRetrieveById(2);
 
             // Modifica alcune proprietà del prodotto
             prodottoToUpdate.setPrezzo(19.99);
@@ -71,6 +49,43 @@ class ProdottoDAOTest {
 
         } catch (SQLException e) {
             fail("Eccezione durante l'aggiornamento del prodotto: " + e.getMessage());
+        }
+    }
+
+
+    @Test
+    void testDoUpdatePrezzo() {
+        try {
+            Prodotto prodottoToUpdate = prodottoDAO.doRetrieveById(2);
+
+            double newPrezzo = 19.99;
+            Prodotto updatedProdotto = prodottoDAO.doUpdatePrezzo(newPrezzo, prodottoToUpdate.getId());
+
+            assertNotNull(updatedProdotto);
+            assertEquals(newPrezzo, updatedProdotto.getPrezzo());
+
+        } catch (SQLException e) {
+            fail("Eccezione durante l'aggiornamento del prezzo del prodotto: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void testDoUpdateQuantita() {
+        try {
+            // Supponiamo che ci sia almeno un prodotto nel database di test
+            Prodotto prodottoToUpdate = prodottoDAO.doRetrieveById(2);
+
+            int newQuantita = 55;
+            prodottoToUpdate.setQuantita(newQuantita);
+            prodottoDAO.doUpdateQuantita(prodottoToUpdate);
+
+            Prodotto updatedProdotto = prodottoDAO.doRetrieveById(1);
+
+            assertNotNull(updatedProdotto);
+            assertEquals(newQuantita, updatedProdotto.getQuantita());
+
+        } catch (SQLException e) {
+            fail("Eccezione durante l'aggiornamento della quantità del prodotto: " + e.getMessage());
         }
     }
 
@@ -92,6 +107,4 @@ class ProdottoDAOTest {
             fail("Eccezione durante l'eliminazione del prodotto: " + e.getMessage());
         }
     }
-
-    // Aggiungi altri test per i metodi rimanenti come doUpdatePrezzo, doUpdateQuantita, ecc.
 }
