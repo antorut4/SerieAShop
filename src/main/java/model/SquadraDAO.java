@@ -28,7 +28,7 @@ public class SquadraDAO {
     }
 
     public boolean addSquadra(Squadra squadra) {
-        String query = "INSERT INTO squadra (nome_squadra, path_logo) VALUES (?, ?)";
+        String query = "INSERT INTO squadra (idSquadra, pathLogo) VALUES (?, ?)";
 
         try (Connection connection = ConPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
