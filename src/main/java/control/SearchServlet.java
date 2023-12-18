@@ -14,7 +14,7 @@ import java.util.List;
 
 @WebServlet("/searchServlet")
 public class SearchServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String searchQuery = request.getParameter("query");
 
