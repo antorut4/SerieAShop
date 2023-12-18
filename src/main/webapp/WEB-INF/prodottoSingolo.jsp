@@ -8,7 +8,6 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/prodottoSingolo.css">
-
     <jsp:include page="nav.jsp"></jsp:include>
 </head>
 <body>

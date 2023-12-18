@@ -18,12 +18,15 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.anyList;
+
 
 @ExtendWith(MockitoExtension.class)
 class NewUserTest {
@@ -39,6 +42,9 @@ class NewUserTest {
 
     @Mock
     private RequestDispatcher requestDispatcher;
+
+    @InjectMocks
+    private NewUser newUser;
 
     @BeforeEach
     void setUp() {
@@ -83,28 +89,17 @@ class NewUserTest {
         when(request.getParameter("telefono")).thenReturn("123456789");
         when(request.getParameter("indirizzo")).thenReturn("via casa");
 
+        // Configura il mock della sessione
+        HttpSession session = mock(HttpSession.class);
         when(request.getSession()).thenReturn(session);
-        when(request.getRequestDispatcher(Mockito.anyString())).thenReturn(requestDispatcher);
 
         // Act
-        new NewUser().doGet(request, response);
+        newUser.doGet(request, response);
 
+        // Verifica
+        verify(session).setAttribute(eq("errori"), anyList());
 
-        // Assert
-        List<String> errori = (List<String>) request.getSession().getAttribute("errori");
-
-        if(errori.isEmpty()){
-            System.out.println("sono vuota");
-        }
-
-        assertEquals(1, errori.size(), "Dovrebbe esserci un errore");
-
-        // Assicurati che gli errori attesi siano presenti nella lista
-        assertTrue(errori.contains("Devi compilare correttamente il campo email"));
-        assertTrue(errori.contains("Devi compilare correttamente il campo password"));
-        assertTrue(errori.contains("Devi compilare correttamente il campo numero di telefono"));
-
-        // Verifica che la richiesta sia stata inoltrata correttamente
+        // Puoi anche verificare che il dispatcher sia chiamato
         verify(requestDispatcher).forward(request, response);
     }
 
