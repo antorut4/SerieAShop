@@ -107,4 +107,57 @@ class ProdottoDAOTest {
             fail("Eccezione durante l'eliminazione del prodotto: " + e.getMessage());
         }
     }
+
+    @Test
+    void testDoRetrieveByIdFailure() {
+        try {
+            // Supponiamo che non ci sia un prodotto con ID -1 nel database di test
+            Prodotto prodotto = prodottoDAO.doRetrieveById(-1);
+            assertNull(prodotto, "Il prodotto con ID -1 non dovrebbe esistere");
+        } catch (SQLException e) {
+            fail("Eccezione inaspettata durante il recupero del prodotto per ID: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void testDoUpdateProdottoFailure() {
+        try {
+            // Supponiamo che ci sia un problema nell'aggiornare il prodotto con ID -1
+            Prodotto prodottoToUpdate = prodottoDAO.doRetrieveById(-1);
+
+            assertThrows(SQLException.class, () -> prodottoDAO.doUpdateProdotto(prodottoToUpdate),
+                    "Dovrebbe lanciare un'eccezione SQLException durante l'aggiornamento del prodotto");
+        } catch (SQLException e) {
+            fail("Eccezione inaspettata durante il recupero del prodotto per l'aggiornamento: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void testDoUpdatePrezzoFailure() {
+        // Supponiamo che ci sia un problema nell'aggiornare il prezzo del prodotto con ID -1
+        double newPrezzo = 19.99;
+
+        assertThrows(SQLException.class, () -> prodottoDAO.doUpdatePrezzo(newPrezzo, -1),
+                "Dovrebbe lanciare un'eccezione SQLException durante l'aggiornamento del prezzo del prodotto");
+    }
+
+    @Test
+    void testDoUpdateQuantitaFailure() {
+        try {
+            // Supponiamo che ci sia un problema nell'aggiornare la quantità del prodotto con ID -1
+            Prodotto prodottoToUpdate = prodottoDAO.doRetrieveById(-1);
+
+            assertThrows(SQLException.class, () -> prodottoDAO.doUpdateQuantita(prodottoToUpdate),
+                    "Dovrebbe lanciare un'eccezione SQLException durante l'aggiornamento della quantità del prodotto");
+        } catch (SQLException e) {
+            fail("Eccezione inaspettata durante l'aggiornamento della quantità del prodotto: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void testDeleteProdottoFailure() {
+        // Supponiamo che ci sia un problema nell'eliminare il prodotto con ID -1
+        assertThrows(SQLException.class, () -> prodottoDAO.deleteProdotto(-1),
+                "Dovrebbe lanciare un'eccezione SQLException durante l'eliminazione del prodotto");
+    }
 }

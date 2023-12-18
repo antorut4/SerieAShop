@@ -26,4 +26,27 @@ public class SquadraDAO {
 
         return squadre;
     }
+
+    public boolean addSquadra(Squadra squadra) {
+        String query = "INSERT INTO squadra (nome_squadra, path_logo) VALUES (?, ?)";
+
+        try (Connection connection = ConPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            // Imposta i parametri della query con i valori della squadra
+            preparedStatement.setString(1, squadra.getNomeSquadra());
+            preparedStatement.setString(2, squadra.getPathLogo());
+
+            // Esegue l'inserimento nel database
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            // Restituisci true se almeno una riga è stata inserita, altrimenti false
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            // Gestisci eventuali eccezioni durante l'interazione con il database
+            e.printStackTrace();
+            return false;  // Ritorna false in caso di errore
+        }
+    }
 }

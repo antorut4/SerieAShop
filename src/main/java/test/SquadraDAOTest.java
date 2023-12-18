@@ -23,16 +23,17 @@ class SquadraDAOTest {
 
     @Test
     void testDoSave() {
-        // Supponiamo che ci siano almeno due squadre nel database di test
-        List<Squadra> squadre = squadraDAO.doSave();
+        // Test di successo: salva una squadra corretta
+        Squadra squadraValida = new Squadra();
+        squadraValida.setNomeSquadra("SquadraValida");
+        squadraValida.setPathLogo("path/logo/valido.png");
 
-        assertNotNull(squadre);
-        assertTrue(squadre.size() >= 2); // Almeno due squadre
+        assertTrue(squadraDAO.addSquadra(squadraValida));
 
-        // Puoi aggiungere ulteriori asserzioni per verificare che i valori restituiti siano corretti
-        for (Squadra squadra : squadre) {
-            assertNotNull(squadra.getNomeSquadra());
-            assertNotNull(squadra.getPathLogo());
-        }
+        // Test di fallimento: tenta di salvare una squadra con nome nullo
+        Squadra squadraConNomeNullo = new Squadra();
+        squadraValida.setPathLogo("path/logo/invalidovalido.png");
+
+        assertFalse(squadraDAO.addSquadra(squadraConNomeNullo));
     }
 }
