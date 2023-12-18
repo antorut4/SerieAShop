@@ -21,7 +21,7 @@ public class DeleteUser extends HttpServlet {
         this.userDAO=new UserDAO();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String address="/WEB-INF/index.jsp";
         HttpSession session= request.getSession();
         User user= (User) session.getAttribute("user");
