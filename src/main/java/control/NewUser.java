@@ -159,5 +159,4 @@ public class NewUser extends HttpServlet {
         return pattern.matcher(numero_telefono).matches();
     }
 
-
 }

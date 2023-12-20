@@ -163,7 +163,7 @@ public class UserDAO {
 
     }
 
-    public User doRetrieveByUsername(String username) throws SQLException {
+    public static User doRetrieveByUsername(String username) throws SQLException {
         try(Connection con=ConPool.getConnection()){
             PreparedStatement ps=con.prepareStatement("SELECT Username, nome, Cognome, Email, Telefono, Indirizzo, Password,admin FROM utente WHERE Username=?");
             ps.setString(1,username);

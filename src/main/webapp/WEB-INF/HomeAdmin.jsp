@@ -77,28 +77,24 @@
         <button class="toggle-btn">Mostra Form Modifica Prodotto</button>
         <form class="edit-product-form" action="modifica-prodotto" method="post" enctype="multipart/form-data">
             <%--@declare id="id"--%>
-                <label for="id">ID Prodotto:</label>
-                <input type="text" name="id" required>
+                <label for="idp">ID Prodotto:</label>
+                    <input type="text" name="idp" id="idp" required>
                 <label for="nome">Nuovo Nome Prodotto:</label>
-                <input type="text" name="nome" id="nome" onblur="nomeProdValidation(this.form.nome)">
+                    <input type="text" name="nome" id="nome" onblur="nomeProdValidation(this.form.nome)">
                 <label for="prezzo">Nuovo Prezzo:</label>
-        <input type="number" name="prezzo" id="prezzo" step="0.01" onblur="prezzoValidation(this.form.prezzo)">
-
-        <label for="descrizione">Nuova Descrizione:</label>
-        <textarea name="descrizione" id="descrizione" onblur="descrizioneValidation(this.form.descrizione)"></textarea>
-
-            <label for="quantita">Quantita:</label>
-            <input type="number" name="quantita" id="quantita" >
-            <label for="categoria">Categoria:</label>
-            <select name="categoria" id="categoria" class="select">
-                <option value="maglia">Maglia</option>
-                <option value="pantaloncini">Pantaloncini</option>
-                <option value="calzettoni">Calzettoni</option>
-            </select>
-
-            <input type="submit" value="Modifica">
-
-    </form>
+                    <input type="number" name="prezzo" id="prezzo" step="0.01" onblur="prezzoValidation(this.form.prezzo)">
+                <label for="descrizione">Nuova Descrizione:</label>
+                    <textarea name="descrizione" id="descrizione" onblur="descrizioneValidation(this.form.descrizione)"></textarea>
+                <label for="quantita">Quantita:</label>
+                    <input type="number" name="quantita" id="quantita" >
+                <label for="categoria">Categoria:</label>
+                    <select name="categoria" id="categoria" class="select">
+                        <option value="maglia">Maglia</option>
+                        <option value="pantaloncini">Pantaloncini</option>
+                        <option value="calzettoni">Calzettoni</option>
+                    </select>
+                <input type="submit" value="Modifica">
+        </form>
 </div>
 
 <div class="admin-panel">

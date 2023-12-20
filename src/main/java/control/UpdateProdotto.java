@@ -24,8 +24,12 @@ public class UpdateProdotto extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String address = "/WEB-INF/HomeAdmin.jsp";
-        int prodottoId = Integer.parseInt(request.getParameter("id"));
+
+
+        System.out.println(request.getParameter("idp"));
         String nomeProdotto= request.getParameter("nome");
+        System.out.println(request.getParameter("nome"));
+        int prodottoId = Integer.parseInt(request.getParameter("idp"));
         int prezzo=Integer.parseInt(request.getParameter("prezzo"));
         String descrizione=request.getParameter("descrizione");
         String categoria=request.getParameter("categoria");

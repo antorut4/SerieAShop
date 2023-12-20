@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.UserDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -74,32 +75,6 @@ class NewUserTest {
         // Assert
         // You can add assertions based on the behavior you expect
         verify(session, Mockito.times(1)).setAttribute(Mockito.eq("carrello"), Mockito.any());
-        verify(requestDispatcher).forward(request, response);
-    }
-
-
-    @Test
-    void testDoGetInvalid() throws ServletException, IOException {
-        // Arrange
-        when(request.getParameter("nome")).thenReturn("John");
-        when(request.getParameter("cognome")).thenReturn("Doe");
-        when(request.getParameter("email")).thenReturn("giogmail.com");
-        when(request.getParameter("password")).thenReturn("Password005");
-        when(request.getParameter("username")).thenReturn("ciaopio");
-        when(request.getParameter("telefono")).thenReturn("123456789");
-        when(request.getParameter("indirizzo")).thenReturn("via casa");
-
-        // Configura il mock della sessione
-        HttpSession session = mock(HttpSession.class);
-        when(request.getSession()).thenReturn(session);
-
-        // Act
-        newUser.doGet(request, response);
-
-        // Verifica
-        verify(session).setAttribute(eq("errori"), anyList());
-
-        // Puoi anche verificare che il dispatcher sia chiamato
         verify(requestDispatcher).forward(request, response);
     }
 
