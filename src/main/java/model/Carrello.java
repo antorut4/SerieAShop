@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Carrello {
+public class    Carrello {
     private int idCarrello;
     private String username;
 

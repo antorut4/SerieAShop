@@ -22,9 +22,16 @@ public class UpdateProdotto extends HttpServlet {
     private ProdottoDAO prodottoDAO;
 
 
+    public void doGet(HttpServletRequest request, HttpServletResponse response){
+        String address="/WEB-INF/HomeAdmin.jsp";
+
+        String id=request.getParameter("idp");
+        System.out.println(id);
+    }
+
+    /*
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String address = "/WEB-INF/HomeAdmin.jsp";
-
 
         System.out.println(request.getParameter("idp"));
         String nomeProdotto= request.getParameter("nome");
@@ -57,7 +64,7 @@ public class UpdateProdotto extends HttpServlet {
 
 
 
-    }
+    }*/
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }

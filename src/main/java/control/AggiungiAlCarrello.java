@@ -30,18 +30,24 @@ public class AggiungiAlCarrello extends HttpServlet {
         Carrello carrello=(Carrello)request.getSession().getAttribute("carrello");
 
 
+
+
         ProdottiCarrello prodottiCarrello=new ProdottiCarrello();
         prodottiCarrello.setIdCarrello(carrello.getIdCarrello());
         prodottiCarrello.setIdProdotto(prod.getId());
         prodottiCarrello.setTaglia(taglia);
         prodottiCarrello.setQuantita(quantita);
 
-
         ProdottiCarrelloDAO prodcardao= new ProdottiCarrelloDAO();
 
-        prodcardao.doSaveProdottoCarrello(prodottiCarrello);
-        carrello.addProdotto(prod);
-
+        ProdottiCarrello verifica=prodcardao.doRetrieveByCarrelloAndProdotto(carrello.getIdCarrello(), prod.getId());
+        if(prodcardao.doRetrieveByCarrelloAndProdotto(carrello.getIdCarrello(), prod.getId())!=null){
+            prodottiCarrello.setQuantita(prodottiCarrello.getQuantita()+verifica.getQuantita());
+            prodcardao.doUpdateProdottiQuantita(prodottiCarrello);
+        }else {
+            prodcardao.doSaveProdottoCarrello(prodottiCarrello);
+            carrello.addProdotto(prod);
+        }
         RequestDispatcher rd = request.getRequestDispatcher(address);
         rd.forward(request, response);
     }
