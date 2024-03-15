@@ -1,6 +1,4 @@
 package control;
-
-import com.google.protobuf.StringValue;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -9,22 +7,24 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import model.Prodotto;
-import model.ProdottoDAO;
+import model.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
+import java.util.Properties;
+
+import static com.mysql.cj.xdevapi.Session.*;
 
 @WebServlet("/new-prodotto")
 @MultipartConfig
 public class AddProdotto extends HttpServlet {
 
+    private ProdottoObservable observable = new ProdottoObservable();
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String address;
+        observable.addObserver(new LoggerObserver());
             String nome = request.getParameter("nome");
             System.out.println(nome);
             String desc = request.getParameter("descrizione");
@@ -58,8 +58,6 @@ public class AddProdotto extends HttpServlet {
             {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Errorepage.jsp");
                 dispatcher.forward(request, response);
-
-
             }
 
 
@@ -96,7 +94,7 @@ public class AddProdotto extends HttpServlet {
                     part.write(filePath);
                 }
 
-
+        observable.notifyObservers(prodotto);
 
         address = "/WEB-INF/HomeAdmin.jsp";
                 request.setAttribute("prodotto", prodotto);
@@ -116,6 +114,7 @@ public class AddProdotto extends HttpServlet {
         }
         return null;
     }
+
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
